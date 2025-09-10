@@ -2,9 +2,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SimpleVideoPlayer } from "@/components/shared/video-player";
 import { BackgroundVideo } from "@/components/ui/background-video";
+import { useToast } from "@/hooks/use-toast";
+import { useHubSpot } from "@/api/hooks/useHubSpot";
 import Link from "next/link";
 
 type FormValues = {
@@ -25,19 +28,57 @@ const schema = yup.object({
 });
 
 export default function HeroSection() {
+  const { toast } = useToast();
+  const { submitForm } = useHubSpot();
+  const [isSubmittingForm, setIsSubmittingForm] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
+    reset,
+    getValues,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: FormValues) => {
-    console.log("Form submitted:", data);
-  };
+    setIsSubmittingForm(true);
+    
+    try {
+      // Submit to HubSpot
+      await submitForm.mutateAsync({
+        fields: [
+          { name: 'firstname', value: data.name.split(' ')[0] || data.name },
+          { name: 'lastname', value: data.name.split(' ').slice(1).join(' ') || '' },
+          { name: 'email', value: data.email },
+          { name: 'phone', value: data.phone || '' },
+          { name: 'message', value: data.message },
+        ],
+        context: {
+          pageUri: window.location.href,
+          pageName: 'Hero Section Contact Form',
+        },
+      });
 
-  
+      toast({
+        title: 'Success',
+        description: 'Your information has been submitted successfully.',
+      });
+
+      // Reset form
+      reset();
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to submit your information. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmittingForm(false);
+    }
+  };  
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
@@ -213,11 +254,11 @@ export default function HeroSection() {
                   <Button
                     type="submit"
                     size="lg"
-                    disabled={isSubmitting}
+                    disabled={isSubmittingForm}
                     className="w-full sm:w-[100%] px-[22.26px] py-[12.98px] sm:px-7 sm:py-3 lg:px-9 lg:py-4 text-base lg:text-lg font-bold bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-lg"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   >
-                    Schedule Introduction
+                    {isSubmittingForm ? "Submitting..." : "Schedule Introduction"}
                   </Button>
                 </div>
               </form>

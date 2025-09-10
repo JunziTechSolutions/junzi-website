@@ -35,7 +35,6 @@ export default function HeroSection() {
 
   const onSubmit = async (data: FormValues) => {
     console.log("Form submitted:", data);
-    // You can send the data to your backend here
   };
 
   

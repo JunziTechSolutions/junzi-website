@@ -1,0 +1,91 @@
+/* Мобильные исправления для предотвращения горизонтального скролла */
+
+/* Базовые исправления для всех устройств */
+* {
+  box-sizing: border-box;
+}
+
+/* Исправления для мобильных устройств */
+@media (max-width: 768px) {
+  /* Предотвращение горизонтального скролла */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
+  
+  /* Исправление для контейнеров */
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Исправление для абсолютно позиционированных элементов */
+  .absolute {
+    max-width: 100vw;
+  }
+  
+  /* Исправление для элементов с фиксированной шириной */
+  [class*="w-["] {
+    max-width: 100vw;
+  }
+  
+  /* Исправление для SVG элементов */
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Исправление для изображений */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Исправление для видео */
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Дополнительные исправления для очень маленьких экранов */
+@media (max-width: 300px) {
+  /* Уменьшение отступов */
+  .px-4 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Исправление для элементов с минимальной шириной */
+  [class*="min-w-["] {
+    min-width: auto !important;
+  }
+  
+  /* Исправление для flex контейнеров */
+  .flex {
+    flex-wrap: wrap;
+  }
+}
+
+/* Исправления для элементов с backdrop-blur */
+@media (max-width: 768px) {
+  .backdrop-blur-\[100px\] {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Исправления для transform элементов */
+  [style*="transform"] {
+    transform-origin: center center;
+  }
+  
+  /* Исправления для элементов с большими размерами */
+  [style*="width: '1500px'"],
+  [style*="width: '1800px'"],
+  [style*="width: '1260px'"] {
+    max-width: 100vw !important;
+    width: 100vw !important;
+  }
+} 

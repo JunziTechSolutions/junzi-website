@@ -1,0 +1,138 @@
+.phone-input {
+  @apply w-full relative;
+}
+
+/* Общие стили для контейнера при фокусе */
+.phone-input.focused {
+  @apply ring-1 ring-blue-500 rounded-md;
+}
+
+/* Стили для основного инпута */
+.phone-input .form-control {
+  @apply w-full h-[42px] border-gray-300 !important;
+  @apply focus:outline-none focus:border-blue-500 !important;
+}
+
+.phone-input .country-list.country-list {
+  padding: 0 !important;
+}
+
+/* Стили для кнопки с флагом */
+.phone-input .flag-button {
+  @apply border-gray-300 !important;
+  @apply focus:outline-none !important;
+}
+
+
+/* Убираем границу между кнопкой и инпутом */
+.phone-input .flag-button {
+  @apply border-r-0 !important;
+}
+
+.phone-input .form-control {
+  @apply border-l-0 !important;
+}
+
+/* Стили для выпадающего списка */
+.phone-input .country-list {
+  @apply bg-white border border-gray-200 rounded-md shadow-lg mt-1 !important;
+
+}
+
+
+
+/* .phone-input .country-list .search-box {
+
+} */
+
+/* .phone-input .country-list .search-box input {
+  @apply w-full p-2 border border-gray-300 text-black rounded-md !important;
+  @apply focus:outline-none focus:ring-1 focus:ring-blue-500 !important;
+  background-color: black;
+  opacity: 1 !important;
+} */
+/* Обёртка для списка стран */
+.phone-input .country-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Поиск зафиксирован */
+.phone-input .country-list .search-box {
+  position: sticky;
+  margin-left: 0px;
+  display: flex;
+  z-index: 10;
+  background-color: white;
+}
+
+.phone-input .country-list .search-emoji {
+  border: none;
+  margin-top: 3px;
+}
+
+.phone-input .country-list .search-box input {
+  border: none;
+}
+
+/* Список стран — скроллим его */
+
+
+.phone-input .country-list {
+  @apply px-4 py-2 hover:bg-gray-50 cursor-pointer !important;
+  overflow-y: auto;
+  max-height: 240px;
+}
+
+.phone-input .country-list .country.highlight {
+  @apply bg-gray-50 !important;
+}
+
+.phone-input .country-list .flag {
+  @apply mr-2 !important;
+}
+
+.phone-input .country-list .country-name {
+  @apply text-gray-900 !important;
+}
+
+.phone-input .country-list .dial-code {
+  @apply text-gray-500 !important;
+}
+
+/* Добавляем скругление для крайних элементов */
+.phone-input .flag-button {
+  @apply rounded-l-md !important;
+}
+
+.phone-input .form-control {
+  @apply rounded-r-md !important;
+}
+
+/* Phone Input Styles */
+.phone-input .flag-dropdown {
+  border: 1px solid #e5e7eb !important;
+  border-right: none !important;
+  border-radius: 0.375rem 0 0 0.375rem !important;
+  background-color: #fff !important;
+}
+
+.phone-input .flag-dropdown:hover,
+.phone-input .flag-dropdown:focus {
+  border-color: #3b82f6 !important;
+}
+
+.phone-input .selected-flag {
+  padding: 0 8px !important;
+  border-radius: 0.375rem 0 0 0.375rem !important;
+}
+
+.phone-input .selected-flag:hover,
+.phone-input .selected-flag:focus {
+  background-color: #f3f4f6 !important;
+}

@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import phone input styles */
+@import "./phone-input.css";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-end-rgb));
+}
+
+/* Бесконечный слайдер стили */
+@keyframes slideToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-to-left {
+  animation: slideToLeft 100s linear infinite;
+}
+
+.hover\:pause:hover {
+  animation-play-state: paused;
+}
+
+/* Адаптивные стили */
+.mobile-card {
+  height: 18rem;
+  width: 16rem;
+}
+
+.mobile-text {
+  font-size: 0.75rem;
+  color: black;
+  font-weight: normal;
+  text-transform: none;
+}

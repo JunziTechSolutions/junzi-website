@@ -1,0 +1,126 @@
+/* Оптимизация производительности для мобильных устройств */
+
+/* Отключаем сложные анимации на мобильных устройствах */
+@media (max-width: 768px) {
+  /* Уменьшаем количество слоев для лучшей производительности */
+  .backdrop-blur-\[100px\] {
+    backdrop-filter: blur(20px);
+  }
+  
+  /* Оптимизируем градиенты */
+  [style*="radial-gradient"] {
+    will-change: auto;
+  }
+  
+  /* Уменьшаем количество элементов с filter: blur */
+  [style*="filter: blur"] {
+    filter: blur(2px);
+  }
+  
+  /* Оптимизируем анимации */
+  .animate-pulse {
+    animation: none;
+  }
+  
+  /* Улучшаем рендеринг изображений */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Отключаем сложные тени на мобильных */
+  .shadow-xl {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Оптимизируем transform */
+  .transform {
+    will-change: auto;
+  }
+  
+  /* Уменьшаем количество элементов с z-index */
+  [style*="z-index"] {
+    z-index: 1;
+  }
+}
+
+/* Дополнительные оптимизации для очень слабых устройств */
+@media (max-width: 480px) {
+  /* Отключаем все сложные эффекты */
+  .backdrop-blur-\[100px\] {
+    backdrop-filter: none;
+  }
+  
+  [style*="filter: blur"] {
+    filter: none;
+  }
+  
+  /* Упрощаем градиенты */
+  [style*="radial-gradient"] {
+    background: rgba(150, 202, 230, 0.1);
+  }
+  
+  /* Отключаем hover эффекты */
+  .hover\:scale-110:hover {
+    transform: none;
+  }
+  
+  .hover\:grayscale-0:hover {
+    filter: grayscale(1);
+  }
+  
+  .hover\:opacity-100:hover {
+    opacity: 0.6;
+  }
+}
+
+/* Оптимизация для устройств с низкой частотой обновления */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-pulse {
+    animation: none;
+  }
+}
+
+/* Улучшение производительности скролла */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Оптимизация для устройств с ограниченной памятью */
+@media (max-width: 768px) {
+  /* Уменьшаем размер изображений */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Оптимизируем контейнеры */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Уменьшаем отступы */
+  .py-18 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .mb-14 {
+    margin-bottom: 2rem;
+  }
+} 

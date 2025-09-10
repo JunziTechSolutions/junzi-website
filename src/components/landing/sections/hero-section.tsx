@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SimpleVideoPlayer } from "@/components/shared/video-player";
 import { BackgroundVideo } from "@/components/ui/background-video";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { useHubSpot } from "@/api/hooks/useHubSpot";
 import Link from "next/link";
 
@@ -44,41 +44,45 @@ export default function HeroSection() {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmittingForm(true);
-    
+
     try {
       // Submit to HubSpot
       await submitForm.mutateAsync({
         fields: [
-          { name: 'firstname', value: data.name.split(' ')[0] || data.name },
-          { name: 'lastname', value: data.name.split(' ').slice(1).join(' ') || '' },
-          { name: 'email', value: data.email },
-          { name: 'phone', value: data.phone || '' },
-          { name: 'message', value: data.message },
+          { name: "firstname", value: data.name.split(" ")[0] || data.name },
+          {
+            name: "lastname",
+            value: data.name.split(" ").slice(1).join(" ") || "",
+          },
+          { name: "email", value: data.email },
+          { name: "phone", value: data.phone || "" },
+          { name: "message", value: data.message },
         ],
         context: {
           pageUri: window.location.href,
-          pageName: 'Hero Section Contact Form',
+          pageName: "Hero Section Contact Form",
         },
       });
 
+      console.log("HubSpot submission successful, showing success toast...");
       toast({
-        title: 'Success',
-        description: 'Your information has been submitted successfully.',
+        title: "Success",
+        description: "Your information has been submitted successfully.",
       });
 
       // Reset form
       reset();
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error("Form submission error:", error);
       toast({
-        title: 'Error',
-        description: 'Failed to submit your information. Please try again.',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to submit your information. Please try again.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmittingForm(false);
     }
-  };  
+  };
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
@@ -184,7 +188,7 @@ export default function HeroSection() {
               Junzi is your development partner.
             </p>
             {/* form started */}
-            <div>
+            <div style={{ zIndex: 12 }}>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="max-w-2xl mx-auto p-4 space-y-4"
@@ -258,7 +262,9 @@ export default function HeroSection() {
                     className="w-full sm:w-[100%] px-[22.26px] py-[12.98px] sm:px-7 sm:py-3 lg:px-9 lg:py-4 text-base lg:text-lg font-bold bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-lg"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   >
-                    {isSubmittingForm ? "Submitting..." : "Schedule Introduction"}
+                    {isSubmittingForm
+                      ? "Submitting..."
+                      : "Schedule Introduction"}
                   </Button>
                 </div>
               </form>
@@ -278,7 +284,10 @@ export default function HeroSection() {
           </div>
 
           {/* Decorative Background Element - Desktop Only */}
-          <div className="hidden xl:block absolute left-[-100px] top-1/4 w-[600px] h-[600px] pointer-events-none">
+          <div
+            className="hidden xl:block absolute left-[-100px] top-1/4 w-[600px] h-[600px] pointer-events-none"
+            style={{ zIndex: 10 }}
+          >
             <div className="absolute inset-0 bg-[rgba(150,202,230,0.8)] rounded-full scale-x-125 blur-2xl"></div>
             <div className="absolute inset-0 bg-gradient-radial from-[rgba(150,202,230,0.9)] via-transparent to-transparent rounded-full scale-x-150 blur-3xl"></div>
           </div>

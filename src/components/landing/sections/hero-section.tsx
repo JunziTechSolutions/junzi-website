@@ -22,7 +22,7 @@ const schema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
   phone: yup
     .string()
-    .optional()
+    .required("Phone number is required")
     .matches(/^[0-9+\s()-]*$/, "Invalid phone number"),
   message: yup.string().required("Message is required"),
 });
@@ -229,7 +229,7 @@ export default function HeroSection() {
                   <input
                     type="tel"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
-                    placeholder="Phone (Optional) - we call you back"
+                    placeholder="Phone - we'll call you back"
                     {...register("phone")}
                     className="w-full p-3 text-xl border border-gray-300 rounded-lg bg-[rgba(255,255,255,0.6)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-2 focus:ring-blue-400 transition-none"
                   />

@@ -229,7 +229,7 @@ export default function HeroSection() {
                   <input
                     type="tel"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
-                    placeholder="Phone - we'll call you back"
+                    placeholder="Phone"
                     {...register("phone")}
                     className="w-full p-3 text-xl border border-gray-300 rounded-lg bg-[rgba(255,255,255,0.6)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-2 focus:ring-blue-400 transition-none"
                   />

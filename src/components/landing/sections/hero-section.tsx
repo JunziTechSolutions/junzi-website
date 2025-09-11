@@ -13,8 +13,8 @@ import Link from "next/link";
 type FormValues = {
   name: string;
   email: string;
-  phone?: string;
-  message: string;
+  phone: string;
+  message?: string;
 };
 
 const schema = yup.object({
@@ -24,7 +24,7 @@ const schema = yup.object({
     .string()
     .required("Phone number is required")
     .matches(/^[0-9+\s()-]*$/, "Invalid phone number"),
-  message: yup.string().required("Message is required"),
+  message: yup.string(),
 });
 
 export default function HeroSection() {

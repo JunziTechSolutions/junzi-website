@@ -56,7 +56,7 @@ export default function HeroSection() {
           },
           { name: "email", value: data.email },
           { name: "phone", value: data.phone || "" },
-          { name: "message", value: data.message },
+          { name: "message", value: data.message || ""},
         ],
         context: {
           pageUri: window.location.href,

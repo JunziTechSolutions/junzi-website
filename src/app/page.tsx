@@ -6,6 +6,7 @@ import "@/styles/globals.css";
 // import SplashCursor from "@/components/landing/ui/SplashCursor";
 
 
+
 export default function Page() {
   return (
     <>

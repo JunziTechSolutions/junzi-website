@@ -55,9 +55,7 @@ export default function HeroSection() {
                 backgroundClip: 'text'
               }}
             >
-              Innovate.
-              <br />
-              Build. Conquer.
+              From Design to Scale — We Build What Others Can't.
             </h1>
             
             <p 

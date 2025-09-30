@@ -9,16 +9,19 @@ function TimeSegment({
   label: string;
 }) {
   return (
-    <div className="flex flex-col items-center px-2 sm:px-3">
+    <div className="flex flex-col items-center w-8 sm:w-10">
       <div
-        className="text-base sm:text-xl md:text-2xl font-thin tabular-nums leading-none"
-        style={{ fontFamily: "Space Grotesk, sans-serif" }}
+        className="text-[16px] font-medium tabular-nums leading-normal text-white"
+        style={{
+          fontFamily: "Space Grotesk, sans-serif",
+          lineHeight: "normal",
+        }}
       >
         {String(value).padStart(2, "0")}
       </div>
       <div
-        className="text-[10px] sm:text-xs text-white/90 tracking-wide leading-none font-thin mt-0"
-        style={{ fontFamily: "Space Grotesk, sans-serif" }}
+        className="text-[12px] font-light text-white leading-normal mt-0"
+        style={{ fontFamily: "Inter, sans-serif" }}
       >
         {label}
       </div>
@@ -55,7 +58,7 @@ export default function TopPromoBar() {
 
   return (
     <div
-      className="w-full text-white h-20"
+      className="w-full text-white h-20 sm:h-16  flex items-center"
       style={{
         background:
           "radial-gradient(60.58% 725.59% at 43.14% 120.14%, #3652A3 0%, #4FABFF 100%)",
@@ -76,22 +79,38 @@ export default function TopPromoBar() {
             Offer ends in:
           </span>
           <div
-            className="inline-flex items-center rounded-[8px]  sm:gap-[10px] min-w-[140px] sm:min-w-[167px] h-[38px] sm:h-[54px]  sm:px-[10px] py-[7px]"
+            className="inline-flex items-start rounded-[8px] h-[42px] justify-center items-start px-2 gap-1"
             style={{
-              background:
-                "linear-gradient(132.03deg, #170F49 0%, #4A3AFF 85.38%)",
               borderWidth: "0.3px",
               borderStyle: "solid",
               borderColor: "var(--Colors-Neutral-100, #FFFFFF)",
-              mixBlendMode: "plus-lighter",
+              paddingTop: "4px",
             }}
           >
             <TimeSegment value={timeLeft.days} label="Days" />
-            <div className="self-stretch w-px bg-white/40 mx-1" />
+            <span
+              aria-hidden="true"
+              className="text-[16px] font-medium text-white leading-normal  "
+              style={{ fontFamily: "Space Grotesk, sans-serif" }}
+            >
+              :
+            </span>
             <TimeSegment value={timeLeft.hours} label="Hours" />
-            <div className="self-stretch w-px bg-white/40 mx-1" />
+            <span
+              aria-hidden="true"
+              className="text-[16px] font-medium text-white leading-normal  "
+              style={{ fontFamily: "Space Grotesk, sans-serif" }}
+            >
+              :
+            </span>
             <TimeSegment value={timeLeft.minutes} label="Min" />
-            <div className="self-stretch w-px bg-white/40 mx-1" />
+            <span
+              aria-hidden="true"
+              className="text-[16px] font-medium text-white leading-normal  "
+              style={{ fontFamily: "Space Grotesk, sans-serif" }}
+            >
+              :
+            </span>
             <TimeSegment value={timeLeft.seconds} label="Sec" />
           </div>
         </div>

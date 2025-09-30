@@ -39,7 +39,7 @@ class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
-    console.error('Section error:', error, errorInfo);
+    console.error("Section error:", error, errorInfo);
   }
 
   render() {
@@ -52,18 +52,20 @@ class ErrorBoundary extends Component<
 }
 
 // Компонент-обертка для безопасной загрузки секций
-const SafeSection = ({ 
-  children, 
+const SafeSection = ({
+  children,
   fallback = null,
-  sectionName 
-}: { 
-  children: React.ReactNode; 
+  sectionName,
+}: {
+  children: React.ReactNode;
   fallback?: React.ReactNode;
   sectionName: string;
 }) => {
   return (
     <ErrorBoundary fallback={<SectionFallback sectionName={sectionName} />}>
-      <Suspense fallback={fallback || <SectionFallback sectionName={sectionName} />}>
+      <Suspense
+        fallback={fallback || <SectionFallback sectionName={sectionName} />}
+      >
         {children}
       </Suspense>
     </ErrorBoundary>
@@ -71,155 +73,163 @@ const SafeSection = ({
 };
 
 export default function LandingPage() {
-    return (
-      
-      <>
+  return (
+    <>
       <Header />
-             <div 
-         className="flex flex-col min-h-screen backdrop-blur-[100px] bg-gray-50 overflow-x-hidden" 
-         style={{
-           backgroundImage: `
+      <div
+        className="flex flex-col min-h-screen backdrop-blur-[100px] bg-gray-50 overflow-x-hidden"
+        style={{
+          backgroundImage: `
              radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)
            `,
-           backgroundSize: '3px 3px'
-         }}
-       >
-     
-        
-                 <main className="flex-1 relative">
-
+          backgroundSize: "3px 3px",
+        }}
+      >
+        <main className="flex-1 relative">
           <SafeSection sectionName="Hero">
             <HeroSection />
           </SafeSection>
-          
+
           <SafeSection sectionName="Brands">
             <BrandsSlider />
           </SafeSection>
-           {/* Center spray effect for HowWeWorksSection - Mobile */}
-           <div 
-                className="absolute top-[-10%] left-1/2 transform -translate-x-1/2 w-[400px] h-[300px] pointer-events-none md:hidden"
-                style={{
-                  background: `
+          {/* Center spray effect for HowWeWorksSection - Mobile */}
+          <div
+            className="absolute top-[-10%] left-1/2 transform -translate-x-1/2 w-[400px] h-[300px] pointer-events-none md:hidden"
+            style={{
+              background: `
                     radial-gradient(ellipse 300px 200px at 50% 50%, rgba(150, 202, 230, 0.4) 0%, rgba(150, 202, 230, 0.2) 15%, rgba(150, 202, 230, 0.1) 30%, transparent 60%),
                     radial-gradient(ellipse 250px 150px at 50% 50%, rgba(150, 202, 230, 0.3) 0%, rgba(150, 202, 230, 0.15) 20%, transparent 50%)
                   `,
-                  filter: 'blur(2px)',
-                  zIndex: -1
-                }}
-              />
-          
+              filter: "blur(2px)",
+              zIndex: -1,
+            }}
+          />
+
           {/* Background spray effect for HowWeWorksSection */}
           <div className="relative">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-            </div>
-            <div 
-                className="absolute top-0 left-[40%] transform -translate-x-1/2 w-[1260px] h-[810px] pointer-events-none hidden md:block"
-                style={{
-                  background: `
+            <div
+              className="absolute inset-0 pointer-events-none overflow-hidden"
+              style={{ zIndex: 0 }}
+            ></div>
+            <div
+              className="absolute top-0 left-[40%] transform -translate-x-1/2 w-[1260px] h-[810px] pointer-events-none hidden md:block"
+              style={{
+                background: `
                     radial-gradient(ellipse 900px 630px at 50% 50%, rgba(150, 202, 230, 0.4) 0%, rgba(150, 202, 230, 0.4) 15%, rgba(150, 202, 230, 0.25) 30%, rgba(150, 202, 230, 0.15) 45%, transparent 60%),
                     radial-gradient(ellipse 810px 540px at 50% 50%, rgba(150, 202, 230, 0.3) 0%, rgba(150, 202, 230, 0.3) 20%, rgba(150, 202, 230, 0.2) 35%, rgba(150, 202, 230, 0.1) 50%, transparent 65%),
                     radial-gradient(ellipse 720px 450px at 50% 50%, rgba(150, 202, 230, 0.25) 0%, rgba(150, 202, 230, 0.28) 25%, rgba(150, 202, 230, 0.18) 40%, rgba(150, 202, 230, 0.08) 55%, transparent 70%),
                     radial-gradient(ellipse 630px 360px at 50% 50%, rgba(150, 202, 230, 0.2) 0%, rgba(150, 202, 230, 0.25) 30%, rgba(150, 202, 230, 0.15) 45%, rgba(150, 202, 230, 0.06) 60%, transparent 75%)
                   `,
-                  filter: 'blur(3px)',
-                  zIndex: -1
-                }}
-              />
+                filter: "blur(3px)",
+                zIndex: -1,
+              }}
+            />
             <SafeSection sectionName="HowWeWorks">
               <MotionWrapper>
                 <HowWeWorksSection />
               </MotionWrapper>
             </SafeSection>
           </div>
-          
-          
+
           {/* Background spray effect covering Cases and Services sections */}
           <div className="relative">
-            <div className="absolute inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ zIndex: -1 }}
+            >
               {/* Main spray center covering both sections - desktop */}
-              <div 
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: '45%',
-                  top: '50%',
-                  width: '1200px',
-                  height: '800px',
-                  background: 'radial-gradient(ellipse 600px 600px at center, rgba(150, 202, 230, 0.4) 0%, rgba(79, 171, 255, 0.2) 30%, rgba(128, 229, 255, 0.1) 60%, transparent 80%)',
-                  filter: 'blur(8px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: -1
+                  left: "45%",
+                  top: "50%",
+                  width: "1200px",
+                  height: "800px",
+                  background:
+                    "radial-gradient(ellipse 600px 600px at center, rgba(150, 202, 230, 0.4) 0%, rgba(79, 171, 255, 0.2) 30%, rgba(128, 229, 255, 0.1) 60%, transparent 80%)",
+                  filter: "blur(8px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: -1,
                 }}
               />
-              
+
               {/* Main spray center covering both sections - mobile */}
-              <div 
+              <div
                 className="absolute md:hidden"
                 style={{
-                  left: '40%',
-                  top: '55%',
-                  width: '400px',
-                  height: '800px',
-                  background: 'radial-gradient(ellipse 200px 600px at center, rgba(150, 202, 230, 0.3) 0%, rgba(79, 171, 255, 0.15) 30%, rgba(128, 229, 255, 0.08) 60%, transparent 80%)',
-                  filter: 'blur(6px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: -1
+                  left: "40%",
+                  top: "55%",
+                  width: "400px",
+                  height: "800px",
+                  background:
+                    "radial-gradient(ellipse 200px 600px at center, rgba(150, 202, 230, 0.3) 0%, rgba(79, 171, 255, 0.15) 30%, rgba(128, 229, 255, 0.08) 60%, transparent 80%)",
+                  filter: "blur(6px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: -1,
                 }}
               />
-              
+
               {/* Additional spray elements for depth - desktop */}
-              
+
               {/* Additional spray elements for depth - mobile */}
-              <div 
+              <div
                 className="absolute md:hidden"
                 style={{
-                  left: '40%',
-                  top: '55%',
-                  width: '300px',
-                  height: '400px',
-                  background: 'radial-gradient(ellipse 150px 300px at center, rgba(150, 202, 230, 0.12) 0%, rgba(79, 171, 255, 0.08) 40%, transparent 70%)',
-                  filter: 'blur(12px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: -1
+                  left: "40%",
+                  top: "55%",
+                  width: "300px",
+                  height: "400px",
+                  background:
+                    "radial-gradient(ellipse 150px 300px at center, rgba(150, 202, 230, 0.12) 0%, rgba(79, 171, 255, 0.08) 40%, transparent 70%)",
+                  filter: "blur(12px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: -1,
                 }}
               />
             </div>
-            
+
             <SafeSection sectionName="Cases">
               <MotionWrapper>
                 <CasesSection />
               </MotionWrapper>
             </SafeSection>
-            
+
             <SafeSection sectionName="Services">
               <div className="relative">
-                <div className="absolute inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ zIndex: -1 }}
+                >
                   {/* Bottom Services effect - desktop */}
-                  <div 
+                  <div
                     className="absolute hidden md:block"
                     style={{
-                      left: '30%',
-                        bottom: '10%',
-                      width: '1200px',
-                      height: '400px',
-                      background: 'radial-gradient(ellipse 600px 250px at center, rgba(150, 202, 230, 0.8) 0%, rgba(79, 171, 255, 0.5) 30%, rgba(128, 229, 255, 0.3) 60%, transparent 85%)',
-                      filter: 'blur(4px)',
-                      transform: 'translate(-50%, 0%)',
-                      zIndex: -1
+                      left: "30%",
+                      bottom: "10%",
+                      width: "1200px",
+                      height: "400px",
+                      background:
+                        "radial-gradient(ellipse 600px 250px at center, rgba(150, 202, 230, 0.8) 0%, rgba(79, 171, 255, 0.5) 30%, rgba(128, 229, 255, 0.3) 60%, transparent 85%)",
+                      filter: "blur(4px)",
+                      transform: "translate(-50%, 0%)",
+                      zIndex: -1,
                     }}
                   />
-                  
+
                   {/* Bottom Services effect - mobile */}
-                  <div 
+                  <div
                     className="absolute md:hidden"
                     style={{
-                      left: '50%',
-                      bottom: '15%',
-                      width: '400px',
-                      height: '250px',
-                      background: 'radial-gradient(ellipse 200px 180px at center, rgba(150, 202, 230, 0.7) 0%, rgba(79, 171, 255, 0.4) 30%, rgba(128, 229, 255, 0.2) 60%, transparent 85%)',
-                      filter: 'blur(3px)',
-                      transform: 'translate(-50%, 0%)',
-                      zIndex: -1
+                      left: "50%",
+                      bottom: "15%",
+                      width: "400px",
+                      height: "250px",
+                      background:
+                        "radial-gradient(ellipse 200px 180px at center, rgba(150, 202, 230, 0.7) 0%, rgba(79, 171, 255, 0.4) 30%, rgba(128, 229, 255, 0.2) 60%, transparent 85%)",
+                      filter: "blur(3px)",
+                      transform: "translate(-50%, 0%)",
+                      zIndex: -1,
                     }}
                   />
                 </div>
@@ -229,10 +239,13 @@ export default function LandingPage() {
               </div>
             </SafeSection>
           </div>
-          
+
           {/* Background spray effect covering Competitors section */}
           <div className="relative">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+            <div
+              className="absolute inset-0 pointer-events-none overflow-hidden"
+              style={{ zIndex: 0 }}
+            >
               {/* Main spray center covering both sections - desktop */}
               {/* <div 
                 className="absolute hidden md:block"
@@ -247,7 +260,7 @@ export default function LandingPage() {
                   zIndex: 0
                 }}
               /> */}
-              
+
               {/* Main spray center covering both sections - mobile */}
               {/* <div 
                 className="absolute md:hidden"
@@ -262,7 +275,7 @@ export default function LandingPage() {
                   zIndex: 0
                 }}
               /> */}
-              
+
               {/* Additional spray elements for depth - desktop */}
               {/* <div 
                 className="absolute hidden md:block"
@@ -277,7 +290,7 @@ export default function LandingPage() {
                   zIndex: 0
                 }}
               /> */}
-              
+
               {/* Additional spray elements for depth - mobile */}
               {/* <div 
                 className="absolute md:hidden"
@@ -292,7 +305,7 @@ export default function LandingPage() {
                   zIndex: 0
                 }}
               /> */}
-              
+
               {/* Smaller spray elements scattered around - desktop only */}
               {/* <div 
                 className="absolute hidden md:block"
@@ -321,7 +334,7 @@ export default function LandingPage() {
                   zIndex: 0
                 }}
               /> */}
-              
+
               {/* Subtle background particles - desktop only */}
               {/* <div 
                 className="absolute inset-0 hidden md:block"
@@ -341,67 +354,74 @@ export default function LandingPage() {
               </MotionWrapper>
             </SafeSection>
           </div>
-          
+
           {/* Background spray effect for DevelopmentSprints */}
           <div className="relative overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ zIndex: 0 }}
+            >
               {/* Main spray center for DevelopmentSprints - desktop */}
-              <div 
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: '45%',
-                  top: '55%',
-                  width: '1000px',
-                  height: '900px',
-                  background: 'radial-gradient(ellipse 550px 650px at center, rgba(150, 202, 230, 1) 0%, rgba(79, 171, 255, 0.5) 30%, rgba(128, 229, 255, 0.3) 60%, transparent 80%)',
-                  filter: 'blur(5px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "45%",
+                  top: "55%",
+                  width: "1000px",
+                  height: "900px",
+                  background:
+                    "radial-gradient(ellipse 550px 650px at center, rgba(150, 202, 230, 1) 0%, rgba(79, 171, 255, 0.5) 30%, rgba(128, 229, 255, 0.3) 60%, transparent 80%)",
+                  filter: "blur(5px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Main spray center for DevelopmentSprints - mobile */}
-              <div 
+              <div
                 className="absolute md:hidden"
                 style={{
-                  left: '45%',
-                  top: '50%',
-                  width: '350px',
-                  height: '500px',
-                  background: 'radial-gradient(ellipse 175px 400px at center, rgba(150, 202, 230, 0.9) 0%, rgba(79, 171, 255, 0.4) 30%, rgba(128, 229, 255, 0.2) 60%, transparent 80%)',
-                  filter: 'blur(4px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "45%",
+                  top: "50%",
+                  width: "350px",
+                  height: "500px",
+                  background:
+                    "radial-gradient(ellipse 175px 400px at center, rgba(150, 202, 230, 0.9) 0%, rgba(79, 171, 255, 0.4) 30%, rgba(128, 229, 255, 0.2) 60%, transparent 80%)",
+                  filter: "blur(4px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Additional spray elements for depth - desktop */}
-              <div 
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: '45%',
-                  top: '70%',
-                  width: '700px',
-                  height: '500px',
-                  background: 'radial-gradient(ellipse 350px 400px at center, rgba(150, 202, 230, 0.3) 0%, rgba(79, 171, 255, 0.2) 40%, transparent 70%)',
-                  filter: 'blur(18px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "45%",
+                  top: "70%",
+                  width: "700px",
+                  height: "500px",
+                  background:
+                    "radial-gradient(ellipse 350px 400px at center, rgba(150, 202, 230, 0.3) 0%, rgba(79, 171, 255, 0.2) 40%, transparent 70%)",
+                  filter: "blur(18px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Additional spray elements for depth - mobile */}
-              <div 
+              <div
                 className="absolute md:hidden"
                 style={{
-                  left: '45%',
-                  top: '60%',
-                  width: '220px',
-                  height: '300px',
-                  background: 'radial-gradient(ellipse 110px 200px at center, rgba(150, 202, 230, 0.25) 0%, rgba(79, 171, 255, 0.15) 40%, transparent 70%)',
-                  filter: 'blur(10px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "45%",
+                  top: "60%",
+                  width: "220px",
+                  height: "300px",
+                  background:
+                    "radial-gradient(ellipse 110px 200px at center, rgba(150, 202, 230, 0.25) 0%, rgba(79, 171, 255, 0.15) 40%, transparent 70%)",
+                  filter: "blur(10px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
             </div>
@@ -411,9 +431,9 @@ export default function LandingPage() {
               </MotionWrapper>
             </SafeSection>
           </div>
-              
-              {/* Background spray effect for PricingBlock */}
-              {/* <div className="relative overflow-hidden">
+
+          {/* Background spray effect for PricingBlock */}
+          {/* <div className="relative overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
                   <div 
                     className="absolute hidden md:block"
@@ -480,154 +500,166 @@ export default function LandingPage() {
                 </SafeSection>
               </div> */}
 
-              <SafeSection sectionName="TrustedByMobile">
-                <TrustedByMobileSection />
-              </SafeSection>
-           
-           {/* WeDeliverSection with separate background effect */}
-           <div className="relative">
-             <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-               {/* Background effect for WeDeliverSection */}
-               <div 
-                 className="absolute hidden md:block"
-                 style={{
-                   left: 'calc(50% - 200px)',
-                   top: '35%',
-                   width: '1500px',
-                   height: '2000px',
-                   background: 'radial-gradient(circle,rgba(150, 202, 230, 0.3) 0%, rgba(79, 171, 255, 0.05) 30%, rgba(128, 229, 255, 0.03) 60%, transparent 80%)',
-                   filter: 'blur(10px)',
-                   transform: 'translate(-50%, -50%)',
-                   zIndex: 0
-                 }}
-               />
-               
-               <div 
-                 className="absolute md:hidden"
-                 style={{
-                   left: '45%',
-                   top: '35%',
-                   width: '400px',
-                   height: '800px',
-                   background: 'radial-gradient(circle,rgba(150, 202, 230, 0.2) 0%, rgba(79, 171, 255, 0.03) 30%, rgba(128, 229, 255, 0.02) 60%, transparent 80%)',
-                   filter: 'blur(8px)',
-                   transform: 'translate(-50%, -50%)',
-                   zIndex: 0
-                 }}
-               />
-             </div>
-             <SafeSection sectionName="WeDeliver">
-               <MotionWrapper>
-                 <WeDeliverSection />
-               </MotionWrapper>
-             </SafeSection>
-           </div>
+          <SafeSection sectionName="TrustedByMobile">
+            <TrustedByMobileSection />
+          </SafeSection>
+
+          {/* WeDeliverSection with separate background effect */}
+          <div className="relative">
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ zIndex: 0 }}
+            >
+              {/* Background effect for WeDeliverSection */}
+              <div
+                className="absolute hidden md:block"
+                style={{
+                  left: "calc(50% - 200px)",
+                  top: "35%",
+                  width: "1500px",
+                  height: "2000px",
+                  background:
+                    "radial-gradient(circle,rgba(150, 202, 230, 0.3) 0%, rgba(79, 171, 255, 0.05) 30%, rgba(128, 229, 255, 0.03) 60%, transparent 80%)",
+                  filter: "blur(10px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
+                }}
+              />
+
+              <div
+                className="absolute md:hidden"
+                style={{
+                  left: "45%",
+                  top: "35%",
+                  width: "400px",
+                  height: "800px",
+                  background:
+                    "radial-gradient(circle,rgba(150, 202, 230, 0.2) 0%, rgba(79, 171, 255, 0.03) 30%, rgba(128, 229, 255, 0.02) 60%, transparent 80%)",
+                  filter: "blur(8px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
+                }}
+              />
+            </div>
+            <SafeSection sectionName="WeDeliver">
+              <MotionWrapper>
+                <WeDeliverSection />
+              </MotionWrapper>
+            </SafeSection>
+          </div>
           {/* Background spray effect covering ReadyToBuildSection and JunziTextSection */}
           <div className="relative">
-            <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ zIndex: 0 }}
+            >
               {/* Main spray center - desktop */}
-              <div 
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: 'calc(50% - 200px)',
-                  top: '30%',
-                  width: '1000px',
-                  height: '400px',
-                  background: 'radial-gradient(ellipse 600px 300px at center, rgba(150, 202, 230, 0.6) 0%, rgba(79, 171, 255, 0.15) 30%, rgba(128, 229, 255, 0.08) 60%, transparent 80%)',
-                  filter: 'blur(10px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "calc(50% - 200px)",
+                  top: "30%",
+                  width: "1000px",
+                  height: "400px",
+                  background:
+                    "radial-gradient(ellipse 600px 300px at center, rgba(150, 202, 230, 0.6) 0%, rgba(79, 171, 255, 0.15) 30%, rgba(128, 229, 255, 0.08) 60%, transparent 80%)",
+                  filter: "blur(10px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Main spray center - mobile */}
-              <div 
+              <div
                 className="absolute md:hidden"
                 style={{
-                  left: '45%',
-                  top: '50%',
-                  width: '100px',
-                  height: '100px',
-                  background: 'radial-gradient(ellipse 150px 80px at center, rgba(150, 202, 230, 0.5) 0%, rgba(79, 171, 255, 0.12) 30%, rgba(128, 229, 255, 0.06) 60%, transparent 80%)',
-                  filter: 'blur(8px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "45%",
+                  top: "50%",
+                  width: "100px",
+                  height: "100px",
+                  background:
+                    "radial-gradient(ellipse 150px 80px at center, rgba(150, 202, 230, 0.5) 0%, rgba(79, 171, 255, 0.12) 30%, rgba(128, 229, 255, 0.06) 60%, transparent 80%)",
+                  filter: "blur(8px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Additional spray elements for depth - desktop */}
-              <div 
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: 'calc(50% - 150px)',
-                  top: '45%',
-                  width: '300px',
-                  height: '100px',
-                  background: 'radial-gradient(ellipse 250px 120px at center, rgba(150, 202, 230, 0.25) 0%, rgba(79, 171, 255, 0.15) 40%, transparent 70%)',
-                  filter: 'blur(30px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "calc(50% - 150px)",
+                  top: "45%",
+                  width: "300px",
+                  height: "100px",
+                  background:
+                    "radial-gradient(ellipse 250px 120px at center, rgba(150, 202, 230, 0.25) 0%, rgba(79, 171, 255, 0.15) 40%, transparent 70%)",
+                  filter: "blur(30px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Additional spray elements for depth - mobile */}
-              <div 
+              <div
                 className="absolute md:hidden"
                 style={{
-                  left: '45%',
-                  top: '45%',
-                  width: '250px',
-                  height: '150px',
-                  background: 'radial-gradient(ellipse 200px 100px at center, rgba(150, 202, 230, 0.2) 0%, rgba(79, 171, 255, 0.12) 40%, transparent 70%)',
-                  filter: 'blur(20px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "45%",
+                  top: "45%",
+                  width: "250px",
+                  height: "150px",
+                  background:
+                    "radial-gradient(ellipse 200px 100px at center, rgba(150, 202, 230, 0.2) 0%, rgba(79, 171, 255, 0.12) 40%, transparent 70%)",
+                  filter: "blur(20px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Smaller spray elements scattered around - desktop only */}
-              <div 
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: 'calc(50% - 300px)',
-                  top: '50%',
-                  width: '300px',
-                  height: '100px',
-                  background: 'radial-gradient(ellipse 250px 80px at center, rgba(128, 229, 255, 0.25) 0%, transparent 60%)',
-                  filter: 'blur(25px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "calc(50% - 300px)",
+                  top: "50%",
+                  width: "300px",
+                  height: "100px",
+                  background:
+                    "radial-gradient(ellipse 250px 80px at center, rgba(128, 229, 255, 0.25) 0%, transparent 60%)",
+                  filter: "blur(25px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
-              <div 
+
+              <div
                 className="absolute hidden md:block"
                 style={{
-                  left: 'calc(50% + 100px)',
-                  top: '50%',
-                  width: '250px',
-                  height: '150px',
-                  background: 'radial-gradient(ellipse 200px 120px at center, rgba(79, 171, 255, 0.2) 0%, transparent 50%)',
-                  filter: 'blur(20px)',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 0
+                  left: "calc(50% + 100px)",
+                  top: "50%",
+                  width: "250px",
+                  height: "150px",
+                  background:
+                    "radial-gradient(ellipse 200px 120px at center, rgba(79, 171, 255, 0.2) 0%, transparent 50%)",
+                  filter: "blur(20px)",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
                 }}
               />
-              
+
               {/* Subtle background particles - desktop only */}
-             
             </div>
 
             {/* Noise texture overlay */}
-           
+
             <SafeSection sectionName="ReadyToBuild">
               <MotionWrapper>
                 <ReadyToBuildSection />
               </MotionWrapper>
             </SafeSection>
-            
           </div>
-          
+
           {/* JunziText and Footer with right wall effect */}
           <div className="relative w-full">
             {/* Эффект правой стенки для JunziText и footer - desktop only */}
@@ -639,8 +671,8 @@ export default function LandingPage() {
                   radial-gradient(ellipse 120px 600px at 90% 70%, rgba(150, 202, 230, 0.6) 0%, transparent 70%),
                   radial-gradient(ellipse 80px 450px at 95% 50%, rgba(150, 202, 230, 0.5) 0%, transparent 80%)
                 `,
-                filter: 'blur(1px)',
-                zIndex: 0
+                filter: "blur(1px)",
+                zIndex: 0,
               }}
             />
             {/* Эффект для мобилки */}
@@ -651,8 +683,8 @@ export default function LandingPage() {
                   radial-gradient(ellipse 60px 300px at 90% 70%, rgba(150, 202, 230, 0.5) 0%, transparent 70%),
                   radial-gradient(ellipse 40px 220px at 95% 50%, rgba(150, 202, 230, 0.4) 0%, transparent 80%)
                 `,
-                filter: 'blur(1px)',
-                zIndex: 0
+                filter: "blur(1px)",
+                zIndex: 0,
               }}
             />
             <SafeSection sectionName="JunziText">
@@ -664,12 +696,11 @@ export default function LandingPage() {
           </div>
         </main>
       </div>
-      
+
       {/* Performance Monitor для отладки */}
       {/* <PerformanceMonitor /> */}
-      
-        {/* <SplashCursor /> */}
-      </>
-    );
-  }
-  
+
+      {/* <SplashCursor /> */}
+    </>
+  );
+}

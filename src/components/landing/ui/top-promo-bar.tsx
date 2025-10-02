@@ -11,17 +11,14 @@ function TimeSegment({
   return (
     <div className="flex flex-col items-center w-8 sm:w-10">
       <div
-        className="text-[16px] font-medium tabular-nums leading-normal text-white"
-        style={{
-          fontFamily: "Space Grotesk, sans-serif",
-          lineHeight: "normal",
-        }}
+        className=" font-medium tabular-nums leading-normal text-white"
+        style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", lineHeight: '18px' }}
       >
         {String(value).padStart(2, "0")}
       </div>
       <div
-        className="text-[12px] font-light text-white leading-normal mt-0"
-        style={{ fontFamily: "Inter, sans-serif" }}
+        className="font-light text-white leading-normal mt-0"
+        style={{ fontFamily: "Inter, sans-serif", fontSize: "10px" }}
       >
         {label}
       </div>
@@ -58,7 +55,7 @@ export default function TopPromoBar() {
 
   return (
     <div
-      className="w-full text-white h-20 sm:h-16  flex items-center"
+      className="w-full text-white h-20 sm:h-16 flex items-center"
       style={{
         background:
           "radial-gradient(60.58% 725.59% at 43.14% 120.14%, #3652A3 0%, #4FABFF 100%)",
@@ -73,24 +70,28 @@ export default function TopPromoBar() {
             Get your free prototype today! Limited time offer 🚀
           </span>
           <span
-            className="hidden sm:inline text-white/90 text-xs md:text-sm"
+            className="hidden sm:inline text-white text-xs md:text-sm"
             style={{ fontFamily: "Space Grotesk, sans-serif" }}
           >
             Offer ends in:
           </span>
           <div
-            className="inline-flex items-start rounded-[8px] h-[42px] justify-center items-start px-2 gap-1"
+            className="inline-flex items-start justify-center   rounded-[12px] h-[42px] w-[168px] p-1 "
             style={{
+              background:
+                "linear-gradient(132.03deg, #170F49 0%, #4A3AFF 85.38%)",
               borderWidth: "0.3px",
               borderStyle: "solid",
               borderColor: "var(--Colors-Neutral-100, #FFFFFF)",
-              paddingTop: "4px",
+              mixBlendMode: "screen",
+              boxShadow:
+                "inset 0px -8px 5px 0px rgba(21, 17, 49, 0.8), inset 0px 2px 10px 0px #9D95FF, 0px 0px 3.56px 0px rgba(205, 198, 247, 0.32)",
             }}
           >
             <TimeSegment value={timeLeft.days} label="Days" />
             <span
               aria-hidden="true"
-              className="text-[16px] font-medium text-white leading-normal  "
+              className="text-[16px] font-medium text-white leading-normal"
               style={{ fontFamily: "Space Grotesk, sans-serif" }}
             >
               :
@@ -98,7 +99,7 @@ export default function TopPromoBar() {
             <TimeSegment value={timeLeft.hours} label="Hours" />
             <span
               aria-hidden="true"
-              className="text-[16px] font-medium text-white leading-normal  "
+              className="text-[16px] font-medium text-white leading-normal"
               style={{ fontFamily: "Space Grotesk, sans-serif" }}
             >
               :
@@ -106,7 +107,7 @@ export default function TopPromoBar() {
             <TimeSegment value={timeLeft.minutes} label="Min" />
             <span
               aria-hidden="true"
-              className="text-[16px] font-medium text-white leading-normal  "
+              className="text-[16px] font-medium text-white leading-normal"
               style={{ fontFamily: "Space Grotesk, sans-serif" }}
             >
               :

@@ -61,7 +61,7 @@ const HowWeWorksSection = () => {
               marginBottom: isMobile ? '8px' : '12px'
             }}
           >
-            HOW WE WORKS
+            HOW WE WORK
           </div>
 
           {/* Line */}

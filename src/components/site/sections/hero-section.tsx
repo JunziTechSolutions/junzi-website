@@ -104,7 +104,7 @@ export default function HeroSection() {
                   backgroundClip: "text",
                 }}
               >
-                We Build What Others Can’t — From Design to Scale
+                We Build What  Can’t — From Design to Scale
               </h1>
 
               <p

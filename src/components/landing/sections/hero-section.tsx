@@ -164,9 +164,9 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10">
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)]">
           {/* Text Content */}
-          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-12">
-            <h1
-              className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-[30px] lg:mb-[27px]"
+          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-12 mt-40 lg:mt-48">
+             <h1
+               className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-[50px] lg:mb-[60px]"
               style={{
                 fontFamily: "Space Grotesk, sans-serif",
                 background:
@@ -179,12 +179,12 @@ export default function HeroSection() {
               From Design to Scale — We Build What Others Can't.
             </h1>
 
-            <p
-              className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] text-gray-800 leading-relaxed mb-[30px] lg:mb-[27px]"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              Junzi is your development partner.
-            </p>
+             <p
+               className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] text-gray-800 leading-relaxed mb-[50px] lg:mb-[60px]"
+               style={{ fontFamily: "Manrope, sans-serif" }}
+             >
+               Junzi is your development partner.
+             </p>
             {/* form started */}
             <div style={{ zIndex: 12 }}>
               <form

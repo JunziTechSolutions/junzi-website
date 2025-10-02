@@ -114,7 +114,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 
       <header
         className={cn(
-          isScrolled ? "fixed top-0 left-0 right-0 z-50" : "relative z-50"
+          isScrolled ? "fixed top-0 left-0 right-0 z-50" : "fixed top-50 left-0 right-0 z-50"
         )}
       >
         <div

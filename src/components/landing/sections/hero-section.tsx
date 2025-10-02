@@ -189,16 +189,16 @@ export default function HeroSection() {
             <div style={{ zIndex: 12 }}>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="max-w-2xl mx-auto p-4 space-y-4"
+                className="max-w-xl mx-auto p-3 space-y-3"
               >
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-col md:flex-row gap-3">
                   <div className="flex-1">
                     <input
                       type="text"
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                       placeholder="Your name"
                       {...register("name")}
-                      className="w-full p-3 text-xl border border-gray-300 rounded-lg bg-[rgba(255,255,255,0.6)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus-visible:outline-none focus:ring-2 focus:ring-blue-400 transition-none"
+                       className="w-full p-2 text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus-visible:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                     />
                     {errors.name && (
                       <p className="text-red-500 text-sm text-left ml-[8px]">
@@ -213,7 +213,7 @@ export default function HeroSection() {
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                       placeholder="Email address"
                       {...register("email")}
-                      className="w-full p-3 text-xl border border-gray-300 rounded-lg bg-[rgba(255,255,255,0.6)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-2 focus:ring-blue-400 transition-none"
+                      className="w-full p-2 text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                     />
                     {errors.email && (
                       <p className="text-red-500 text-sm text-left ml-[8px]">
@@ -229,7 +229,7 @@ export default function HeroSection() {
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     placeholder="Phone - we will call you back"
                     {...register("phone")}
-                    className="w-full p-3 text-xl border border-gray-300 rounded-lg bg-[rgba(255,255,255,0.6)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-2 focus:ring-blue-400 transition-none"
+                      className="w-full p-2 text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                   />
                   {errors.phone && (
                     <p className="text-red-500 text-sm text-left ml-[8px]">
@@ -241,10 +241,10 @@ export default function HeroSection() {
                 <div>
                   <textarea
                     placeholder="How can we help?"
-                    rows={5}
+                    rows={4}
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     {...register("message")}
-                    className="w-full p-3 text-xl border border-gray-300 rounded-lg  bg-[rgba(255,255,255,0.6)] placeholder-[rgba(70,84,120,1)] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-none"
+                     className="w-full p-2 text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm text-left ml-[8px]">
@@ -252,12 +252,12 @@ export default function HeroSection() {
                     </p>
                   )}
                 </div>
-                <div className="mb-[30px] lg:mb-[40px] xl:mb-[56px]">
+                <div className="mb-[20px]">
                   <Button
                     type="submit"
                     size="lg"
                     disabled={isSubmittingForm}
-                    className="w-full sm:w-[100%] px-[22.26px] py-[12.98px] sm:px-7 sm:py-3 lg:px-9 lg:py-4 text-base lg:text-lg font-bold bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-lg"
+                    className="w-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-lg shadow-sm"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   >
                     {isSubmittingForm

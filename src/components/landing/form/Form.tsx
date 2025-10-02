@@ -126,9 +126,10 @@ export default function Form() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white/10 backdrop-blur-sm">
+      
       <div className="w-full">
-        <Card className="border-0 shadow-none">
+        <Card className="border-0 shadow-none bg-white/20 backdrop-blur-md">
           <CardHeader className="text-center pb-6">
             <div className="mb-4">
               <div className="w-16 h-16 bg-gradient-to-br from-[#334ad7] to-[#5C6BC0] rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -177,10 +178,10 @@ export default function Form() {
                       key={option.value}
                       onClick={() => updateFormData('platform', option.value)}
                       className={cn(
-                        "flex flex-col items-center justify-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-200",
+                        "flex flex-col items-center justify-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-200 backdrop-blur-sm",
                         formData.platform === option.value
-                            ? "border-[#334ad7] bg-blue-50"
-                            : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                            ? "border-[#334ad7] bg-blue-50/20"
+                            : "border-gray-200 hover:border-gray-300 hover:bg-gray-50/20"
                       )}
                     >
                       <div className={cn("mb-3", formData.platform === option.value ? "text-[#334ad7]" : "text-gray-500")}>
@@ -213,7 +214,7 @@ export default function Form() {
                     { value: 'Option 2', label: '$25,000 - $40,000 – Custom features & design', color: 'from-[#0099CC] to-[#0066CC]' },
                     { value: 'Option 3', label: '$50,000+ – Scalable with integrations', color: 'from-[#2BB673] to-[#1E8A5A]' }
                   ].map((option) => (
-                    <div key={option.value} className="flex items-start space-x-3 p-4 border rounded-xl hover:border-[#334ad7] hover:bg-blue-50 transition-all duration-200 group">
+                    <div key={option.value} className="flex items-start space-x-3 p-4 border rounded-xl hover:border-[#334ad7] hover:bg-blue-50/20 transition-all duration-200 group backdrop-blur-sm">
                       <RadioGroupItem value={option.value} id={option.value} className="mt-0.5 border-[#334ad7] text-[#334ad7]" />
                       <div className="flex-1">
                         <Label htmlFor={option.value} className="text-sm leading-relaxed cursor-pointer font-medium">
@@ -253,7 +254,7 @@ export default function Form() {
                       value={formData.fullName}
                       onChange={(e) => updateFormData('fullName', e.target.value)}
                       className={cn(
-                        "pl-10 h-12 border-gray-300 focus:border-[#334ad7] focus:ring-[#334ad7] rounded-lg transition-all duration-200",
+                        "pl-10 h-12 border-gray-300 focus:border-[#334ad7] focus:ring-[#334ad7] rounded-lg transition-all duration-200 bg-white/20 backdrop-blur-sm",
                         errors.fullName && "border-red-500 focus:border-red-500 focus:ring-red-500"
                       )}
                     />
@@ -281,7 +282,7 @@ export default function Form() {
                           name: 'phone',
                           required: true,
                           className: cn(
-                            "w-full h-12 pl-12 pr-3 border bg-white border-gray-300 rounded-lg focus:border-[#334ad7] focus:ring-[#334ad7] focus:ring-1 focus:outline-none transition-all duration-200",
+                            "w-full h-12 pl-12 pr-3 border bg-white/20 backdrop-blur-sm border-gray-300 rounded-lg focus:border-[#334ad7] focus:ring-[#334ad7] focus:ring-1 focus:outline-none transition-all duration-200",
                             errors.phoneNumber && "border-red-500 focus:border-red-500 focus:ring-red-500"
                           )
                         }}
@@ -312,7 +313,7 @@ export default function Form() {
                         value={formData.email}
                         onChange={(e) => updateFormData('email', e.target.value)}
                         className={cn(
-                          "pl-10 h-12 border-gray-300 focus:border-[#334ad7] focus:ring-[#334ad7] rounded-lg transition-all duration-200",
+                          "pl-10 h-12 border-gray-300 focus:border-[#334ad7] focus:ring-[#334ad7] rounded-lg transition-all duration-200 bg-white/20 backdrop-blur-sm",
                           errors.email && "border-red-500 focus:border-red-500 focus:ring-red-500"
                         )}
                       />
@@ -331,7 +332,7 @@ export default function Form() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-12 bg-gradient-to-r from-[#334ad7] to-[#5C6BC0] hover:from-[#2a3fb8] hover:to-[#3F51B5] text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="w-full h-12 bg-gradient-to-r from-[#334ad7]/60 to-[#5C6BC0]/60 hover:from-[#2a3fb8]/70 hover:to-[#3F51B5]/70 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </Button>
@@ -348,6 +349,8 @@ export default function Form() {
           border-radius: 8px !important;
           font-size: 14px !important;
           transition: all 0.2s ease !important;
+          background-color: rgba(255, 255, 255, 0.2) !important;
+          backdrop-filter: blur(4px) !important;
         }
         
         .phone-input-container .react-tel-input .form-control:focus {
@@ -358,7 +361,8 @@ export default function Form() {
         .phone-input-container .react-tel-input .flag-dropdown {
           border-color: #d1d5db !important;
           border-radius: 8px 0 0 8px !important;
-          background-color: #f9fafb !important;
+          background-color: rgba(249, 250, 251, 0.2) !important;
+          backdrop-filter: blur(4px) !important;
           transition: all 0.2s ease !important;
         }
         

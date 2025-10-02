@@ -257,7 +257,7 @@ export default function HeroSection() {
                      type="submit"
                      size="sm"
                      disabled={isSubmittingForm}
-                     className="px-10 py-4 sm:px-6 sm:py-1.5 text-base sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
+                     className="px-10 py-5 sm:px-6 sm:py-1.5 text-base sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
                      style={{ fontFamily: "Space Grotesk, sans-serif" }}
                    >
                     {isSubmittingForm

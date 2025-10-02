@@ -164,7 +164,7 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10">
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)]">
           {/* Text Content */}
-          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-12 mt-40 lg:mt-48">
+          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-12 mt-20 lg:mt-48">
              <h1
                className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-[50px] lg:mb-[60px]"
               style={{

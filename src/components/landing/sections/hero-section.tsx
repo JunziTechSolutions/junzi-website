@@ -253,13 +253,13 @@ export default function HeroSection() {
                   )}
                 </div>
                 <div className="mb-[20px]">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isSubmittingForm}
-                    className="w-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-lg shadow-sm"
-                    style={{ fontFamily: "Space Grotesk, sans-serif" }}
-                  >
+                   <Button
+                     type="submit"
+                     size="sm"
+                     disabled={isSubmittingForm}
+                     className="px-6 py-1.5 text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
+                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
+                   >
                     {isSubmittingForm
                       ? "Submitting..."
                       : "Schedule Introduction"}

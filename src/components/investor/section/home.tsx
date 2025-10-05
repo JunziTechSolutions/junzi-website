@@ -1,6 +1,6 @@
 import InvestorHeader from "@/components/investor/layout/InvestorHeader";
-import JunziTextSection from "@/components/landing/sections/junzi-text-section";
-import Footer from "@/components/landing/layout/footer";
+import JunziTextSection from "@/components/website/sections/junzi-text-section";
+import Footer from "@/components/website/layout/footer";
 import { Suspense, Component, ReactNode } from "react";
 import HeroSection from "./hero-section";
 import { RaiseSection } from "./RaiseSection";

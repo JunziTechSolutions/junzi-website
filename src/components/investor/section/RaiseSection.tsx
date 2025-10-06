@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { RaiseCard } from '../ui/RaiseCard';
+import { RaiseCard } from './RaiseCard';
 import { RaiseCardData, SectionHeaderData } from '../types';
 
 interface SectionHeaderProps extends SectionHeaderData {}

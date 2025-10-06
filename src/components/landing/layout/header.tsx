@@ -34,30 +34,56 @@ function getRandomCharacter() {
   return allowedCharacters[randomIndex];
 }
 
+// Track scheduled timeouts per element so we can cancel on mouse leave
+const hoverTimeouts = new WeakMap<HTMLElement, number[]>();
+
 function createEventHandler() {
-  let isInProgress = false;
-  return function handleHoverEvent(e: React.MouseEvent<HTMLAnchorElement>) {
-    if (isInProgress || typeof window === "undefined") return;
-    const target = e.currentTarget;
+  return function handleHoverEvent(e: React.MouseEvent<HTMLElement>) {
+    if (typeof window === "undefined") return;
+    const target = e.currentTarget as HTMLElement;
+
+    // Prevent re-trigger while animating
+    if (target.getAttribute("data-scrambling") === "1") return;
+
     const originalText = target.textContent || "";
     const randomizedText = originalText
       .split("")
       .map(() => getRandomCharacter())
       .join("");
+
     target.setAttribute("data-original-text", originalText);
+    target.setAttribute("data-scrambling", "1");
     target.textContent = randomizedText;
+
+    const ids: number[] = [];
     for (let i = 0; i < originalText.length; i++) {
-      isInProgress = true;
-      setTimeout(() => {
+      const id = window.setTimeout(() => {
         const nextIndex = i + 1;
-        target.textContent = `${originalText.substring(
-          0,
-          nextIndex
-        )}${randomizedText.substring(nextIndex)}`;
-        if (nextIndex === originalText.length) isInProgress = false;
+        target.textContent = `${originalText.substring(0, nextIndex)}${randomizedText.substring(nextIndex)}`;
+        if (nextIndex === originalText.length) {
+          target.removeAttribute("data-scrambling");
+        }
       }, i * 80);
+      ids.push(id);
     }
+    hoverTimeouts.set(target, ids);
   };
+}
+
+// Ensure scrambled text resets on mouse leave
+function resetHoverText(e: React.MouseEvent<HTMLElement>) {
+  const target = e.currentTarget as HTMLElement;
+  const ids = hoverTimeouts.get(target);
+  if (ids && ids.length) {
+    ids.forEach((id) => clearTimeout(id));
+    hoverTimeouts.delete(target);
+  }
+  const originalText = target.getAttribute("data-original-text");
+  if (originalText != null) {
+    target.textContent = originalText;
+  }
+  target.removeAttribute("data-scrambling");
+  target.removeAttribute("data-original-text");
 }
 
 // 👇 Scroll helper
@@ -68,13 +94,24 @@ const scrollToId = (id: string) => {
   }
 };
 
-const navLinks = [
-  { href: "process", label: "Process" },
-  { href: "cases", label: "Cases" },
-  { href: "services", label: "Services" },
-  { href: "development-sprints", label: "Development" },
-  // { href: "pricing", label: "Pricing" },
-  // { href: "/investor", label: "$489 Startup Kit", isExternal: true },
+type NavLink =
+  | { type: "scroll"; href: string; label: string }
+  | { type: "external"; href: string; label: string }
+  | { type: "dropdown"; label: string; items: { label: string; href: string }[] };
+
+const navLinks: NavLink[] = [
+  // 1) How-We-Do-IT -> scroll to "process" ("Explore our simple steps")
+  { type: "scroll", href: "process", label: "How-We-Do-IT" },
+  // 2) Case Studies -> external cases page
+  { type: "external", href: "https://junzitechsolutions.com/cases", label: "Case Studies" },
+  // 3) Services -> scroll to services ("Our Expertise. Your Success.")
+  { type: "scroll", href: "services", label: "Services" },
+  // 4) Company dropdown -> About Us, Careers, Blog (all lead to schedule a call for now)
+  { type: "dropdown", label: "Company", items: [
+    { label: "About Us", href: "/about" },
+    { label: "Careers", href: "/careers" },
+    { label: "Blog", href: "/blog" },
+  ]},
 ];
 
 type HeaderProps = {
@@ -86,6 +123,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const { isOpen, isClosing, openModal, closeModal } = useModal();
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -147,29 +185,97 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-1 justify-center px-4">
+          <nav className="hidden md:flex items-center space-x-2 lg:space-x-3 flex-1 justify-center px-2">
             {navLinks.map((link) => {
               const eventHandler = createEventHandler();
+              if (link.type === "scroll") {
+                return (
+                  <a
+                    key={link.label}
+                    href={`#${link.href}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToId(link.href);
+                    }}
+                    onMouseOver={eventHandler}
+                    onMouseLeave={resetHoverText}
+                    className="px-2 text-sm font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap inline-block"
+                    style={{
+                      width: `${(link.label.length + 3) * 8}px`,
+                      textAlign: "center",
+                      minWidth: `${(link.label.length + 3) * 8}px`,
+                      maxWidth: `${(link.label.length + 3) * 8}px`,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              if (link.type === "external") {
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    prefetch={false}
+                    className="px-2 text-sm font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors whitespace-nowrap inline-block"
+                    onMouseOver={eventHandler as any}
+                    onMouseLeave={resetHoverText}
+                    style={{
+                      width: `${(link.label.length + 3) * 8}px`,
+                      textAlign: "center",
+                      minWidth: `${(link.label.length + 3) * 8}px`,
+                      maxWidth: `${(link.label.length + 3) * 8}px`,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+              // dropdown (Company)
               return (
-                <a
+                <div
                   key={link.label}
-                  href={`#${link.href}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToId(link.href);
-                  }}
-                  onMouseOver={eventHandler}
-                  className="text-sm font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap inline-block"
-                  style={{
-                    width: `${link.label.length * 8}px`,
-                    textAlign: "center",
-                    minWidth: `${link.label.length * 8}px`,
-                    maxWidth: `${link.label.length * 8}px`,
-                    overflow: "hidden",
-                  }}
+                  className="relative"
+                  onMouseEnter={() => setIsCompanyOpen(true)}
+                  onMouseLeave={() => setIsCompanyOpen(false)}
                 >
-                  {link.label}
-                </a>
+                  <button
+                    type="button"
+                    className="px-2 text-sm font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap"
+                    onMouseOver={eventHandler as any}
+                    onMouseLeave={resetHoverText}
+                    style={{
+                      width: `${(link.label.length + 3) * 8}px`,
+                      textAlign: "center",
+                      minWidth: `${(link.label.length + 3) * 8}px`,
+                      maxWidth: `${(link.label.length + 3) * 8}px`,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {link.label}
+                  </button>
+                  {isCompanyOpen && (
+                    <div
+                      className="absolute left-0 top-full pt-2 z-50 w-48 rounded-2xl bg-white/90 dark:bg-slate-900/90 shadow-xl backdrop-blur p-2"
+                      onMouseEnter={() => setIsCompanyOpen(true)}
+                      onMouseLeave={() => setIsCompanyOpen(false)}
+                    >
+                      {link.items.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className="block px-4 py-2 rounded-xl text-sm text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
+                          onMouseOver={createEventHandler() as any}
+                          onMouseLeave={resetHoverText}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>
@@ -224,27 +330,64 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
             <nav className="flex flex-col space-y-1 px-4 pt-3 pb-4">
               {navLinks.map((link) => {
                 const eventHandler = createEventHandler();
+                if (link.type === "scroll") {
+                  return (
+                    <a
+                      key={link.label}
+                      href={`#${link.href}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsMobileMenuOpen(false);
+                        scrollToId(link.href);
+                      }}
+                      onMouseOver={eventHandler}
+                      className="block rounded-md px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20 transition-colors cursor-pointer whitespace-nowrap"
+                      style={{
+                        width: `${link.label.length * 10}px`,
+                        textAlign: "center",
+                        minWidth: `${link.label.length * 10}px`,
+                        maxWidth: `${link.label.length * 10}px`,
+                        overflow: "hidden",
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+                if (link.type === "external") {
+                  return (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      prefetch={false}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block rounded-md px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20 whitespace-nowrap"
+                      style={{
+                        width: `${link.label.length * 10}px`,
+                        textAlign: "center",
+                        minWidth: `${link.label.length * 10}px`,
+                        maxWidth: `${link.label.length * 10}px`,
+                        overflow: "hidden",
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                }
                 return (
-                  <a
-                    key={link.label}
-                    href={`#${link.href}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsMobileMenuOpen(false);
-                      scrollToId(link.href);
-                    }}
-                    onMouseOver={eventHandler}
-                    className="block rounded-md px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20 transition-colors cursor-pointer whitespace-nowrap"
-                    style={{
-                      width: `${link.label.length * 10}px`,
-                      textAlign: "center",
-                      minWidth: `${link.label.length * 10}px`,
-                      maxWidth: `${link.label.length * 10}px`,
-                      overflow: "hidden",
-                    }}
-                  >
-                    {link.label}
-                  </a>
+                  <div key={link.label} className="space-y-1">
+                    <div className="px-3 pt-2 text-sm font-semibold text-slate-500">{link.label}</div>
+                    {link.items.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block rounded-md px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 );
               })}
               <div className="border-t border-slate-300/70 dark:border-slate-700/70 pt-4 mt-3 space-y-3">

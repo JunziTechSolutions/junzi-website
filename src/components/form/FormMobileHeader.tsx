@@ -2,7 +2,6 @@ import React from 'react';
 import Image from "next/image";
 import { useFormContext } from "@/contexts/FormContext";
 import { STEP_INFO } from "@/config/form-steps";
-import ThemeToggle from "@/components/theme-toggle";
 import { CodeBackground } from "@/components/ui/code-background";
 
 export function FormMobileHeader() {

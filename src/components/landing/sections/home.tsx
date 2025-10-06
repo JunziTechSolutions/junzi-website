@@ -1,5 +1,5 @@
 import Header from "@/components/landing/layout/header";
-import TopPromoBar from "@/components/landing/ui/top-promo-bar";
+import TopPromoBar from "@/components/landing/top-promo-bar";
 import { MotionWrapper } from "@/components/landing/motion-wrapper";
 import CasesSection from "@/components/landing/sections/cases-section";
 import HeroSection from "@/components/landing/sections/hero-section";

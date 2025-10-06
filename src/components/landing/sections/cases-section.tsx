@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import Form from "../form/Form";
-import { Modal } from "../ui/modal";
+import { Modal } from "@/components/ui/modal";
 import { useModal } from "../hooks/useModal";
 import { casesData } from "@/data/cases"
 import { AnimatedNavigationButton } from "@/components/shared/buttons/AnimatedNavigationButton"

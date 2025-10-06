@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Modal } from "../ui/modal";
+import { Modal } from "@/components/ui/modal";
 import Form from "../form/Form";
 import { useModal } from "../hooks/useModal";
-import TopPromoBar from "../ui/top-promo-bar";
+import TopPromoBar from "@/components/landing/top-promo-bar";
 
 // 🔡 Characters for effect
 const allowedCharacters = [

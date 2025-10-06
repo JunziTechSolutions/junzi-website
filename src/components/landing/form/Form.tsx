@@ -8,7 +8,7 @@ import { X, Mail, User, Smartphone, Building2, Globe, MoreHorizontal } from 'luc
 import { cn } from '@/lib/utils';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
 import { useHubSpot } from '@/api/hooks/useHubSpot';

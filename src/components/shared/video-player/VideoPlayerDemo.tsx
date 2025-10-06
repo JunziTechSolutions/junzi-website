@@ -3,7 +3,7 @@
 import React from 'react';
 import VideoPlayer from './VideoPlayer';
 import SimpleVideoPlayer from './SimpleVideoPlayer';
-import { Modal } from '@/components/landing/ui/modal';
+import { Modal } from '@/components/ui/modal';
 import { useModal } from '@/components/landing/hooks/useModal';
 import Form from '@/components/landing/form/Form';
 

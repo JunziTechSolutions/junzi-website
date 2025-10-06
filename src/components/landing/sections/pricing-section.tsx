@@ -13,7 +13,7 @@ import { Palette, Settings, Package, Check, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Form from "../form/Form";
-import { Modal } from "../ui/modal";
+import { Modal } from "@/components/ui/modal";
 import { useModal } from "../hooks/useModal";
 import { motion } from "framer-motion";
 import Link from "next/link";

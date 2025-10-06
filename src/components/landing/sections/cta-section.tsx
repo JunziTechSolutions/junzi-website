@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Form from "../form/Form"
-import { Modal } from "../ui/modal"
+import { Modal } from "@/components/ui/modal"
 import { useModal } from "../hooks/useModal"
 import Link from "next/link";
 

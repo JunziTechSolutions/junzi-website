@@ -6,7 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/landing/ui/carousel";
+} from "@/components/ui/carousel";
 
 type TestimonialsSectionProps = {
   mobileBottomPadding?: number; // px

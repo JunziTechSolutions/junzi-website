@@ -1,42 +1,90 @@
+// app/blog/page.tsx
 import Header from "@/components/landing/layout/header";
 import Image from "next/image";
 import Link from "next/link";
+import { posts } from "@/lib/blog";
 
 export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="relative">
+      <main className="relative overflow-hidden">
+        {/* Background: soft linear gradient + decorative orbs */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-white to-white dark:from-indigo-900/30 dark:via-slate-900 dark:to-slate-900" />
+          <div className="absolute -top-40 left-1/2 h-[520px] w-[1200px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-200/60 to-transparent blur-3xl dark:from-indigo-500/25" />
+          <div className="absolute top-24 -left-24 size-64 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-500/20" />
+          <div className="absolute -bottom-16 -right-20 size-72 rounded-full bg-fuchsia-200/25 blur-3xl dark:bg-fuchsia-500/20" />
+        </div>
+
         {/* Hero */}
-        <section className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-indigo-200/40 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 pt-14 pb-6">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-2">Blog</h1>
-            <p className="text-sm md:text-base text-slate-600 max-w-2xl">
+        <section className="relative">
+          <div className="container mx-auto px-4 py-20 md:py-28 lg:py-32">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Blog
+            </h1>
+            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300">
               Insights from the Bleeding Edge of AI Search with AthenaHQ
             </p>
           </div>
         </section>
 
         {/* Posts grid */}
-        <section className="container mx-auto px-4 pb-20">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-7">
+        <section className="container mx-auto px-4 pb-24 md:pb-32">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
             {posts.map((p) => (
-              <article key={p.slug} className="group rounded-2xl bg-white/70 dark:bg-slate-900/70 shadow-xl ring-1 ring-black/5 overflow-hidden">
-                <div className="relative h-48">
-                  <Image src={p.image} alt={p.title} fill className="object-cover" />
-                </div>
-                <div className="p-4">
-                  <div className="text-[11px] uppercase tracking-wide text-slate-500 mb-1">{p.category}</div>
-                  <Link href={p.href} className="block">
-                    <h3 className="text-base md:text-lg font-semibold leading-snug mb-1 group-hover:underline">
+              <article
+                key={p.slug}
+                className="group overflow-hidden rounded-3xl bg-white/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
+              >
+                {/* media */}
+                <Link href={`/blog/${p.slug}`} className="relative block h-56 md:h-60 lg:h-64 overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition duration-500 ease-out group-hover:scale-105 group-hover:grayscale"
+                    priority
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent" />
+                </Link>
+
+                {/* content */}
+                <div className="p-5 md:p-6">
+                  <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
+                    {p.category}
+                  </div>
+
+                  <Link href={`/blog/${p.slug}`} className="block">
+                    <h3 className="text-lg md:text-xl font-semibold leading-snug text-slate-900 dark:text-white transition group-hover:underline">
                       {p.title}
                     </h3>
                   </Link>
-                  <p className="text-sm text-slate-600 line-clamp-3 mb-4">{p.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs text-slate-500">
+
+                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 line-clamp-3">
+                    {p.excerpt}
+                  </p>
+
+                  <div className="mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                     <span>{p.date}</span>
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-indigo-600 text-white group-hover:bg-indigo-700">→</span>
+
+                    {/* Arrow button (linked) */}
+                    <Link
+                      href={`/blog/${p.slug}`}
+                      aria-label={`Open post: ${p.title}`}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-indigo-500 to-blue-600 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2.2}
+                        className="h-4 w-4"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </article>
@@ -47,68 +95,3 @@ export default function BlogPage() {
     </>
   );
 }
-
-const posts = [
-  {
-    slug: "ace-launch",
-    href: "#",
-    image: "/placeholder.svg",
-    category: "General",
-    title: "Announcing Athena Citation Engine (ACE)",
-    excerpt:
-      "Athena's September launch introduces the Athena Citation Engine (ACE), a machine learning model trained on millions of AI...",
-    date: "September 29, 2025",
-  },
-  {
-    slug: "prompt-volume-geo",
-    href: "#",
-    image: "/placeholder.svg",
-    category: "GEO",
-    title: "Estimating AI Prompt Volume Across Platforms",
-    excerpt:
-      "In the rapidly evolving landscape of artificial intelligence, understanding the volume of prompts across different AI platforms has...",
-    date: "June 7, 2025",
-  },
-  {
-    slug: "app-builder-race",
-    href: "#",
-    image: "/placeholder.svg",
-    category: "GEO",
-    title: "The AI App Builder Race: Market Share Reality Behind Lovable's Traffic Surge",
-    excerpt:
-      "In the rapidly evolving AI app development landscape, Lovable has captured headlines with its impressive traffic growth, but the...",
-    date: "May 19, 2025",
-  },
-  {
-    slug: "next-gen-rankings",
-    href: "#",
-    image: "/placeholder.svg",
-    category: "General",
-    title: "Unlocking Next-Gen Search Rankings with AI SEO Tools",
-    excerpt:
-      "The way people find information online is changing fast. In 2024, over 60% of users reported turning to AI-powered platforms like...",
-    date: "October 4, 2025",
-  },
-  {
-    slug: "brex-vs-ramp",
-    href: "#",
-    image: "/placeholder.svg",
-    category: "General",
-    title: "Brex vs Ramp: Differences Between Traffic Data from Similarweb & Reliable Sources",
-    excerpt:
-      "If you're running a fast-growing business, you've probably heard the Brex vs Ramp debate more times than you've heard 'let's...",
-    date: "May 8, 2025",
-  },
-  {
-    slug: "canva-vs-figma",
-    href: "#",
-    image: "/placeholder.svg",
-    category: "General",
-    title: "Canva vs. Figma: Who's winning AI Search? (AthenaHQ breakdown)",
-    excerpt:
-      "In 2025, the competition for digital visibility is more intense than ever. As design giants like Canva and Figma battle for dominance—each...",
-    date: "April 19, 2025",
-  },
-] as const;
-
-

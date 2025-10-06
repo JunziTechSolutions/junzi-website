@@ -124,3 +124,5 @@ navigateWithTransition(router, "/cases/worthefy", {
 - Используется `transform` вместо `left/top`
 - Анимации выполняются на GPU
 - Минимальная задержка между переходами 
+
+###

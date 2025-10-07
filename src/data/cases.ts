@@ -664,4 +664,346 @@ export const casesData: CaseStudy[] = [
       }
     ]
   },
+  {
+    id: "styleconnect",
+    slug: "styleconnect",
+    title: "StyleConnect – Multi-Sided Fashion Platform",
+    description: "Built a comprehensive social commerce platform connecting stylists, brands, and shoppers in a unified fashion ecosystem with shoppable content and creator monetization.",
+    category: "Fashion-Tech / Social Commerce",
+    tags: ["Social Commerce", "Fashion", "Influencer Marketing", "Multi-Sided Platform"],
+    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImageWidth: 1200,
+    heroImageHeight: 900,
+    client: "StyleConnect",
+    timeline: "16 Weeks",
+    industry: "Fashion-Tech / Social Commerce",
+    role: "Full-Stack Development, Platform Architecture, UX/UI Design",
+    challenge: "The fashion industry needed a unified platform that could seamlessly connect three distinct user types—stylists/creators, brands, and shoppers—while enabling monetization and commerce without friction. Traditional solutions either focused on one segment or created siloed experiences that didn't foster organic collaboration.",
+    solution: "We developed a multi-sided platform with three specialized interfaces: a Stylist/Creator Hub with portfolio management, analytics, and commission tracking; a Brand Dashboard with campaign management and influencer partnership tools; and a Shopper Profile with personalized feeds and shoppable content. The platform enables creators to tag products in posts, brands to collaborate directly with influencers, and shoppers to purchase seamlessly from curated style content.",
+    results: [
+      {
+        title: "Creator Engagement",
+        value: "75% increase"
+      },
+      {
+        title: "Conversion Rate",
+        value: "3.2x higher"
+      },
+      {
+        title: "Brand Partnership Growth",
+        value: "120%"
+      }
+    ],
+    testimonial: {
+      quote: "StyleConnect has transformed how we connect with influencers and customers—it's like having LTK and Instagram shopping combined into one seamless platform.",
+      author: "Sofia Martinez",
+      position: "VP of Marketing, StyleConnect",
+      avatar: "https://github.com/shadcn.png"
+    },
+    images: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "StyleConnect Multi-User Dashboard",
+        width: 1200,
+        height: 600
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Creator Hub with Analytics",
+        width: 600,
+        height: 450
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Shoppable Content Feed",
+        width: 600,
+        height: 450
+      }
+    ]
+  },
+  {
+    id: "raventi",
+    slug: "raventi",
+    title: "RAVENTI – Premium Pickleball E-Commerce Website",
+    description: "Designed and developed a modern, premium e-commerce website for high-end pickleball equipment with lifestyle branding and immersive product storytelling.",
+    category: "E-Commerce / Sports",
+    tags: ["E-Commerce", "Web Design", "Shopify", "Brand Experience"],
+    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImageWidth: 1200,
+    heroImageHeight: 900,
+    client: "RAVENTI",
+    timeline: "8 Weeks",
+    industry: "E-Commerce / Sports Equipment",
+    role: "Web Design, UX/UI Development, Shopify Integration",
+    challenge: "Pickleball is one of the fastest-growing sports in America, but most equipment brands still use dated, generic e-commerce experiences. RAVENTI needed a premium website that would elevate pickleball gear from commodity to lifestyle brand—appealing to design-conscious athletes willing to invest in quality.",
+    solution: "We designed a visually stunning e-commerce experience featuring cinematic product photography, clean grid-based product catalogs, immersive brand storytelling with 'The art of pickleball, redefined' positioning, detailed product pages with technical specifications, and responsive design optimized for conversion across all devices.",
+    results: [
+      {
+        title: "Conversion Rate",
+        value: "4.8%"
+      },
+      {
+        title: "Average Order Value",
+        value: "+32%"
+      },
+      {
+        title: "Time on Site",
+        value: "2.5x increase"
+      }
+    ],
+    testimonial: {
+      quote: "The website perfectly captures our vision—premium, modern, and designed for players who take pickleball seriously. It's elevated our entire brand.",
+      author: "Marcus Chen",
+      position: "Founder, RAVENTI",
+      avatar: "https://github.com/shadcn.png"
+    },
+    images: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "RAVENTI Hero Section",
+        width: 1200,
+        height: 600
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Product Catalog Layout",
+        width: 600,
+        height: 450
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Product Detail Page",
+        width: 600,
+        height: 450
+      }
+    ]
+  },
+  {
+    id: "shabelinsky",
+    slug: "shabelinsky",
+    title: "Shabelinsky – Boutique Fitness & Ballet Studio Website",
+    description: "Designed a premium studio website featuring specialized programs including ballet, stretching, cross-training, postnatal recovery, and age-specific fitness classes with elegant branding.",
+    category: "Fitness / Wellness",
+    tags: ["Fitness", "Web Design", "Booking System", "Studio Management"],
+    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImageWidth: 1200,
+    heroImageHeight: 900,
+    client: "Shabelinsky Studio",
+    timeline: "10 Weeks",
+    industry: "Fitness / Wellness / Dance",
+    role: "Web Design, UX/UI Development, Booking Integration",
+    challenge: "Boutique fitness studios often struggle to communicate their unique value and diverse offerings online. Shabelinsky needed a website that could showcase multiple specialized programs—from ballet to postnatal recovery—while maintaining a cohesive premium brand identity and making it easy for clients to understand, book, and commit to classes.",
+    solution: "We designed an elegant, multi-page website featuring specialized landing pages for each program (Ballet, Cross-Training, Stretching for Kids, Postnatal, Anti-Aging, Men's Programs), integrated booking system with clear pricing, professional photography showcasing diverse demographics, consistent burgundy wave design element for brand recognition, instructor bios and credentials, and responsive layouts optimized for mobile booking.",
+    results: [
+      {
+        title: "Class Bookings",
+        value: "+85%"
+      },
+      {
+        title: "New Client Acquisition",
+        value: "67% increase"
+      },
+      {
+        title: "Mobile Conversions",
+        value: "4.2x higher"
+      }
+    ],
+    testimonial: {
+      quote: "The website perfectly captures our studio's elegance and professionalism—our clients love how easy it is to explore programs and book classes online.",
+      author: "Elena Shabelinsky",
+      position: "Founder & Lead Instructor, Shabelinsky Studio",
+      avatar: "https://github.com/shadcn.png"
+    },
+    images: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Shabelinsky Homepage",
+        width: 1200,
+        height: 600
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Program Landing Pages",
+        width: 600,
+        height: 450
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Booking Integration",
+        width: 600,
+        height: 450
+      }
+    ]
+  },
+  {
+    id: "phoni",
+    slug: "phoni",
+    title: "PHONI – Social Party Game App Design",
+    description: "Designed a mobile party game app for group play with Truth or Dare-style challenges, user profiles, photo sharing, and interactive community features.",
+    category: "Gaming / Social Entertainment",
+    tags: ["Mobile Game", "UI/UX Design", "Social Gaming", "Party App"],
+    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImageWidth: 1200,
+    heroImageHeight: 900,
+    client: "PHONI",
+    timeline: "6 Weeks",
+    industry: "Gaming / Social Entertainment",
+    role: "UI/UX Design, Interaction Design, Design System",
+    challenge: "Party games like Truth or Dare are timeless, but most digital versions feel generic or lack engaging design. PHONI needed a fresh, modern interface that could facilitate group gameplay, encourage photo sharing and social interaction, and feel fun and inviting for players of all ages while maintaining a cohesive brand identity centered around playful intelligence.",
+    solution: "We designed a vibrant mobile experience featuring brain-themed branding with the PHONI logo, coral pink and lime green color palette for energy and fun, card-based user profiles with photo galleries, interactive game components for challenges and dares, modular design system for scalability, bottom navigation for easy access during gameplay, and social features including photo uploads and player interactions.",
+    results: [
+      {
+        title: "Design Complexity",
+        value: "50+ screens"
+      },
+      {
+        title: "Component Library",
+        value: "40+ reusable"
+      },
+      {
+        title: "Design System",
+        value: "Complete"
+      }
+    ],
+    testimonial: {
+      quote: "The PHONI design captures exactly what we envisioned—playful, modern, and built for groups to have fun together!",
+      author: "Alex Rivera",
+      position: "Founder, PHONI",
+      avatar: "https://github.com/shadcn.png"
+    },
+    images: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "PHONI App Design Overview",
+        width: 1200,
+        height: 600
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "User Profile & Social Features",
+        width: 600,
+        height: 450
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Game Components & Design System",
+        width: 600,
+        height: 450
+      }
+    ]
+  },
+  {
+    id: "truckflow",
+    slug: "truckflow",
+    title: "TruckFlow – Logistics Management Platform",
+    description: "Built a comprehensive SaaS dashboard for logistics companies to manage loads, track deliveries, monitor fleet operations, and analyze revenue with real-time data visualization.",
+    category: "SaaS / Logistics",
+    tags: ["Logistics", "Fleet Management", "Dashboard", "Analytics"],
+    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImageWidth: 1200,
+    heroImageHeight: 900,
+    client: "TruckFlow",
+    timeline: "14 Weeks",
+    industry: "SaaS / Logistics & Transportation",
+    role: "Full-Stack Development, Dashboard Design, Data Visualization",
+    challenge: "Logistics companies struggle with fragmented systems for tracking loads, managing fleets, and monitoring revenue. TruckFlow needed a unified platform that could provide real-time visibility into operations, reduce manual work, and deliver actionable insights through intuitive data visualization—all while handling the complexity of multi-load tracking and fleet coordination.",
+    solution: "We developed a comprehensive logistics management platform featuring real-time dashboard with KPI tracking (Active Loads, Completed Loads, Monthly Revenue, Cancellation Rate), load status visualization with donut charts showing delivery progress, monthly revenue trend analysis with bar charts, complete fleet and driver management system, document handling and billing integration, audit logs for compliance tracking, and role-based access control with admin capabilities.",
+    results: [
+      {
+        title: "Operational Efficiency",
+        value: "+45%"
+      },
+      {
+        title: "Manual Data Entry Reduction",
+        value: "70%"
+      },
+      {
+        title: "Revenue Visibility",
+        value: "Real-time"
+      }
+    ],
+    testimonial: {
+      quote: "TruckFlow transformed how we manage our fleet—we now have complete visibility into loads, revenue, and driver performance in one clean dashboard.",
+      author: "David Thompson",
+      position: "Operations Director, TruckFlow",
+      avatar: "https://github.com/shadcn.png"
+    },
+    images: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "TruckFlow Dashboard Overview",
+        width: 1200,
+        height: 600
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Load Status Visualization",
+        width: 600,
+        height: 450
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Revenue Analytics",
+        width: 600,
+        height: 450
+      }
+    ]
+  },
+  {
+    id: "ego",
+    slug: "ego",
+    title: "EGO – Social Fitness Competition Platform",
+    description: "Designed and developed an MVP for a social fitness app combining Instagram-style content feeds with competitive battles, peer ratings, and gamified fitness challenges.",
+    category: "Social / Fitness Gaming",
+    tags: ["Social App", "Fitness", "Gamification", "Mobile MVP"],
+    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImageWidth: 1200,
+    heroImageHeight: 900,
+    client: "EGO",
+    timeline: "12 Weeks",
+    industry: "Social / Fitness Technology",
+    role: "Full-Stack Development, UI/UX Design, MVP Launch",
+    challenge: "The fitness social media space is crowded with apps that either focus purely on tracking or purely on content sharing. EGO needed to differentiate by combining social content with competitive gameplay—allowing users to showcase fitness achievements, compete in head-to-head battles, and earn ratings from peers. The challenge was creating an engaging MVP that balanced social features with gamification without overwhelming users.",
+    solution: "We designed and built a full-featured MVP featuring Instagram-style feed with stories, video content, and social interactions, head-to-head battle system where users compete for ratings, peer rating mechanism with positive/negative score tracking, comprehensive profile system with stats (followers, posts, rankings), dark mode UI for modern aesthetic, onboarding flow with authentication, and settings/preferences management including language options.",
+    results: [
+      {
+        title: "MVP Launch",
+        value: "12 weeks"
+      },
+      {
+        title: "User Engagement",
+        value: "Daily battles"
+      },
+      {
+        title: "Content Uploads",
+        value: "Video-first"
+      }
+    ],
+    testimonial: {
+      quote: "The team delivered exactly what we needed—a sleek, competitive fitness app that gets users hooked on battling and rating each other's content!",
+      author: "Jordan Mitchell",
+      position: "Founder, EGO",
+      avatar: "https://github.com/shadcn.png"
+    },
+    images: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "EGO Social Feed & Battle System",
+        width: 1200,
+        height: 600
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "User Profiles & Ratings",
+        width: 600,
+        height: 450
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        alt: "Dark Mode UI",
+        width: 600,
+        height: 450
+      }
+    ]
+  }
 ] 

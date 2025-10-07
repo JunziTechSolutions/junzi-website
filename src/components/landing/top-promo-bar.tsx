@@ -35,10 +35,23 @@ export default function TopPromoBar() {
   });
 
   useEffect(() => {
-    // Fixed deadline: 7 Oct 2025 00:00:00 UTC
-    const endsAt = Date.UTC(2025, 9, 7, 0, 0, 0, 0);
+    // Calculate a deadline that resets every week
+    const getWeeklyDeadline = () => {
+      const now = Date.now();
+      // Use a fixed starting point (e.g., Jan 1, 2024 00:00:00 UTC)
+      const baseDate = Date.UTC(2024, 0, 1, 0, 0, 0, 0);
+      const weekInMs = 7 * 24 * 60 * 60 * 1000;
+      
+      // Calculate how many complete weeks have passed since base date
+      const timeSinceBase = now - baseDate;
+      const weeksElapsed = Math.floor(timeSinceBase / weekInMs);
+      
+      // Next deadline is at the end of the current week
+      return baseDate + (weeksElapsed + 1) * weekInMs;
+    };
 
     const tick = () => {
+      const endsAt = getWeeklyDeadline();
       const diff = endsAt - Date.now();
       const ms = Math.max(diff, 0);
       const days = Math.floor(ms / (24 * 60 * 60 * 1000));

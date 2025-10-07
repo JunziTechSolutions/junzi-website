@@ -1,0 +1,97 @@
+// app/blog/page.tsx
+import Header from "@/components/landing/layout/header";
+import Image from "next/image";
+import Link from "next/link";
+import { posts } from "@/lib/blog";
+
+export default function BlogPage() {
+  return (
+    <>
+      <Header />
+      <main className="relative overflow-hidden">
+        {/* Background: soft linear gradient + decorative orbs */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-white to-white dark:from-indigo-900/30 dark:via-slate-900 dark:to-slate-900" />
+          <div className="absolute -top-40 left-1/2 h-[520px] w-[1200px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-200/60 to-transparent blur-3xl dark:from-indigo-500/25" />
+          <div className="absolute top-24 -left-24 size-64 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-500/20" />
+          <div className="absolute -bottom-16 -right-20 size-72 rounded-full bg-fuchsia-200/25 blur-3xl dark:bg-fuchsia-500/20" />
+        </div>
+
+        {/* Hero */}
+        <section className="relative">
+          <div className="container mx-auto px-4 pt-40 pb-15">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Blog
+            </h1>
+            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300">
+              Insights and updates from Junzi Tech Solutions
+            </p>
+          </div>
+        </section>
+
+        {/* Posts grid */}
+        <section className="container mx-auto px-4 pt-16 pb-24 md:pb-32">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+            {posts.map((p) => (
+              <article
+                key={p.slug}
+                className="group flex flex-col overflow-hidden rounded-3xl bg-white/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
+              >
+                {/* media */}
+                <Link href={`/blog/${p.slug}`} className="relative block h-56 md:h-60 lg:h-64 overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition duration-500 ease-out group-hover:scale-105 group-hover:grayscale"
+                    priority
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent" />
+                </Link>
+
+                {/* content */}
+                <div className="flex flex-col flex-1 p-5 md:p-6">
+                  <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
+                    {p.category}
+                  </div>
+
+                  <Link href={`/blog/${p.slug}`} className="block">
+                    <h3 className="text-lg md:text-xl font-semibold leading-snug text-slate-900 dark:text-white transition group-hover:underline">
+                      {p.title}
+                    </h3>
+                  </Link>
+
+                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 line-clamp-3">
+                    {p.excerpt}
+                  </p>
+
+                  <div className="mt-auto pt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                    <span>{p.date}</span>
+
+                    {/* Arrow button (linked) */}
+                    <Link
+                      href={`/blog/${p.slug}`}
+                      aria-label={`Open post: ${p.title}`}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-indigo-500 to-blue-600 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2.2}
+                        className="h-4 w-4"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}

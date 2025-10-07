@@ -6,8 +6,8 @@ export default function PrivacyPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f6fa]">
       <Header />
-      <main className="flex-1 flex justify-center items-start mt-12">
-        <div className="w-full max-w-4xl shadow-none rounded-none px-12 py-12 mt-8 mb-16" style={{fontFamily: 'Segoe UI, Arial, sans-serif'}}>
+      <main className="flex-1 flex justify-center items-start pt-40">
+        <div className="w-full max-w-4xl shadow-none rounded-none px-12 py-12 mb-16" style={{fontFamily: 'Segoe UI, Arial, sans-serif'}}>
           <div className="w-full">
             <h1
               style={{

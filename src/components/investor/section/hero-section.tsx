@@ -16,7 +16,7 @@ export default function HeroSection() {
     <section 
       className="relative overflow-hidden backdrop-blur-[100px] bg-gray-50" 
       style={{ 
-        paddingTop: '113px', 
+        paddingTop: '160px', 
         paddingBottom: '113px',
         backgroundImage: `
           radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)

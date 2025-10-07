@@ -19,23 +19,23 @@ export default function BlogPage() {
 
         {/* Hero */}
         <section className="relative">
-          <div className="container mx-auto px-4 py-20 md:py-28 lg:py-32">
+          <div className="container mx-auto px-4 pt-40 pb-15">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white">
               Blog
             </h1>
             <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300">
-              Insights from the Bleeding Edge of AI Search with AthenaHQ
+              Insights and updates from Junzi Tech Solutions
             </p>
           </div>
         </section>
 
         {/* Posts grid */}
-        <section className="container mx-auto px-4 pb-24 md:pb-32">
+        <section className="container mx-auto px-4 pt-16 pb-24 md:pb-32">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
             {posts.map((p) => (
               <article
                 key={p.slug}
-                className="group overflow-hidden rounded-3xl bg-white/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
+                className="group flex flex-col overflow-hidden rounded-3xl bg-white/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
               >
                 {/* media */}
                 <Link href={`/blog/${p.slug}`} className="relative block h-56 md:h-60 lg:h-64 overflow-hidden">
@@ -50,7 +50,7 @@ export default function BlogPage() {
                 </Link>
 
                 {/* content */}
-                <div className="p-5 md:p-6">
+                <div className="flex flex-col flex-1 p-5 md:p-6">
                   <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
                     {p.category}
                   </div>
@@ -65,7 +65,7 @@ export default function BlogPage() {
                     {p.excerpt}
                   </p>
 
-                  <div className="mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                  <div className="mt-auto pt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                     <span>{p.date}</span>
 
                     {/* Arrow button (linked) */}

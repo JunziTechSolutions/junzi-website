@@ -20,12 +20,12 @@ export default function CareersPage() {
         <section className="relative overflow-hidden">
           {/* subtle top gradient line */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-indigo-200/40 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-8 sm:pb-10 md:pb-12">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-40 pb-8 sm:pb-10 md:pb-12">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
-              Join AthenaHQ
+              Join Junzi Tech Solutions
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl">
-              Revolutionizing brand management in the AI Era of Search
+              Building innovative technology solutions for the future
             </p>
           </div>
         </section>
@@ -36,7 +36,7 @@ export default function CareersPage() {
             Open Positions
           </h2>
           <p className="text-slate-500 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 max-w-2xl">
-            Please email <a className="underline decoration-indigo-500/50 underline-offset-4" href="mailto:careers@athenahq.ai">careers@athenahq.ai</a> with your resume, a link
+            Please email <a className="underline decoration-indigo-500/50 underline-offset-4" href="mailto:nclark@junzitechsolutions.com">nclark@junzitechsolutions.com</a> with your resume, a link
             to your strongest work, and one paragraph about anything.
           </p>
 
@@ -94,21 +94,21 @@ export default function CareersPage() {
 const openRoles = [
   {
     title: "Engineer",
-    meta: "Engineering · SF · Full-time",
-    summary: "Athena Core GEO platform.",
+    meta: "Engineering · Remote · Full-time",
+    summary: "Build cutting-edge technology solutions with our engineering team.",
     applyHref: "/form",
   },
   {
     title: "Account Executive",
-    meta: "Go-to-Market · SF, Remote · Full-time",
+    meta: "Go-to-Market · Remote · Full-time",
     summary:
-      "Bring AthenaHQ to serve more customers around the world. Understand business challenges, manage the sales process, and build long-term relationships with customers.",
+      "Bring Junzi Tech Solutions to serve more customers around the world. Understand business challenges, manage the sales process, and build long-term relationships with customers.",
     applyHref: "/form",
   },
   {
     title: "Growth (Technical)",
-    meta: "Growth · SF · Full-time",
-    summary: "Bring AthenaHQ to serve more customers around the world.",
+    meta: "Growth · Remote · Full-time",
+    summary: "Bring Junzi Tech Solutions to serve more customers around the world.",
     applyHref: "/form",
   },
 ] as const;

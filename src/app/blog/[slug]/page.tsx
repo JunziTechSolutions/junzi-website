@@ -83,19 +83,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               >
                 {/* Author */}
                 <div className="flex items-center gap-3">
-                  {post.author.avatar ? (
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 overflow-hidden rounded-full ring-1 ring-black/5 bg-slate-200 flex-shrink-0">
-                      <Image
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        width={48}
-                        height={48}
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-slate-200 ring-1 ring-black/5" />
-                  )}
+                  <div className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 flex items-center justify-center">
+                    <Image
+                      src="/Artifex_ME_1v_Favicon.png"
+                      alt={post.author.name}
+                      width={48}
+                      height={48}
+                      className="object-contain"
+                    />
+                  </div>
                   <div className="leading-tight">
                     <p className="font-semibold text-slate-900 dark:text-white">
                       {post.author.name}
@@ -118,19 +114,109 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             {/* === Article Content === */}
             <article
               className="
-                prose prose-slate dark:prose-invert 
-                prose-headings:font-semibold prose-headings:text-slate-800 dark:prose-headings:text-slate-100
-                prose-p:text-[0.95rem] sm:prose-p:text-base 
-                prose-p:leading-relaxed 
+                prose prose-lg prose-slate dark:prose-invert 
+                prose-headings:font-bold prose-headings:tracking-tight
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-base prose-p:leading-relaxed prose-p:mb-5
+                prose-ul:my-6 prose-li:my-2
+                prose-strong:font-bold prose-strong:text-slate-900 dark:prose-strong:text-white
                 prose-img:rounded-xl 
                 mt-10 sm:mt-12 md:mt-14 
-                text-justify sm:text-left
+                text-left
                 max-w-none
               "
             >
-              {post.content.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+              {post.content.map((para, i) => {
+                // Skip empty strings
+                if (!para.trim()) return null;
+                
+                // Handle ## headings
+                if (para.startsWith('## ')) {
+                  return (
+                    <h2 key={i} className="text-slate-900 dark:text-white font-bold text-3xl mt-12 mb-6">
+                      {para.replace('## ', '')}
+                    </h2>
+                  );
+                }
+                
+                // Handle ### subheadings
+                if (para.startsWith('### ')) {
+                  return (
+                    <h3 key={i} className="text-slate-800 dark:text-slate-100 font-bold text-xl mt-8 mb-4">
+                      {para.replace('### ', '')}
+                    </h3>
+                  );
+                }
+                
+                // Handle bullet lists (single line starting with -)
+                if (para.startsWith('- ')) {
+                  // Process bold text in list items too
+                  const listText = para.replace('- ', '');
+                  const boldRegex = /\*\*(.+?)\*\*/g;
+                  
+                  if (listText.match(boldRegex)) {
+                    const parts: (string | JSX.Element)[] = [];
+                    let lastIndex = 0;
+                    let match;
+                    
+                    while ((match = boldRegex.exec(listText)) !== null) {
+                      if (match.index > lastIndex) {
+                        parts.push(listText.substring(lastIndex, match.index));
+                      }
+                      parts.push(<strong key={match.index} className="font-bold">{match[1]}</strong>);
+                      lastIndex = boldRegex.lastIndex;
+                    }
+                    
+                    if (lastIndex < listText.length) {
+                      parts.push(listText.substring(lastIndex));
+                    }
+                    
+                    return (
+                      <ul key={i} className="my-6 space-y-2 list-disc pl-6">
+                        <li>{parts}</li>
+                      </ul>
+                    );
+                  }
+                  
+                  return (
+                    <ul key={i} className="my-6 space-y-2 list-disc pl-6">
+                      <li>{listText}</li>
+                    </ul>
+                  );
+                }
+                
+                // Handle bold text **text**
+                const boldRegex = /\*\*(.+?)\*\*/g;
+                if (para.match(boldRegex)) {
+                  const parts: (string | JSX.Element)[] = [];
+                  let lastIndex = 0;
+                  let match;
+                  
+                  // Reset regex before starting
+                  boldRegex.lastIndex = 0;
+                  
+                  while ((match = boldRegex.exec(para)) !== null) {
+                    // Add text before the match
+                    if (match.index > lastIndex) {
+                      parts.push(para.substring(lastIndex, match.index));
+                    }
+                    // Add the bold text (without the **)
+                    parts.push(<strong key={match.index} className="font-bold">{match[1]}</strong>);
+                    lastIndex = boldRegex.lastIndex;
+                  }
+                  
+                  // Add remaining text
+                  if (lastIndex < para.length) {
+                    parts.push(para.substring(lastIndex));
+                  }
+                  
+                  return <p key={i} className="mb-5 leading-relaxed">{parts}</p>;
+                }
+                
+                // Regular paragraph
+                return <p key={i} className="mb-5 leading-relaxed">{para}</p>;
+              })}
             </article>
 
             {/* === Bottom Padding / Footer Space === */}

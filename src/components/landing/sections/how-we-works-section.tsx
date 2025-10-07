@@ -22,26 +22,26 @@ const HowWeWorksSection = () => {
     {
       step: "Step 1",
       icon: "/works/prototype.png",
-      title: "Get Initial Prototype",
-      description: "Get set up with clarity and confidence."
+      title: "Prototype",
+      description: "See your idea live in 2-4 days — no upfront cost."
     },
     {
       step: "Step 2", 
       icon: "/works/proposal.svg",
       title: "Get a Proposal",
-      description: "Align the product vision with your unique goals."
+      description: "Fixed pricing, clear milestones, no fees."
     },
     {
       step: "Step 3",
       icon: "/works/development.svg", 
       title: "Full Development",
-      description: "Turn insights into impactful action."
+      description: "Weekly updates, full transparency."
     },
     {
       step: "Step 4",
       icon: "/works/scale.svg",
       title: "Optimize & Scale", 
-      description: "Grow smarter with data-driven decisions."
+      description: "You own everything. We support only if you need it."
     }
   ];
 
@@ -91,14 +91,13 @@ const HowWeWorksSection = () => {
             }}
           >
             {!isMounted ? (
-              'Explore Our Simple, Easy Process'
+              'Explore Our Simple Process'
             ) : isMobile ? (
               <>
-                Explore Our Simple,<br/>
-                Easy Process
+                Explore Our Simple Process
               </>
             ) : (
-              'Explore Our Simple, Easy Process'
+              'Explore Our Simple Process'
             )}
           </h2>
 
@@ -114,15 +113,14 @@ const HowWeWorksSection = () => {
             }}
           >
             {!isMounted ? (
-              'Start with ease and watch your business thrive from the get-go with personalized guidance every step of the way'
+              'From prototype to scale — transparent pricing, no surprises, full ownership'
             ) : isMobile ? (
               <>
-                Start with ease and watch your business thrive<br/>
-                from the get-go with personalized guidance<br/>
-                every step of the way
+                From prototype to scale — transparent<br/>
+                pricing, no surprises, full ownership
               </>
             ) : (
-              'Start with ease and watch your business thrive from the get-go with personalized guidance every step of the way'
+              'From prototype to scale — transparent pricing, no surprises, full ownership'
             )}
           </p>
         </div>

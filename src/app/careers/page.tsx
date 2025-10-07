@@ -4,50 +4,86 @@ export default function CareersPage() {
   return (
     <>
       <Header />
-      <main className="relative">
+      <main className="relative overflow-hidden">
+        {/* Background: soft wash + radial/linear gradient orbs */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          {/* page wash */}
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100/50 via-white to-white dark:from-indigo-900/30 dark:via-slate-900 dark:to-slate-900" />
+          {/* top halo */}
+          <div className="absolute -top-36 left-1/2 h-[520px] w-[1200px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-300/50 to-transparent blur-3xl dark:from-indigo-500/25" />
+          {/* large radial behind list */}
+          <div className="absolute top-[360px] left-1/2 -translate-x-1/2 h-[700px] w-[1200px] rounded-[999px] blur-3xl opacity-80
+            bg-[radial-gradient(80%_60%_at_50%_40%,theme(colors.violet.400/.35),transparent_60%)]" />
+        </div>
+
         {/* Hero */}
         <section className="relative overflow-hidden">
+          {/* subtle top gradient line */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-indigo-200/40 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 pt-14 pb-8">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-2">Join AthenaHQ</h1>
-            <p className="text-sm md:text-base text-slate-600 max-w-2xl">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-8 sm:pb-10 md:pb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
+              Join AthenaHQ
+            </h1>
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl">
               Revolutionizing brand management in the AI Era of Search
             </p>
           </div>
         </section>
 
         {/* Open Positions */}
-        <section className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Open Positions</h2>
-          <p className="text-slate-500 text-sm md:text-base mb-6 max-w-2xl">
-            Please email careers@athenahq.ai with your resume, a link
+        <section className="container mx-auto px-4 sm:px-6 md:px-8 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
+            Open Positions
+          </h2>
+          <p className="text-slate-500 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 max-w-2xl">
+            Please email <a className="underline decoration-indigo-500/50 underline-offset-4" href="mailto:careers@athenahq.ai">careers@athenahq.ai</a> with your resume, a link
             to your strongest work, and one paragraph about anything.
           </p>
 
-          <div className="space-y-8">
-            {openRoles.map((role, idx) => (
-              <div key={role.title} className="relative">
-                {/* subtle glow */}
-                <div className="pointer-events-none absolute -inset-x-2 -top-2 h-2 rounded-full bg-indigo-500/30 blur-xl" />
-                <article className="relative rounded-2xl bg-white/70 dark:bg-slate-900/70 shadow-xl ring-1 ring-black/5 p-6 md:p-8">
-                  <h3 className="text-xl md:text-2xl font-semibold mb-1">{role.title}</h3>
-                  <p className="text-[11px] md:text-xs text-slate-500 mb-4">{role.meta}</p>
-                  <p className="text-sm text-slate-700 mb-6">{role.summary}</p>
-                  <a
-                    href={role.applyHref}
-                    className="inline-block rounded-md bg-indigo-600 text-white text-xs md:text-sm px-4 py-2 font-semibold hover:bg-indigo-700 transition-colors"
-                  >
-                    Apply Now
-                  </a>
-                </article>
-              </div>
-            ))}
+          <div className="relative">
+            {/* long horizontal “gradient linear circle” glow under the list */}
+            <div className="pointer-events-none absolute -z-10 left-1/2 -translate-x-1/2 -top-4 h-8 w-[92%] sm:w-[95%] rounded-full blur-2xl
+              bg-gradient-to-r from-violet-500/45 via-indigo-500/40 to-transparent" />
+
+            <div className="space-y-8">
+              {openRoles.map((role) => (
+                <div key={role.title} className="relative">
+                  {/* individual card glow */}
+                  <div className="pointer-events-none absolute -z-10 left-1/2 -translate-x-1/2 -top-2 h-3 w-[85%] rounded-full blur-xl
+                    bg-gradient-to-r from-violet-500/35 via-indigo-500/30 to-transparent" />
+                  <article className="relative rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur
+                      shadow-xl ring-1 ring-black/5 dark:ring-white/10 p-5 sm:p-6 md:p-8">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-1">{role.title}</h3>
+                    <p className="text-[11px] sm:text-xs md:text-sm text-slate-500 mb-4">{role.meta}</p>
+                    <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">{role.summary}</p>
+                    <a
+                      href={role.applyHref}
+                      className="inline-flex items-center gap-2 rounded-md bg-indigo-600 text-white text-xs sm:text-sm px-4 py-2 font-semibold
+                        hover:bg-indigo-700 active:translate-y-px transition"
+                    >
+                      Apply Now
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </article>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="py-12 text-center">
-            <a href="/form" className="inline-block rounded-full bg-indigo-600 text-white px-6 py-3 font-semibold hover:bg-indigo-700 transition-colors">
+          {/* Bottom CTA with responsive spacing */}
+          <div className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 text-center">
+            <a
+              href="/form"
+              className="inline-flex items-center rounded-full bg-indigo-600 text-white px-6 py-3 sm:px-7 sm:py-3.5 font-semibold
+                hover:bg-indigo-700 active:translate-y-px transition"
+            >
               Contact Us
             </a>
+            <p className="mt-3 text-xs sm:text-sm text-slate-500">
+              Don’t see a fit? Reach out anyway — we love meeting builders.
+            </p>
           </div>
         </section>
       </main>
@@ -76,5 +112,3 @@ const openRoles = [
     applyHref: "/form",
   },
 ] as const;
-
-

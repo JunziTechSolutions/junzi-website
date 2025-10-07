@@ -1,102 +1,101 @@
 import Header from "@/components/landing/layout/header";
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
+import { teamMembers } from "@/lib/team";  
 
 export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="relative">
-        {/* Hero */}
-        <section className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-indigo-200/40 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 pt-14 pb-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">About Us</h1>
-            <p className="text-sm md:text-base text-slate-600 max-w-xl mx-auto">
-              Meet the team building the future of brand
-              <br />
-              management on AI Search
+      <main className="relative overflow-hidden">
+        {/* Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100/50 via-white to-white dark:from-indigo-900/30 dark:via-slate-900 dark:to-slate-900" />
+          <div className="absolute -top-36 left-1/2 h-[520px] w-[1200px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-300/50 to-transparent blur-3xl dark:from-indigo-500/25" />
+          <div className="absolute top-[360px] left-1/2 -translate-x-1/2 h-[700px] w-[1200px] rounded-[999px] blur-3xl opacity-80 bg-[radial-gradient(80%_60%_at_50%_40%,theme(colors.violet.400/.35),transparent_60%)]" />
+        </div>
+
+        {/* Hero Section */}
+        <section className="relative text-center">
+          <div className="container mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 pt-40 pb-15 sm:pb-20">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
+              About Us
+            </h1>
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Meet the team building the future of brand management on AI Search
             </p>
           </div>
         </section>
 
-        {/* Experience logos */}
-        <section className="container mx-auto px-4 pb-10">
-          <p className="text-center text-sm text-slate-500 mb-4">
-            Built with <span className="text-indigo-600 font-medium">experience</span> from
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-90">
-            <span className="text-slate-700">Y&nbsp;Combinator</span>
-            <span className="text-slate-700">Google</span>
-            <span className="text-slate-700">DeepMind</span>
-            <span className="text-slate-700">ServiceNow</span>
+        {/* Experience Logos */}
+        <section className="relative pt-16 sm:pt-15 pb-40">
+          <div className="container mx-auto max-w-5xl px-5 sm:px-8 lg:px-12">
+            <p className="text-center text-sm sm:text-base text-slate-500 mb-6">
+              Built with{" "}
+              <span className="text-indigo-600 font-medium underline underline-offset-4 decoration-indigo-400/60">
+                experience
+              </span>{" "}
+              from
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-16 sm:gap-x-20 gap-y-8">
+              <Image src="/worked-at-logos/yc-logo.svg" alt="Y Combinator" width={120} height={30} className="h-7 sm:h-8 w-auto opacity-90" priority />
+              <Image src="/worked-at-logos/google-logo.svg" alt="Google" width={110} height={28} className="h-6 sm:h-7 w-auto opacity-90" />
+              <Image src="/worked-at-logos/deepmind-logo.svg" alt="DeepMind" width={110} height={28} className="h-6 sm:h-7 w-auto opacity-90" />
+              <Image src="/worked-at-logos/servicenow-logo.svg" alt="ServiceNow" width={130} height={28} className="h-6 sm:h-7 w-auto opacity-90" />
+            </div>
           </div>
         </section>
 
-        {/* Team grid */}
-        <section className="container mx-auto px-4 pb-24">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        {/* Team Grid */}
+        <section className="container mx-auto max-w-5xl px-5 sm:px-8 lg:px-12 pb-28">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-14 items-stretch">
             {teamMembers.map((m) => (
-              <article key={m.name} className="rounded-2xl bg-white/70 dark:bg-slate-900/70 shadow-xl ring-1 ring-black/5 overflow-hidden">
-                <div className="p-4">
-                  <div className="relative rounded-xl overflow-hidden bg-indigo-600/20 mb-4 h-56">
-                    <Image src={m.photo} alt={m.name} fill className="object-cover" />
+              <div
+                key={m.name}
+                className="group h-full flex flex-col min-h-[600px] rounded-[20px] bg-white/85 dark:bg-slate-900/70 backdrop-blur shadow-xl ring-1 ring-black/5 dark:ring-white/10 transition-all duration-500 hover:-translate-y-[3px] hover:shadow-2xl"
+              >
+                <div className="p-6 pb-0">
+                  <div
+                    className="relative w-full overflow-hidden rounded-[18px]"
+                    style={{ backgroundColor: m.photoBg || "#4338CA", aspectRatio: "16 / 9" }}
+                  >
+                    <Image src={m.photo} alt={m.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]" sizes="(min-width: 1024px) 560px, 100vw" />
+
+                    <div
+                      className="absolute inset-0 transition-[clip-path,opacity] duration-700 ease-out [clip-path:circle(0%_at_50%_0%)] group-hover:[clip-path:circle(140%_at_50%_0%)] opacity-0 group-hover:opacity-100"
+                      style={{ backgroundColor: m.legendBg || "#E8E4DA" }}
+                    >
+                      <Image src={m.legend} alt={`${m.name} legend`} fill className="object-cover" sizes="(min-width: 1024px) 560px, 100vw" />
+                    </div>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">{m.name}</h3>
-                  <p className="text-xs font-semibold text-indigo-700 mt-1 mb-3">{m.title}</p>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-4 whitespace-pre-line">{m.bio}</p>
-                  <a href={m.linkedin} aria-label={`${m.name} LinkedIn`} className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-700">
-                    <Linkedin size={18} />
-                  </a>
                 </div>
-              </article>
+
+                <div className="flex-1 flex flex-col px-7 pt-6 pb-8">
+                  <div className="mb-6">
+                    <h3 className="text-[28px] leading-8 font-extrabold text-slate-900 dark:text-white">{m.name}</h3>
+                    <p className="text-xs font-semibold text-indigo-700 mt-2">{m.title}</p>
+                    <p className="mt-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{m.bio}</p>
+                  </div>
+
+                  <div className="mt-auto">
+                    <a href={m.linkedin} aria-label={`${m.name} LinkedIn`} className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-700 transition">
+                      <Linkedin size={18} />
+                    </a>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </section>
 
-        <div className="container mx-auto px-4 pb-16 text-center">
-          <a href="/form" className="inline-block rounded-full bg-indigo-600 text-white px-6 py-3 font-semibold hover:bg-indigo-700 transition-colors">
+        {/* Bottom CTA */}
+        <section className="container mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 pb-28 text-center">
+          <a href="/form" className="inline-flex items-center rounded-full bg-indigo-600 text-white px-6 py-3 sm:px-7 sm:py-3.5 font-semibold hover:bg-indigo-700 active:translate-y-px transition">
             Schedule a Call
           </a>
-        </div>
+        </section>
       </main>
     </>
   );
 }
-
-const teamMembers = [
-  {
-    name: "Ganesh Asapu",
-    title: "Founding Engineer",
-    photo: "/placeholder.svg",
-    linkedin: "#",
-    bio:
-      "Former ML engineer at Cohere, Voiceflow, and Wisedocs. Built SOTA LLMs, shipped AI agents into finance, healthcare, and insurance, and somehow still likes datasets. On leave from the University of Toronto to build AthenaHQ.",
-  },
-  {
-    name: "Grant Harvey",
-    title: "Founding GTM",
-    photo: "/placeholder.svg",
-    linkedin: "#",
-    bio:
-      "Grant enjoys long walks on the golf course when he is not helping folks crush their GEO goals. Some say he does everything possible to avoid the tech elite of San Francisco, so he lives in Palo Alto. He will always find a way to tell you he played D1 college sport and how much his back hurts. When people ask him where he went to college, he just shrugs his shoulders and says a small school in Boston.",
-  },
-  {
-    name: "Merrick Liu",
-    title: "Founding Engineer",
-    photo: "/placeholder.svg",
-    linkedin: "#",
-    bio:
-      "Former engineer at Mercury. Worked on credit and debit card processing. Built various AI-powered tools, and did research on biologically plausible deep learning algorithms.\n\nWill graduate from the University of Toronto at some point.",
-  },
-  {
-    name: "James Moreno",
-    title: "Founding GTM",
-    photo: "/placeholder.svg",
-    linkedin: "#",
-    bio:
-      "",
-  },
-] as const;
-
-

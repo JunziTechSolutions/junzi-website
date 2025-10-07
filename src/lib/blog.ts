@@ -1,4 +1,3 @@
-// lib/blog.ts
 export type BlogPost = {
   title: string;
   image: string;

@@ -22,7 +22,7 @@ export default function AboutPage() {
               About Us
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Meet the team building the future of brand management on AI Search
+              Meet the team building the future of software development at Junzi Tech Solutions
             </p>
           </div>
         </section>
@@ -53,14 +53,14 @@ export default function AboutPage() {
             {teamMembers.map((m) => (
               <div
                 key={m.name}
-                className="group h-full flex flex-col min-h-[600px] rounded-[20px] bg-white/85 dark:bg-slate-900/70 backdrop-blur shadow-xl ring-1 ring-black/5 dark:ring-white/10 transition-all duration-500 hover:-translate-y-[3px] hover:shadow-2xl"
+                className="group h-full flex flex-col min-h-[800px] rounded-[20px] bg-white/85 dark:bg-slate-900/70 backdrop-blur shadow-xl ring-1 ring-black/5 dark:ring-white/10 transition-all duration-300 active:translate-y-px hover:shadow-2xl"
               >
                 <div className="p-6 pb-0">
                   <div
                     className="relative w-full overflow-hidden rounded-[18px]"
-                    style={{ backgroundColor: m.photoBg || "#4338CA", aspectRatio: "16 / 9" }}
+                    style={{ backgroundColor: m.photoBg || "#4338CA", aspectRatio: "619 / 928" }}
                   >
-                    <Image src={m.photo} alt={m.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]" sizes="(min-width: 1024px) 560px, 100vw" />
+                    {/* <Image src={m.photo} alt={m.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]" sizes="(min-width: 1024px) 560px, 100vw" /> */}
 
                     <div
                       className="absolute inset-0 transition-[clip-path,opacity] duration-700 ease-out [clip-path:circle(0%_at_50%_0%)] group-hover:[clip-path:circle(140%_at_50%_0%)] opacity-0 group-hover:opacity-100"

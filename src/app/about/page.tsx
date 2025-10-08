@@ -49,7 +49,7 @@ export default function AboutPage() {
 
         {/* Team Grid */}
         <section className="container mx-auto max-w-5xl px-5 sm:px-8 lg:px-12 pb-28">
-          <div className="grid grid-cols-2 gap-x-10 gap-y-14 items-stretch">
+          <div className="grid sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-2  gap-x-10 gap-y-14 items-stretch">
             {teamMembers.map((m) => (
               <div
                 key={m.name}

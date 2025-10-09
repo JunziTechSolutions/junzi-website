@@ -182,7 +182,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2 lg:space-x-3 flex-1 justify-center px-2">
+          <nav className="hidden md:flex items-center space-x-2 lg:space-x-3 flex-1 justify-center px-2 font-primary">
             {navLinks.map((link) => {
               const eventHandler = createEventHandler();
               if (link.type === "scroll") {

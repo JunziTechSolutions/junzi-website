@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="container mx-auto max-w-5xl px-5 sm:px-8 lg:px-12">
             <p className="text-center text-sm sm:text-base text-slate-500 mb-6">
               Built with{" "}
-              <span className="text-indigo-600 font-medium underline underline-offset-4 decoration-indigo-400/60">
+              <span className="text-indigo-600 font-bold">
                 experience
               </span>{" "}
               from
@@ -126,7 +126,14 @@ export default function AboutPage() {
 
         {/* Bottom CTA */}
         <section className="container mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 pb-28 text-center">
-          <a href="/form" className="inline-flex items-center rounded-full bg-indigo-600 text-white px-6 py-3 sm:px-7 sm:py-3.5 font-semibold hover:bg-indigo-700 active:translate-y-px transition">
+          <a 
+            href="/form" 
+            className="inline-flex items-center rounded-full text-white px-6 py-3 sm:px-7 sm:py-3.5 font-semibold hover:opacity-90 active:translate-y-px transition shadow-lg"
+            style={{
+              background:
+                "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",
+            }}
+          >
             Schedule a Call
           </a>
         </section>

@@ -18,7 +18,14 @@ export default function CaseCTA({
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="https://calendar.app.google/Wntyianq12RmHVU6A" target="_blank" rel="noopener noreferrer">
-  <Button size="lg" className="flex items-center gap-2 bg-[#0b1e54] text-white">
+  <Button 
+    size="lg" 
+    className="flex items-center gap-2 text-white hover:opacity-90 shadow-lg"
+    style={{
+      background:
+        "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",
+    }}
+  >
     <Mail className="w-4 h-4" />
     Schedule a call
     <ArrowRight className="w-4 h-4 ml-2" />

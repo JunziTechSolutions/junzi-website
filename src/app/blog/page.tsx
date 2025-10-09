@@ -20,10 +20,10 @@ export default function BlogPage() {
         {/* Hero */}
         <section className="relative">
           <div className="container mx-auto px-4 pt-40 pb-15">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
               Blog
             </h1>
-            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300">
+            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
               Insights and updates from Junzi Tech Solutions
             </p>
           </div>
@@ -50,8 +50,8 @@ export default function BlogPage() {
                 </Link>
 
                 {/* content */}
-                <div className="flex flex-col flex-1 p-5 md:p-6">
-                  <div className="text-base uppercase tracking-wide text-grey font-normal font-[inherit] dark:text-slate-400 mb-1">
+                <div className="flex flex-col flex-1 p-5 md:p-6" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
+                  <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
                     {p.category}
                   </div>
 
@@ -72,7 +72,11 @@ export default function BlogPage() {
                     <Link
                       href={`/blog/${p.slug}`}
                       aria-label={`Open post: ${p.title}`}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-indigo-500 to-blue-600 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                      style={{
+                        background:
+                          "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

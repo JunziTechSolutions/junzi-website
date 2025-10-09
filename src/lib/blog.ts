@@ -22,7 +22,7 @@ const rawPosts = [
   // ======== JunziTech Blog Posts ========
   {
     title: "The $1K vs $10K vs $100K App: What You Actually Get for Your Budget (Tinder Edition)",
-    image: "/blog/budget-tinder.jpg",
+    image: "/blogs/1k.webp",
     category: "Founders",
     date: "October 2025",
     excerpt:
@@ -148,7 +148,7 @@ const rawPosts = [
   },
   {
     title: "How to Build an App in 2025 — No Matter Your Budget (From $0 to $100K)",
-    image: "/blog/budget-guide.jpg",
+    image: "/blogs/how_to.webp",
     category: "Playbook",
     date: "October 2025",
     excerpt:
@@ -318,7 +318,7 @@ const rawPosts = [
   },
   {
     title: "The Real Guide to Low-Code Tools in 2025: What They're Good For (and What They'll Never Replace)",
-    image: "/blog/lowcode-guide.jpg",
+    image: "/blogs/the_real.webp",
     category: "Guides",
     date: "September 2025",
     excerpt:
@@ -479,7 +479,7 @@ const rawPosts = [
   },
   {
     title: "The Only Honest Breakdown of Every Way to Build Your App in 2025",
-    image: "/blog/build-ways.jpg",
+    image: "/blogs/the_only.webp",
     category: "Founders",
     date: "September 2025",
     excerpt:
@@ -649,7 +649,7 @@ const rawPosts = [
   },
   {
     title: "Stop Paying $200K for $20K Apps: How We Build Smarter, Faster, and Without the Agency Bloat",
-    image: "/blog/anti-bloat.jpg",
+    image: "/blogs/200k.webp",
     category: "Opinion",
     date: "August 2025",
     excerpt:

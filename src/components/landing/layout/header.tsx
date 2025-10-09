@@ -160,7 +160,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
             "relative flex items-center justify-between transition-all duration-1000 ease-in-out",
             isScrolled
               ? "max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-full mt-2 py-2.5 px-4 sm:px-6"
-              : "container mx-auto rounded-none py-2 md:py-4 px-4 sm:px-6 lg:px-8"
+              : "container mx-auto rounded-none py-1 md:py-2 px-4 sm:px-6 lg:px-8"
           )}
         >
           {isMounted && (
@@ -177,10 +177,10 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
           <Link href="/" className="flex items-center space-x-2 shrink-0">
             <img
               src="/Artifex_ME_1v_Favicon.png"
-              className="w-[40px] h-[40px] md:w-[54px] md:h-[54px]"
+              className="w-[32px] h-[32px] md:w-[40px] md:h-[40px]"
               alt="Logo"
-              width={54}
-              height={54}
+              width={40}
+              height={40}
             />
           </Link>
 
@@ -284,7 +284,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
           <div className="hidden md:flex items-center space-x-3 lg:space-x-4 shrink-0">
             <a href="/form" aria-label="Get Started">
               <Button
-                className="text-white text-sm font-semibold px-6 py-3 rounded-full transition-all whitespace-nowrap hover:opacity-90 shadow-lg"
+                className="text-white text-xs font-semibold px-4 py-2 rounded-full transition-all whitespace-nowrap hover:opacity-90 shadow-lg"
                 style={{
                   background:
                     "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",

@@ -72,7 +72,11 @@ export default function BlogPage() {
                     <Link
                       href={`/blog/${p.slug}`}
                       aria-label={`Open post: ${p.title}`}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-indigo-500 to-blue-600 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                      style={{
+                        background:
+                          "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

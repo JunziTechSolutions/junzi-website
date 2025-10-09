@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SimpleVideoPlayer } from "@/components/shared/video-player";
 import { BackgroundVideo } from "@/components/ui/background-video";
@@ -23,14 +23,113 @@ const schema = yup.object({
   phone: yup
     .string()
     .required("Phone number is required")
-    .matches(/^[0-9+\s()-]*$/, "Invalid phone number"),
+    .matches(/^\d{10}$/, "Enter a valid 10-digit phone number"),
   message: yup.string(),
 });
+
+// Phone Input Component
+interface PhoneInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  onBlur?: () => void;
+  error?: string;
+  className?: string;
+}
+
+function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInputProps) {
+  const [displayValue, setDisplayValue] = useState("+1 ");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Format phone number as (123) 456-7890
+  const formatPhoneNumber = (rawValue: string): string => {
+    const cleaned = rawValue.replace(/\D/g, '');
+    if (cleaned.length === 0) return "+1 ";
+    
+    let formatted = "+1 ";
+    if (cleaned.length >= 1) {
+      formatted += `(${cleaned.slice(0, 3)}`;
+    }
+    if (cleaned.length >= 4) {
+      formatted += `) ${cleaned.slice(3, 6)}`;
+    }
+    if (cleaned.length >= 7) {
+      formatted += `-${cleaned.slice(6, 10)}`;
+    }
+    
+    return formatted;
+  };
+
+  // Extract raw digits from formatted display
+  const getRawValue = (formatted: string): string => {
+    return formatted.replace(/\D/g, '').slice(1); // Remove +1 and get only digits
+  };
+
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    
+    // Only allow digits and existing formatting characters
+    const cleaned = inputValue.replace(/[^\d+()\s-]/g, '');
+    
+    // Extract raw digits (excluding +1)
+    const rawDigits = cleaned.replace(/\D/g, '').slice(1);
+    
+    // Limit to 10 digits after +1
+    if (rawDigits.length <= 10) {
+      const formatted = formatPhoneNumber(rawDigits);
+      setDisplayValue(formatted);
+      onChange(rawDigits);
+    }
+  };
+
+  // Handle focus - set cursor to end of digits
+  const handleFocus = () => {
+    if (inputRef.current) {
+      const rawDigits = getRawValue(displayValue);
+      const cursorPosition = displayValue.length;
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.setSelectionRange(cursorPosition, cursorPosition);
+        }
+      }, 0);
+    }
+  };
+
+  // Initialize display value when component mounts or value changes externally
+  useEffect(() => {
+    if (value && value !== getRawValue(displayValue)) {
+      setDisplayValue(formatPhoneNumber(value));
+    }
+  }, [value]);
+
+  return (
+    <div className="relative">
+      <input
+        ref={inputRef}
+        type="tel"
+        inputMode="numeric"
+        value={displayValue}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={onBlur}
+        placeholder="+1 (555) 123-4567"
+        className={`w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none ${className}`}
+        style={{ fontFamily: "Space Grotesk, sans-serif" }}
+      />
+      {error && (
+        <p className="text-red-500 text-sm text-left ml-[8px] mt-1">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default function HeroSection() {
   const { toast } = useToast();
   const { submitForm } = useHubSpot();
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
+  const [phoneValue, setPhoneValue] = useState("");
 
   const {
     register,
@@ -38,9 +137,20 @@ export default function HeroSection() {
     formState: { errors },
     reset,
     getValues,
+    setValue,
+    trigger,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
+
+  const handlePhoneChange = (value: string) => {
+    setPhoneValue(value);
+    setValue('phone', value);
+  };
+
+  const handlePhoneBlur = async () => {
+    await trigger('phone');
+  };
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmittingForm(true);
@@ -72,6 +182,7 @@ export default function HeroSection() {
 
       // Reset form
       reset();
+      setPhoneValue("");
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
@@ -224,18 +335,12 @@ export default function HeroSection() {
                 </div>
 
                 <div>
-                  <input
-                    type="tel"
-                    style={{ fontFamily: "Space Grotesk, sans-serif" }}
-                    placeholder="Phone - we will call you back"
-                    {...register("phone")}
-                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                  <PhoneInput
+                    value={phoneValue}
+                    onChange={handlePhoneChange}
+                    onBlur={handlePhoneBlur}
+                    error={errors.phone?.message}
                   />
-                  {errors.phone && (
-                    <p className="text-red-500 text-sm text-left ml-[8px]">
-                      {errors.phone.message}
-                    </p>
-                  )}
                 </div>
 
                 <div>

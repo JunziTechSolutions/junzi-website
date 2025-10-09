@@ -37,15 +37,16 @@ interface PhoneInputProps {
 }
 
 function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInputProps) {
-  const [displayValue, setDisplayValue] = useState("+1 ");
+  const [displayValue, setDisplayValue] = useState("");
+  const [hasStartedTyping, setHasStartedTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Format phone number as (123) 456-7890
+  // Format phone number as (123) 456-7890 (without +1 prefix)
   const formatPhoneNumber = (rawValue: string): string => {
     const cleaned = rawValue.replace(/\D/g, '');
-    if (cleaned.length === 0) return "+1 ";
+    if (cleaned.length === 0) return "";
     
-    let formatted = "+1 ";
+    let formatted = "";
     if (cleaned.length >= 1) {
       formatted += `(${cleaned.slice(0, 3)}`;
     }
@@ -61,20 +62,39 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
 
   // Extract raw digits from formatted display
   const getRawValue = (formatted: string): string => {
-    return formatted.replace(/\D/g, '').slice(1); // Remove +1 and get only digits
+    return formatted.replace(/\D/g, ''); // Get only digits
   };
 
   // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     
-    // Only allow digits and existing formatting characters
-    const cleaned = inputValue.replace(/[^\d+()\s-]/g, '');
+    // Detect if user started typing or if autofill occurred
+    if (!hasStartedTyping && inputValue.length > 0) {
+      setHasStartedTyping(true);
+    }
     
-    // Extract raw digits (excluding +1)
-    const rawDigits = cleaned.replace(/\D/g, '').slice(1);
+    // Handle different input scenarios
+    let processedValue = inputValue;
     
-    // Limit to 10 digits after +1
+    // If input starts with +1, remove it
+    if (inputValue.startsWith('+1')) {
+      processedValue = inputValue.slice(2).trim();
+    }
+    // If input is empty, clear everything
+    else if (inputValue.length === 0) {
+      processedValue = "";
+      setHasStartedTyping(false);
+    }
+    // Otherwise, only allow digits and existing formatting characters
+    else {
+      processedValue = inputValue.replace(/[^\d()\s-]/g, '');
+    }
+    
+    // Extract raw digits
+    const rawDigits = processedValue.replace(/\D/g, '');
+    
+    // Limit to 10 digits
     if (rawDigits.length <= 10) {
       const formatted = formatPhoneNumber(rawDigits);
       setDisplayValue(formatted);
@@ -82,23 +102,56 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
     }
   };
 
-  // Handle focus - set cursor to end of digits
+  // Handle focus
   const handleFocus = () => {
-    if (inputRef.current) {
-      const rawDigits = getRawValue(displayValue);
-      const cursorPosition = displayValue.length;
+    // If there's content and user hasn't started typing, select all for easy replacement
+    if (displayValue && !hasStartedTyping) {
       setTimeout(() => {
         if (inputRef.current) {
-          inputRef.current.setSelectionRange(cursorPosition, cursorPosition);
+          inputRef.current.select();
         }
       }, 0);
     }
   };
 
+  // Handle autofill detection
+  useEffect(() => {
+    const handleAutofill = () => {
+      if (inputRef.current && inputRef.current.value) {
+        setHasStartedTyping(true);
+        // Process the autofilled value
+        let autofillValue = inputRef.current.value;
+        
+        // If autofill includes +1, remove it
+        if (autofillValue.startsWith('+1')) {
+          autofillValue = autofillValue.slice(2).trim();
+        }
+        
+        // Set the input value to the processed autofill value
+        inputRef.current.value = autofillValue;
+        handleChange({ target: { value: autofillValue } } as React.ChangeEvent<HTMLInputElement>);
+      }
+    };
+
+    // Check for autofill on mount and periodically
+    const checkAutofill = () => {
+      if (inputRef.current && inputRef.current.value && !hasStartedTyping) {
+        handleAutofill();
+      }
+    };
+
+    const interval = setInterval(checkAutofill, 100);
+    
+    return () => clearInterval(interval);
+  }, [hasStartedTyping]);
+
   // Initialize display value when component mounts or value changes externally
   useEffect(() => {
     if (value && value !== getRawValue(displayValue)) {
       setDisplayValue(formatPhoneNumber(value));
+      if (value.length > 0) {
+        setHasStartedTyping(true);
+      }
     }
   }, [value]);
 
@@ -112,7 +165,7 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={onBlur}
-        placeholder="+1 (555) 123-4567"
+        placeholder="(555) 123-4567"
         className={`w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none ${className}`}
         style={{ fontFamily: "Space Grotesk, sans-serif" }}
       />

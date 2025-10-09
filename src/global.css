@@ -9,7 +9,8 @@
 @import './styles/case-cards.css';
 
 /* Импорт шрифтов */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -83,6 +84,51 @@ html {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+
+    
+    --gap-mid-s: 20px;
+    --gap-mid-s-half: 10px;
+
+
+    --font-primary: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --font-secondary: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --main-easing: cubic-bezier(.195, .495, .26, .945);
+    --default-radius: 10px;
+    --font-color-default: #080808;
+    --font-color-secondary: #1a1a1a;
+    --font-color-grey: #5f5b56;
+    --font-color-light: #464646;
+    --font-color-white: #f8f8f8;
+    --color-highlight: #4F39F6;
+    --color-highlight-light: #615FFF;
+    --color-error: rgba(246, 57, 66, .7);
+    --color-white: #ffffff;
+    --font-size-xl: 72px;
+    --line-height-xl: 70px;
+    --font-size-x: 65px;
+    --font-size-xlb: 48px;
+    --line-height-xlb: 56px;
+    --font-size-l: 36px;
+    --line-height-l: 44px;
+    --font-size-ml: 24px;
+    --line-height-ml: 30px;
+    --font-size-m: 18px;
+    --line-height-m: 28px;
+    --font-size-base: 16px;
+    --line-height-base: 24px;
+    --font-size-link: 14px;
+    --font-size-s: 14px;
+    --line-height-s: 20px;
+    --gap-sections: 256px;
+    --gap-big: 96px;
+    --gap-mid: 64px;
+    --gap-medium: 48px;
+    --gap-hero: 32px;
+    --gap-mid-s: 24px;
+    --gap-mid-s-half: 12px;
+    --gap-small: 16px;
+    --gap-small-half: 8px;
   }
 
   ::-webkit-scrollbar {

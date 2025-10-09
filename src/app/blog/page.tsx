@@ -35,7 +35,7 @@ export default function BlogPage() {
             {posts.map((p) => (
               <article
                 key={p.slug}
-                className="group flex flex-col overflow-hidden rounded-3xl bg-white/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
+                className="group flex flex-col overflow-hidden rounded-3xl text-grey font-medium font-primary shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
               >
                 {/* media */}
                 <Link href={`/blog/${p.slug}`} className="relative block h-56 md:h-60 lg:h-64 overflow-hidden">
@@ -51,21 +51,21 @@ export default function BlogPage() {
 
                 {/* content */}
                 <div className="flex flex-col flex-1 p-5 md:p-6">
-                  <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
+                  <div className="text-base uppercase tracking-wide text-grey font-normal font-[inherit] dark:text-slate-400 mb-1">
                     {p.category}
                   </div>
 
                   <Link href={`/blog/${p.slug}`} className="block">
-                    <h3 className="text-lg md:text-xl font-semibold leading-snug text-slate-900 dark:text-white transition group-hover:underline">
+                    <h3 className="text-ml md:text-ml font-bold font-primary leading-snug text-slate-900 dark:text-white transition group-hover:underline">
                       {p.title}
                     </h3>
                   </Link>
 
-                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 line-clamp-3">
+                  <p className="mt-2 text-base text-slate-600 dark:text-slate-300 line-clamp-3">
                     {p.excerpt}
                   </p>
 
-                  <div className="mt-auto pt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                  <div className="mt-auto pt-4 flex items-center justify-between text-base text-grey dark:text-slate-400">
                     <span>{p.date}</span>
 
                     {/* Arrow button (linked) */}

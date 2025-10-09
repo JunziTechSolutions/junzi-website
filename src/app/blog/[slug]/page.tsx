@@ -64,8 +64,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             >
               <h1
                 className="
-                  text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-                  font-bold tracking-tight leading-tight
+                  text-l sm:text-4xl md:text-5xl lg:text-6xl 
+                  font-bold font-primary tracking-tight leading-tight
                   text-slate-900 dark:text-white
                 "
               >
@@ -87,23 +87,23 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     <Image
                       src="/Artifex_ME_1v_Favicon.png"
                       alt={post.author.name}
-                      width={48}
-                      height={48}
+                      width={54}
+                      height={54}
                       className="object-contain"
                     />
                   </div>
                   <div className="leading-tight">
-                    <p className="font-semibold text-slate-900 dark:text-white">
+                    <p className="font-medium text-slate-900 text-m font-primary dark:text-white">
                       {post.author.name}
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-s sm:text-sm text-font-light dark:text-slate-400 font-[inherit]">
                       {post.author.role}
                     </p>
                   </div>
                 </div>
 
                 {/* Date + Read Time */}
-                <div className="flex flex-wrap items-center justify-start sm:justify-end gap-2 text-xs sm:text-sm">
+                <div className="flex flex-wrap items-center justify-start sm:justify-end gap-2 text-s sm:text-sm text-font-light font-[inherit]">
                   <span>{post.date}</span>
                   <span className="hidden sm:inline">•</span>
                   <span>{post.readTime}</span>

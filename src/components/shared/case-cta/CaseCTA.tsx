@@ -11,7 +11,7 @@ export default function CaseCTA({
   description = "Let's discuss how we can help you achieve your goals. We specialize in creating solutions that are not only beautiful but also deliver measurable results."
 }: CaseCTAProps) {
   return (
-    <div className="text-center my-12 not-prose">
+    <div className="text-center my-12 not-prose font-primary">
       <h2 className="text-3xl font-bold mb-4">{title}</h2>
       <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
         {description}

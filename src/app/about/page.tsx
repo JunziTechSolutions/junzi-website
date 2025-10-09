@@ -60,7 +60,7 @@ export default function AboutPage() {
                     className="relative w-full overflow-hidden rounded-[18px]"
                     style={{ backgroundColor: m.photoBg || "#4338CA", aspectRatio: "619 / 928" }}
                   >
-                    {/* <Image src={m.photo} alt={m.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]" sizes="(min-width: 1024px) 560px, 100vw" /> */}
+                    <Image src={m.photo} alt={m.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]" sizes="(min-width: 1024px) 560px, 100vw" />
 
                     <div
                       className="absolute inset-0 transition-[clip-path,opacity] duration-700 ease-out [clip-path:circle(0%_at_50%_0%)] group-hover:[clip-path:circle(140%_at_50%_0%)] opacity-0 group-hover:opacity-100"

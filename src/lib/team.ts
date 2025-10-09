@@ -12,7 +12,7 @@ export const teamMembers = [
   {
     name: "Kabir Israni",
     title: "Advisor",
-    photo: "/team/grant-harvey.R62T2ZCI_1Pie6y.webp",
+    photo: "/team/image2.png",
     legend: "/team/kabir-legend.webp",
     photoBg: "#1E2F5E",
     legendBg: "#E8E4DA",
@@ -22,7 +22,7 @@ export const teamMembers = [
   {
     name: "Ayush Shenvi Pissurlenkar",
     title: "Technical Advisor",
-    photo: "/team/grant-harvey.R62T2ZCI_1Pie6y.webp",
+    photo: "/team/image1.png",
     legend: "/team/ayush-legend.webp",
     photoBg: "#1E2F5E",
     legendBg: "#E8E4DA",
@@ -32,7 +32,7 @@ export const teamMembers = [
   {
     name: "Anton Vinogradov",
     title: "Head of Engineering",
-    photo: "/team/grant-harvey.R62T2ZCI_1Pie6y.webp",
+    photo: "/team/image.png",
     legend: "/team/anton-legend.webp",
     photoBg: "#1E2F5E",
     legendBg: "#E8E4DA",
@@ -42,7 +42,7 @@ export const teamMembers = [
   {
     name: "Muhammad Haris",
     title: "Head Of Design",
-    photo: "/team/haris-main (1).png",
+    photo: "/team/image3.png",
     legend: "/team/haris-legend.webp",
     photoBg: "#1E2F5E",
     legendBg: "#E8E4DA",

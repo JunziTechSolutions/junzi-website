@@ -38,11 +38,11 @@ export default function CaseStudyPage({ params }: CaseStudyPageProps) {
               ]} 
             />
             <div className="space-y-4 not-prose">
-              <p className="text-[#0b1e54] font-semibold">{caseStudy.client}</p>
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+              <p className="text-[#0b1e54] font-semibold font-primary">{caseStudy.client}</p>
+              <h1 className="text-4xl md:text-5xl font-primary font-extrabold tracking-tight">
                 {caseStudy.title}
               </h1>
-              <p className="text-muted-foreground text-lg md:text-xl">
+              <p className="font-primary text-muted-foreground text-lg md:text-xl">
                 {caseStudy.description}
               </p>
             </div>
@@ -59,7 +59,7 @@ export default function CaseStudyPage({ params }: CaseStudyPageProps) {
 
             <CaseMeta caseStudy={caseStudy} />
             
-            <div className="grid md:grid-cols-3 gap-8 my-12">
+            <div className="grid md:grid-cols-3 gap-8 my-12 font-primary">
               <div className="md:col-span-2">
                 <h2 className="text-3xl font-bold mb-4">Client</h2>
                 <p>
@@ -73,8 +73,8 @@ export default function CaseStudyPage({ params }: CaseStudyPageProps) {
             </div>
 
             <div className="my-12">
-              <h2 className="text-3xl font-bold mb-6 text-center">Our solution</h2>
-              <div className="space-y-8">
+              <h2 className="text-3xl font-bold font-primary mb-6 text-center">Our solution</h2>
+              <div className="space-y-8 font-primary">
                 <p>
                   {caseStudy.solution}
                 </p>

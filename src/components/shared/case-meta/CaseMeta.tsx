@@ -7,7 +7,7 @@ interface CaseMetaProps {
 
 export default function CaseMeta({ caseStudy }: CaseMetaProps) {
   return (
-    <div className="bg-muted/50 rounded-lg p-6 mb-8">
+    <div className="bg-muted/50 rounded-lg p-6 mb-8 font-primary">
       <h3 className="text-lg font-semibold mb-4">Project Details</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex items-center gap-3">

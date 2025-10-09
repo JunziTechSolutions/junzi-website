@@ -22,11 +22,14 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        highlight: "var(--color-highlight)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        grey: "var(--font-color-grey)", 
+        "font-light": "var(--font-color-light)",
         primary: {
-          DEFAULT: "#1f4dde", // New Blue Accent
-          foreground: "hsl(var(--primary-foreground))", // Typically white for good contrast
+          DEFAULT: "#1f4dde",
+          foreground: "hsl(var(--primary-foreground))", 
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -52,6 +55,21 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontSize: {
+        // map your CSS variables
+        // xl: "var(--font-size-xl)",
+        // xlb: "var(--font-size-xlb)",
+        l: "var(--font-size-l)",
+        ml: "var(--font-size-ml)",
+        m: "var(--font-size-m)",
+        base: "var(--font-size-base)",
+        s: "var(--font-size-s)",
+        // link: "var(--font-size-link)",
+      },
+      fontFamily: {
+        primary: "var(--font-primary)",
+        secondary: "var(--font-secondary)",
       },
       borderRadius: {
         lg: "var(--radius)",

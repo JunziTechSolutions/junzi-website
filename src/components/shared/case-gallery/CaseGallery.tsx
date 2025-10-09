@@ -11,7 +11,7 @@ export default function CaseGallery({ caseStudy }: CaseGalleryProps) {
 
   return (
     <div className="my-12">
-      <div className="text-center mb-8">
+      <div className="font-primary text-center mb-8">
         <ImageIcon className="w-12 h-12 text-[#0b1e54] mx-auto mb-4" />
         <h2 className="text-3xl font-bold mb-2">Project Gallery</h2>
         <p className="text-muted-foreground">
@@ -29,7 +29,7 @@ export default function CaseGallery({ caseStudy }: CaseGalleryProps) {
               height={image.height}
               className="rounded-lg shadow-md group-hover:shadow-lg transition-shadow w-full h-auto"
             />
-            <p className="text-sm text-muted-foreground mt-2 text-center">
+            <p className="font-primary text-sm text-muted-foreground mt-2 text-center">
               {image.alt}
             </p>
           </div>

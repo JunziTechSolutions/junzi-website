@@ -8,7 +8,7 @@ interface CaseTestimonialProps {
 
 export default function CaseTestimonial({ caseStudy }: CaseTestimonialProps) {
   return (
-    <div className="my-12">
+    <div className="my-12 font-primary">
       <div className="text-center mb-8">
         <Quote className="w-12 h-12 text-[#0b1e54] mx-auto mb-4" />
         <h2 className="text-3xl font-bold mb-2">Client Testimonial</h2>

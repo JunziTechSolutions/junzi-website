@@ -66,6 +66,7 @@ export default function AboutPage() {
                       className="absolute inset-0 transition-[clip-path,opacity] duration-700 ease-out [clip-path:circle(0%_at_50%_0%)] group-hover:[clip-path:circle(140%_at_50%_0%)] opacity-0 group-hover:opacity-100"
                       style={{ backgroundColor: m.legendBg || "#E8E4DA" }}
                     >
+                      
                       <Image src={m.legend} alt={`${m.name} legend`} fill className="object-cover" sizes="(min-width: 1024px) 560px, 100vw" />
                     </div>
                   </div>

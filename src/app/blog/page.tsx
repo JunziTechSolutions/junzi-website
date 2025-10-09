@@ -20,10 +20,10 @@ export default function BlogPage() {
         {/* Hero */}
         <section className="relative">
           <div className="container mx-auto px-4 pt-40 pb-15">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
               Blog
             </h1>
-            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300">
+            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
               Insights and updates from Junzi Tech Solutions
             </p>
           </div>
@@ -50,7 +50,7 @@ export default function BlogPage() {
                 </Link>
 
                 {/* content */}
-                <div className="flex flex-col flex-1 p-5 md:p-6">
+                <div className="flex flex-col flex-1 p-5 md:p-6" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
                   <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
                     {p.category}
                   </div>

@@ -100,13 +100,13 @@ type NavLink =
   | { type: "dropdown"; label: string; items: { label: string; href: string }[] };
 
 const navLinks: NavLink[] = [
-  // 1) How-We-Do-IT -> scroll to "process" ("Explore our simple steps")
-  { type: "scroll", href: "process", label: "How-We-Do-IT" },
-  // 2) Case Studies -> external cases page
-  { type: "external", href: "https://junzitechsolutions.com/cases", label: "Case Studies" },
-  // 3) Services -> scroll to services ("Our Expertise. Your Success.")
-  { type: "scroll", href: "services", label: "Services" },
-  // 4) Company dropdown -> About Us, Careers, Blog (all lead to schedule a call for now)
+  // 1) How-We-Do-IT -> link to homepage process section
+  { type: "external", href: "/#process", label: "How-We-Do-IT" },
+  // 2) Case Studies -> cases page
+  { type: "external", href: "/cases", label: "Case Studies" },
+  // 3) Services -> link to homepage services section
+  { type: "external", href: "/#services", label: "Services" },
+  // 4) Company dropdown -> About Us, Careers, Blog
   { type: "dropdown", label: "Company", items: [
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },

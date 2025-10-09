@@ -61,6 +61,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 text-center md:text-left
                 px-2 sm:px-0
               "
+              style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}
             >
               <h1
                 className="
@@ -126,6 +127,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 text-left
                 max-w-none
               "
+              style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}
             >
               {post.content.map((para, i) => {
                 // Skip empty strings
@@ -220,7 +222,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </article>
 
             {/* === Bottom Padding / Footer Space === */}
-            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-28 flex flex-col items-center text-center">
+            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-28 flex flex-col items-center text-center" style={{fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif'}}>
               <div className="h-[1px] w-full max-w-2xl bg-gradient-to-r from-transparent via-slate-300/40 to-transparent dark:via-slate-700/50 mb-10" />
               <p className="text-sm text-slate-500 dark:text-slate-400 px-4 sm:px-0">
                 © {new Date().getFullYear()} JunziTech Solutions — Built by founders, for founders.

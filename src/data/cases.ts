@@ -671,7 +671,7 @@ export const casesData: CaseStudy[] = [
     description: "Built a comprehensive social commerce platform connecting stylists, brands, and shoppers in a unified fashion ecosystem with shoppable content and creator monetization.",
     category: "Fashion-Tech / Social Commerce",
     tags: ["Social Commerce", "Fashion", "Influencer Marketing", "Multi-Sided Platform"],
-    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImage: "/cases/styleconnect/image 204 (1).png",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "StyleConnect",
@@ -702,19 +702,19 @@ export const casesData: CaseStudy[] = [
     },
     images: [
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/styleconnect/Frame 1618868281 (2).png",
         alt: "StyleConnect Multi-User Dashboard",
         width: 1200,
         height: 600
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/styleconnect/Frame 1618868292 (2).png",
         alt: "Creator Hub with Analytics",
         width: 600,
         height: 450
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/styleconnect/Frame 1618868293 (3).png",
         alt: "Shoppable Content Feed",
         width: 600,
         height: 450
@@ -728,7 +728,7 @@ export const casesData: CaseStudy[] = [
     description: "Designed and developed a modern, premium e-commerce website for high-end pickleball equipment with lifestyle branding and immersive product storytelling.",
     category: "E-Commerce / Sports",
     tags: ["E-Commerce", "Web Design", "Shopify", "Brand Experience"],
-    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImage: "/cases/raventi/image 204 (5).png",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "RAVENTI",
@@ -759,19 +759,19 @@ export const casesData: CaseStudy[] = [
     },
     images: [
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/raventi/Frame 1618868281 (6).png",
         alt: "RAVENTI Hero Section",
         width: 1200,
         height: 600
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/raventi/Frame 1618868293 (6).png",
         alt: "Product Catalog Layout",
         width: 600,
         height: 450
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/raventi/image 202.png",
         alt: "Product Detail Page",
         width: 600,
         height: 450
@@ -785,7 +785,7 @@ export const casesData: CaseStudy[] = [
     description: "Designed a premium studio website featuring specialized programs including ballet, stretching, cross-training, postnatal recovery, and age-specific fitness classes with elegant branding.",
     category: "Fitness / Wellness",
     tags: ["Fitness", "Web Design", "Booking System", "Studio Management"],
-    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImage: "/cases/shabelinsky/image 204.png",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "Shabelinsky Studio",
@@ -816,19 +816,19 @@ export const casesData: CaseStudy[] = [
     },
     images: [
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/shabelinsky/Frame 1618868281 (1).png",
         alt: "Shabelinsky Homepage",
         width: 1200,
         height: 600
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/shabelinsky/Frame 1618868292 (1).png",
         alt: "Program Landing Pages",
         width: 600,
         height: 450
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/shabelinsky/Frame 1618868293 (2).png",
         alt: "Booking Integration",
         width: 600,
         height: 450
@@ -842,7 +842,7 @@ export const casesData: CaseStudy[] = [
     description: "Designed a mobile party game app for group play with Truth or Dare-style challenges, user profiles, photo sharing, and interactive community features.",
     category: "Gaming / Social Entertainment",
     tags: ["Mobile Game", "UI/UX Design", "Social Gaming", "Party App"],
-    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImage: "/cases/phoni/image 204 (3).png",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "PHONI",
@@ -873,19 +873,19 @@ export const casesData: CaseStudy[] = [
     },
     images: [
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/phoni/Frame 1618868281 (4).png",
         alt: "PHONI App Design Overview",
         width: 1200,
         height: 600
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/phoni/Frame 1618868292 (4).png",
         alt: "User Profile & Social Features",
         width: 600,
         height: 450
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/phoni/Frame 1618868293 (5).png",
         alt: "Game Components & Design System",
         width: 600,
         height: 450
@@ -899,7 +899,7 @@ export const casesData: CaseStudy[] = [
     description: "Built a comprehensive SaaS dashboard for logistics companies to manage loads, track deliveries, monitor fleet operations, and analyze revenue with real-time data visualization.",
     category: "SaaS / Logistics",
     tags: ["Logistics", "Fleet Management", "Dashboard", "Analytics"],
-    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImage: "/cases/truckflow/image 204 (7).png",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "TruckFlow",
@@ -930,19 +930,19 @@ export const casesData: CaseStudy[] = [
     },
     images: [
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/truckflow/Frame 1618868281 (8).png",
         alt: "TruckFlow Dashboard Overview",
         width: 1200,
         height: 600
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/truckflow/Frame 1618868292 (6).png",
         alt: "Load Status Visualization",
         width: 600,
         height: 450
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/truckflow/Frame 1618868293 (7).png",
         alt: "Revenue Analytics",
         width: 600,
         height: 450
@@ -956,7 +956,7 @@ export const casesData: CaseStudy[] = [
     description: "Designed and developed an MVP for a social fitness app combining Instagram-style content feeds with competitive battles, peer ratings, and gamified fitness challenges.",
     category: "Social / Fitness Gaming",
     tags: ["Social App", "Fitness", "Gamification", "Mobile MVP"],
-    heroImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Crect width='1200' height='900' fill='%234461B1'/%3E%3C/svg%3E",
+    heroImage: "/cases/ego/image 204 (2).png",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "EGO",
@@ -987,19 +987,19 @@ export const casesData: CaseStudy[] = [
     },
     images: [
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='1200' height='600' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/ego/Frame 1618868281 (3).png",
         alt: "EGO Social Feed & Battle System",
         width: 1200,
         height: 600
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/ego/Frame 1618868292 (3).png",
         alt: "User Profiles & Ratings",
         width: 600,
         height: 450
       },
       {
-        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%234461B1'/%3E%3C/svg%3E",
+        src: "/cases/ego/Frame 1618868293 (4).png",
         alt: "Dark Mode UI",
         width: 600,
         height: 450

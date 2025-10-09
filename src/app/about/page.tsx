@@ -47,47 +47,82 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Grid */}
-        <section className="container mx-auto max-w-5xl px-5 sm:px-8 lg:px-12 pb-28">
-          <div className="grid sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-2  gap-x-10 gap-y-14 items-stretch">
-            {teamMembers.map((m) => (
-              <div
-                key={m.name}
-                className="group h-full flex flex-col min-h-[800px] rounded-[20px] bg-white/85 dark:bg-slate-900/70 backdrop-blur shadow-xl ring-1 ring-black/5 dark:ring-white/10 transition-all duration-300 active:translate-y-px hover:shadow-2xl"
-              >
-                <div className="p-6 pb-0">
-                  <div
-                    className="relative w-full overflow-hidden rounded-[18px]"
-                    style={{ backgroundColor: m.photoBg || "#4338CA", aspectRatio: "619 / 928" }}
-                  >
-                    <Image src={m.photo} alt={m.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]" sizes="(min-width: 1024px) 560px, 100vw" />
+{/* Team Grid */}
+<section className="container mx-auto max-w-5xl px-5 sm:px-6 lg:px-5 pb-28">
+  <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-6 items-stretch scale-[0.95] md:scale-100 origin-top mx-auto">
+    {teamMembers.map((m) => (
+      <div
+        key={m.name}
+        className="group h-full flex flex-col min-h-[320px] sm:min-h-[360px] md:min-h-[400px]
+                   rounded-[20px] bg-white/85 dark:bg-slate-900/70 backdrop-blur
+                   shadow-xl ring-1 ring-black/5 dark:ring-white/10
+                   transition-all duration-300 active:translate-y-px hover:shadow-2xl"
+      >
+        {/* Image Section */}
+        <div className="p-2 pb-0">
+          <div
+            className="relative w-full overflow-hidden rounded-[18px]"
+            style={{
+              backgroundColor: m.photoBg || "#4338CA",
+              height: "500px",
+            }}
+          >
+            <Image
+              src={m.photo}
+              alt={m.name}
+              width={400}
+              height={500}
+              className="object-cover object-top w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            />
 
-                    <div
-                      className="absolute inset-0 transition-[clip-path,opacity] duration-700 ease-out [clip-path:circle(0%_at_50%_0%)] group-hover:[clip-path:circle(140%_at_50%_0%)] opacity-0 group-hover:opacity-100"
-                      style={{ backgroundColor: m.legendBg || "#E8E4DA" }}
-                    >
-                      <Image src={m.legend} alt={`${m.name} legend`} fill className="object-cover" sizes="(min-width: 1024px) 560px, 100vw" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex-1 flex flex-col px-7 pt-6 pb-8">
-                  <div className="mb-6">
-                    <h3 className="text-[28px] leading-8 font-extrabold text-slate-900 dark:text-white">{m.name}</h3>
-                    <p className="text-xs font-semibold text-indigo-700 mt-2">{m.title}</p>
-                    <p className="mt-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{m.bio}</p>
-                  </div>
-
-                  <div className="mt-auto">
-                    <a href={m.linkedin} aria-label={`${m.name} LinkedIn`} className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-700 transition">
-                      <Linkedin size={18} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
+            {/* Hover Legend Overlay */}
+            <div
+              className="absolute inset-0 transition-[clip-path,opacity] duration-700 ease-out 
+                         [clip-path:circle(0%_at_50%_0%)] group-hover:[clip-path:circle(140%_at_50%_0%)] 
+                         opacity-0 group-hover:opacity-100"
+              style={{ backgroundColor: m.legendBg || "#E8E4DA" }}
+            >
+              <Image
+                src={m.legend}
+                alt={`${m.name} legend`}
+                width={400}
+                height={500}
+                className="object-cover object-top w-full h-full"
+              />
+            </div>
           </div>
-        </section>
+        </div>
+
+        {/* Text Section */}
+        <div className="flex-1 flex flex-col px-3 pt-3 pb-4">
+          <div className="mb-3">
+            <h3 className="text-[20px] leading-6 font-bold text-slate-900 dark:text-white">
+              {m.name}
+            </h3>
+            <p className="text-xs font-semibold text-indigo-700 mt-1">{m.title}</p>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {m.bio}
+            </p>
+          </div>
+
+          <div className="mt-auto">
+            <a
+              href={m.linkedin}
+              aria-label={`${m.name} LinkedIn`}
+              className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-700 transition"
+            >
+              <Linkedin size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+
+
 
         {/* Bottom CTA */}
         <section className="container mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 pb-28 text-center">

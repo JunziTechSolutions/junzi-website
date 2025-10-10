@@ -23,7 +23,7 @@ const schema = yup.object({
   phone: yup
     .string()
     .required("Phone number is required")
-    .matches(/^\d{7,15}$/, "Enter a valid phone number (7–15 digits)"),
+    .matches(/^\d{10}$/, "Enter a valid 10-digit phone number"),
   message: yup.string(),
 });
 
@@ -41,54 +41,107 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Format phone number as (123) 456-7890 (visual for first 10 digits)
+  // Format phone number as (123) 456-7890 (without +1 prefix)
   const formatPhoneNumber = (rawValue: string): string => {
     const cleaned = rawValue.replace(/\D/g, '');
     if (cleaned.length === 0) return "";
+    
     let formatted = "";
-    if (cleaned.length >= 1) formatted += `(${cleaned.slice(0, 3)}`;
-    if (cleaned.length >= 4) formatted += `) ${cleaned.slice(3, 6)}`;
-    if (cleaned.length >= 7) formatted += `-${cleaned.slice(6, 10)}`;
+    if (cleaned.length >= 1) {
+      formatted += `(${cleaned.slice(0, 3)}`;
+    }
+    if (cleaned.length >= 4) {
+      formatted += `) ${cleaned.slice(3, 6)}`;
+    }
+    if (cleaned.length >= 7) {
+      formatted += `-${cleaned.slice(6, 10)}`;
+    }
+    
     return formatted;
   };
 
-  const getRawValue = (formatted: string): string => formatted.replace(/\D/g, '');
+  // Extract raw digits from formatted display
+  const getRawValue = (formatted: string): string => {
+    return formatted.replace(/\D/g, ''); // Get only digits
+  };
 
+  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let inputValue = e.target.value;
-
-    if (!hasStartedTyping && inputValue.length > 0) setHasStartedTyping(true);
-
-    if (inputValue.startsWith('+1')) inputValue = inputValue.slice(2).trim();
-    else inputValue = inputValue.replace(/[^\d()\s-]/g, '');
-
-    const rawDigits = inputValue.replace(/\D/g, '');
-
-    // Allow up to 15 digits for validation; visually format first 10
-    if (rawDigits.length <= 15) {
-      setDisplayValue(formatPhoneNumber(rawDigits.slice(0, 10)));
+    const inputValue = e.target.value;
+    
+    // Detect if user started typing or if autofill occurred
+    if (!hasStartedTyping && inputValue.length > 0) {
+      setHasStartedTyping(true);
+    }
+    
+    // Handle different input scenarios
+    let processedValue = inputValue;
+    
+    // If input starts with +1, remove it
+    if (inputValue.startsWith('+1')) {
+      processedValue = inputValue.slice(2).trim();
+    }
+    // If input is empty, clear everything
+    else if (inputValue.length === 0) {
+      processedValue = "";
+      setHasStartedTyping(false);
+    }
+    // Otherwise, only allow digits and existing formatting characters
+    else {
+      processedValue = inputValue.replace(/[^\d()\s-]/g, '');
+    }
+    
+    // Extract raw digits
+    const rawDigits = processedValue.replace(/\D/g, '');
+    
+    // Limit to 10 digits
+    if (rawDigits.length <= 10) {
+      const formatted = formatPhoneNumber(rawDigits);
+      setDisplayValue(formatted);
       onChange(rawDigits);
     }
   };
 
+  // Handle focus
   const handleFocus = () => {
+    // If there's content and user hasn't started typing, select all for easy replacement
     if (displayValue && !hasStartedTyping) {
-      setTimeout(() => inputRef.current?.select(), 0);
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.select();
+        }
+      }, 0);
     }
   };
 
   // Handle autofill detection
   useEffect(() => {
-    const checkAutofill = () => {
-      if (inputRef.current && inputRef.current.value && !hasStartedTyping) {
-        let v = inputRef.current.value;
-        if (v.startsWith('+1')) v = v.slice(2).trim();
-        inputRef.current.value = v;
-        handleChange({ target: { value: v } } as React.ChangeEvent<HTMLInputElement>);
+    const handleAutofill = () => {
+      if (inputRef.current && inputRef.current.value) {
         setHasStartedTyping(true);
+        // Process the autofilled value
+        let autofillValue = inputRef.current.value;
+        
+        // If autofill includes +1, remove it
+        if (autofillValue.startsWith('+1')) {
+          autofillValue = autofillValue.slice(2).trim();
+        }
+        
+        // Set the input value to the processed autofill value
+        inputRef.current.value = autofillValue;
+        handleChange({ target: { value: autofillValue } } as React.ChangeEvent<HTMLInputElement>);
       }
     };
+
+    // Check for autofill on mount and periodically
+    const checkAutofill = () => {
+      if (inputRef.current && inputRef.current.value && !hasStartedTyping) {
+        handleAutofill();
+      }
+    };
+
     const interval = setInterval(checkAutofill, 100);
+    
     return () => clearInterval(interval);
   }, [hasStartedTyping]);
 
@@ -96,9 +149,11 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
   useEffect(() => {
     if (value && value !== getRawValue(displayValue)) {
       setDisplayValue(formatPhoneNumber(value));
-      if (value.length > 0) setHasStartedTyping(true);
+      if (value.length > 0) {
+        setHasStartedTyping(true);
+      }
     }
-  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [value]);
 
   return (
     <div className="relative">
@@ -134,17 +189,16 @@ export default function HeroSection() {
     handleSubmit,
     formState: { errors },
     reset,
+    getValues,
     setValue,
     trigger,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
-    defaultValues: { name: "", email: "", phone: "", message: "" },
   });
 
   const handlePhoneChange = (value: string) => {
     setPhoneValue(value);
-    // Ensure RHF has the phone value & revalidates
-    setValue('phone', value, { shouldValidate: true, shouldDirty: true });
+    setValue('phone', value);
   };
 
   const handlePhoneBlur = async () => {
@@ -155,13 +209,17 @@ export default function HeroSection() {
     setIsSubmittingForm(true);
 
     try {
+      // Submit to HubSpot
       await submitForm.mutateAsync({
         fields: [
           { name: "firstname", value: data.name.split(" ")[0] || data.name },
-          { name: "lastname", value: data.name.split(" ").slice(1).join(" ") || "" },
+          {
+            name: "lastname",
+            value: data.name.split(" ").slice(1).join(" ") || "",
+          },
           { name: "email", value: data.email },
           { name: "phone", value: data.phone || "" },
-          { name: "message", value: data.message || "" },
+          { name: "message", value: data.message || ""},
         ],
         context: {
           pageUri: window.location.href,
@@ -169,32 +227,26 @@ export default function HeroSection() {
         },
       });
 
+      console.log("HubSpot submission successful, showing success toast...");
       toast({
         title: "Success",
         description: "Your information has been submitted successfully.",
       });
 
+      // Reset form
       reset();
       setPhoneValue("");
-    } catch (error: any) {
-      // Try to surface upstream error if available (axios-like)
-      const msg =
-        error?.response?.data?.message ||
-        error?.response?.data?.error ||
-        error?.message ||
-        "Failed to submit your information. Please try again.";
-
+    } catch (error) {
       console.error("Form submission error:", error);
       toast({
         title: "Error",
-        description: msg,
+        description: "Failed to submit your information. Please try again.",
         variant: "destructive",
       });
     } finally {
       setIsSubmittingForm(false);
     }
   };
-
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
@@ -302,7 +354,6 @@ export default function HeroSection() {
                <form
                  onSubmit={handleSubmit(onSubmit)}
                  className="max-w-sm sm:max-w-xl mx-auto p-3 space-y-3"
-                 noValidate
                >
                 <div className="flex flex-col md:flex-row gap-3">
                   <div className="flex-1">
@@ -343,8 +394,6 @@ export default function HeroSection() {
                     onBlur={handlePhoneBlur}
                     error={errors.phone?.message}
                   />
-                  {/* Keep RHF registered value in sync */}
-                  <input type="hidden" {...register("phone")} value={phoneValue} readOnly />
                 </div>
 
                 <div>
@@ -357,7 +406,7 @@ export default function HeroSection() {
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm text-left ml-[8px]">
-                      {errors.message?.message}
+                      {errors.message.message}
                     </p>
                   )}
                 </div>
@@ -366,7 +415,7 @@ export default function HeroSection() {
                      type="submit"
                      size="sm"
                      disabled={isSubmittingForm}
-                     className="px-10 py-5 sm:px-6 sm:py-1.5 text-base sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm disabled:opacity-60"
+                     className="px-10 py-5 sm:px-6 sm:py-1.5 text-base sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
                      style={{ fontFamily: "Space Grotesk, sans-serif" }}
                    >
                     {isSubmittingForm

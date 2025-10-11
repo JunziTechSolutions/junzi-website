@@ -23,7 +23,7 @@ const schema = yup.object({
   phone: yup
     .string()
     .required("Phone number is required")
-    .matches(/^\d{10}$/, "Enter a valid 10-digit phone number"),
+    .matches(/^\d{10}$/, "Enter a valid phone number"),
   message: yup.string(),
 });
 
@@ -165,7 +165,7 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={onBlur}
-        placeholder="(555) 123-4567"
+        placeholder="(617) 407-6181"
         className={`w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none ${className}`}
         style={{ fontFamily: "Space Grotesk, sans-serif" }}
       />

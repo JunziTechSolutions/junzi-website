@@ -93,7 +93,12 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
   useEffect(() => {
     setIsMounted(true);
     if (typeof window !== "undefined") {
-      const handleScroll = () => setIsScrolled(window.scrollY > 50);
+      const handleScroll = () => {
+        const scrolled = window.scrollY > 50;
+        setIsScrolled(scrolled);
+        // Add class to body for CSS targeting
+        document.body.classList.toggle('header-scrolled', scrolled);
+      };
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     }
@@ -113,10 +118,29 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
   // 🧱 Prevent background scroll when mobile menu open
   useEffect(() => {
     if (typeof document !== "undefined") {
-      document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+      if (isMobileMenuOpen) {
+        document.body.style.overflow = "hidden";
+        document.body.style.position = "fixed";
+        document.body.style.width = "100%";
+        document.body.style.top = `-${window.scrollY}px`;
+      } else {
+        const scrollY = document.body.style.top;
+        document.body.style.overflow = "auto";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+      }
     }
     return () => {
-      if (typeof document !== "undefined") document.body.style.overflow = "auto";
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = "auto";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+      }
     };
   }, [isMobileMenuOpen]);
 
@@ -126,7 +150,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 
       <header
         className={cn(
-          isScrolled ? "fixed top-0 left-0 right-0 z-50" : "fixed top-50 left-0 right-0 z-50"
+          isScrolled ? "fixed top-0 left-0 right-0 z-50" : "fixed top-0 left-0 right-0 md:top-10 left-0 right-0 z-50"
         )}
       >
         {/* 🌀 Curved / Liquid Animation Behind */}
@@ -156,7 +180,8 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
             "relative z-50 flex items-center justify-between transition-all duration-1000 ease-in-out",
             isScrolled
               ? "max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-full mt-2 py-2.5 px-4 sm:px-6"
-              : "container mx-auto rounded-none py-1 md:py-2 px-4 sm:px-6 lg:px-8"
+              : "container mx-auto rounded-none py-1 md:py-2 px-4 sm:px-6 lg:px-8",
+            !isScrolled && "pt-16 md:pt-4"
           )}
         >
           {isMounted && (
@@ -334,11 +359,46 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 {isMobileMenuOpen && (
   <div
     id="mobile-menu-animated-smooth"
-    className={`md:hidden fixed inset-0 bg-transparent z-40 flex flex-col justify-between ${!isMounted ? "top-[90px]" : "top-[150px]"}`}
-
+    className="md:hidden fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex flex-col"
+    style={{ touchAction: 'none' }}
   >
+    {/* Header Section */}
+    <div className="flex items-center justify-between p-6 border-b border-gray-200/20">
+      {/* Logo */}
+      <Link href="/" className="flex items-center space-x-2 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+        <img
+          src="/Artifex_ME_1v_Favicon.png"
+          className="w-[32px] h-[32px]"
+          alt="Logo"
+          width={32}
+          height={32}
+        />
+      </Link>
+      
+      {/* Close Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(false)}
+        className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-colors"
+        aria-label="Close menu"
+      >
+        <svg
+          className="w-5 h-5 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
     {/* Menu Links */}
-    <nav className="flex flex-col px-6 pt-6 pb-32 space-y-3 overflow-y-auto relative z-50 font-primary text-lg md:text-xl">
+    <nav className="flex flex-col px-6 py-8 space-y-4 flex-1 overflow-y-auto font-primary text-lg">
       {navLinks.map((link) => {
         const eventHandler = createEventHandler();
         if (link.type === "scroll") {
@@ -377,13 +437,6 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
         // dropdown
         return (
           <div key={link.label} className="space-y-1">
-            <div
-              className="px-3 pt-2 font-primary text-lg font-bold text-slate-500"
-              onMouseOver={eventHandler as any}
-              onMouseLeave={resetHoverText}
-            >
-              {link.label}
-            </div>
             {link.items.map((item) => (
               <Link
                 key={item.label}
@@ -391,7 +444,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                 onClick={() => setIsMobileMenuOpen(false)}
                 onMouseOver={createEventHandler() as any}
                 onMouseLeave={resetHoverText}
-                className="block rounded-md px-4 py-2.5 font-primary text-lg font-bold text-slate-800 dark:text-slate-100"
+                className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100"
               >
                 {item.label}
               </Link>
@@ -402,7 +455,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
     </nav>
 
     {/* Get Started Button at Bottom */}
-    <div className="absolute bottom-0 left-0 right-0 px-6 pb-8 bg-gradient-to-t from-white/90 dark:from-slate-900/90 backdrop-blur-md">
+    <div className="p-6 border-t border-gray-200/20 bg-white/95 dark:bg-slate-900/95">
       <a href="/form" onClick={() => setIsMobileMenuOpen(false)}>
         <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-primary font-semibold rounded-xl py-3 transition-all shadow-lg">
           Get Started

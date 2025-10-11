@@ -340,14 +340,14 @@ export default function HeroSection() {
                 backgroundClip: "text",
               }}
             >
-              From Design to Launch — We Build What Others Can't.
+              Idea to Launch<br />We Build Apps Others Can't.
             </h1>
 
              <p
                className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] text-gray-800 leading-relaxed mb-[50px] lg:mb-[60px]"
                style={{ fontFamily: "Manrope, sans-serif" }}
              >
-               Junzi is your development partner.
+               Junzi is your tech Co-Founder.
              </p>
             {/* form started */}
             <div style={{ zIndex: 12 }}>

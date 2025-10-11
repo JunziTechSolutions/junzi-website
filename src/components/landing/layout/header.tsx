@@ -150,7 +150,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 
       <header
         className={cn(
-          isScrolled ? "fixed top-0 left-0 right-0 z-50" : "fixed top-0 left-0 right-0 md:top-10 left-0 right-0 z-50"
+          isScrolled ? "fixed top-16 md:top-10 left-0 right-0 z-50" : "fixed top-0 left-0 right-0 md:top-10 left-0 right-0 z-50"
         )}
       >
         {/* 🌀 Curved / Liquid Animation Behind */}
@@ -179,9 +179,9 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
           className={cn(
             "relative z-50 flex items-center justify-between transition-all duration-1000 ease-in-out",
             isScrolled
-              ? "max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-full mt-2 py-2.5 px-4 sm:px-6"
+              ? "max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-full mt-2 py-1.5 md:py-2.5 px-4 sm:px-6"
               : "container mx-auto rounded-none py-1 md:py-2 px-4 sm:px-6 lg:px-8",
-            !isScrolled && "pt-16 md:pt-4"
+            !isScrolled && "pt-16"
           )}
         >
           {isMounted && (
@@ -189,6 +189,8 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
               className={cn(
                 "absolute inset-0 -z-10 transform-gpu transition-all duration-1000 ease-in-out",
                 "bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-xl rounded-full",
+                "md:bg-slate-100/80 md:dark:bg-slate-900/80",
+                "bg-slate-100/40 dark:bg-slate-900/40",
                 isScrolled ? "opacity-100 scale-100" : "opacity-0 scale-0"
               )}
               style={{ transformOrigin: "top center" }}

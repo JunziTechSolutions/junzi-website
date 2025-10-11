@@ -340,7 +340,7 @@ export default function HeroSection() {
                 backgroundClip: "text",
               }}
             >
-              Idea to Launch<br />We Build Apps Others Can't.
+              From Idea to Launch<br />We Build Apps Others Can't.
             </h1>
 
              <p

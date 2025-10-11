@@ -203,6 +203,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                       minWidth: `${(link.label.length + 3) * 8}px`,
                       maxWidth: `${(link.label.length + 3) * 8}px`,
                       overflow: "hidden",
+                      fontFamily: "Space Grotesk, sans-serif",
                     }}
                   >
                     {link.label}
@@ -215,7 +216,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                     key={link.label}
                     href={link.href}
                     prefetch={false}
-                    className="px-2 text-m font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors whitespace-nowrap inline-block"
+                    className="px-2 text-sm font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors whitespace-nowrap inline-block"
                     onMouseOver={eventHandler as any}
                     onMouseLeave={resetHoverText}
                     style={{
@@ -224,6 +225,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                       minWidth: `${(link.label.length + 3) * 8}px`,
                       maxWidth: `${(link.label.length + 3) * 8}px`,
                       overflow: "hidden",
+                      fontFamily: "Space Grotesk, sans-serif",
                     }}
                   >
                     {link.label}
@@ -240,7 +242,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                 >
                   <button
                     type="button"
-                    className="px-2 text-sm font-m text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap"
+                    className="px-2 text-sm font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap"
                     onMouseOver={eventHandler as any}
                     onMouseLeave={resetHoverText}
                     style={{
@@ -249,6 +251,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                       minWidth: `${(link.label.length + 3) * 8}px`,
                       maxWidth: `${(link.label.length + 3) * 8}px`,
                       overflow: "hidden",
+                      fontFamily: "Space Grotesk, sans-serif",
                     }}
                   >
                     {link.label}
@@ -263,9 +266,10 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                         <Link
                           key={item.label}
                           href={item.href}
-                          className="block px-4 py-2 rounded-xl text-m font-medium text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
+                          className="block px-4 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
                           onMouseOver={createEventHandler() as any}
                           onMouseLeave={resetHoverText}
+                          style={{ fontFamily: "Space Grotesk, sans-serif" }}
                         >
                           {item.label}
                         </Link>
@@ -286,6 +290,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                 style={{
                   background:
                     "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",
+                  fontFamily: "Space Grotesk, sans-serif",
                 }}
               >
                 Get Started

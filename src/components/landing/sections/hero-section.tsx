@@ -343,6 +343,7 @@ export default function HeroSection() {
               From Idea to Launch<br />We Build Apps Others Can't.
             </h1>
 
+
              <p
                className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] text-gray-800 leading-relaxed mb-[50px] lg:mb-[60px]"
                style={{ fontFamily: "Manrope, sans-serif" }}

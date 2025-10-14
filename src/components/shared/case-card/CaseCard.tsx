@@ -56,7 +56,7 @@ export default function CaseCard({
                 </div>
                 
                 {/* Заголовок */}
-                <h3 className="text-3xl lg:text-4xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-3xl lg:text-4xl font-bold leading-tight font-primary text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300">
                   {caseStudy.title}
                 </h3>
                 
@@ -131,12 +131,12 @@ export default function CaseCard({
           {/* Контент */}
           <CardContent className="flex flex-col flex-grow p-6 space-y-4">
             {/* Заголовок */}
-            <h4 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300 leading-tight">
+            <h4 className="text-l font-bold font-primary text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300 leading-tight">
               {caseStudy.title}
             </h4>
             
             {/* Описание */}
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">
+            <p className="font-primary text-light font-normal text-s leading-relaxed flex-grow">
               {caseStudy.description}
             </p>
             
@@ -202,7 +202,7 @@ export default function CaseCard({
           </div>
           
           {/* Заголовок */}
-          <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300 leading-tight">
+          <h4 className="text-l font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300 leading-tight">
             {caseStudy.title}
           </h4>
           

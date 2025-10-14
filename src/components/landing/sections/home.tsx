@@ -14,7 +14,7 @@ import Footer from "@/components/landing/layout/footer";
 import DevelopmentSprints from "@/components/landing/sections/cal/development-cal";
 // import PricingBlock from "@/components/landing/sections/pricing-block";
 import TrustedByMobileSection from "@/components/landing/sections/trusted-by-mobile-section";
-import { Suspense, Component, ReactNode } from "react";
+import { Suspense, Component, ReactNode, useState, useEffect } from "react";
 
 const SectionFallback = ({ sectionName }: { sectionName: string }) => (
   <div className="py-8 text-center">
@@ -74,11 +74,19 @@ const SafeSection = ({
 };
 
 export default function LandingPage() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <Header />
       <div
-        className="flex flex-col min-h-screen backdrop-blur-[100px] bg-gray-50 overflow-x-hidden"
+        className="flex flex-col min-h-screen backdrop-blur-[100px] bg-gray-50 overflow-x-hidden pt-16 md:pt-20"
         style={{
           backgroundImage: `
              radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)

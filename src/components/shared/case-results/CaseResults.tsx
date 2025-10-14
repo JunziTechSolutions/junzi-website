@@ -8,7 +8,7 @@ interface CaseResultsProps {
 
 export default function CaseResults({ caseStudy }: CaseResultsProps) {
   return (
-    <div className="my-12 bg-muted rounded-xl p-8">
+    <div className="my-12 bg-muted rounded-xl p-8 font-primary">
       <div className="text-center mb-8">
         <TrendingUp className="w-12 h-12 text-[#0b1e54] mx-auto mb-4" />
         <h2 className="text-3xl font-bold mb-2">Measurable Results</h2>

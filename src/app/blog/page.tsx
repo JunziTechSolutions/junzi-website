@@ -1,4 +1,3 @@
-// app/blog/page.tsx
 import Header from "@/components/landing/layout/header";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,10 +19,22 @@ export default function BlogPage() {
         {/* Hero */}
         <section className="relative">
           <div className="container mx-auto px-4 pt-40 pb-15">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h1
+              className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white"
+              style={{
+                fontFamily:
+                  '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif',
+              }}
+            >
               Blog
             </h1>
-            <p className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300">
+            <p
+              className="mt-3 max-w-2xl text-base md:text-lg text-slate-600 dark:text-slate-300"
+              style={{
+                fontFamily:
+                  '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif',
+              }}
+            >
               Insights and updates from Junzi Tech Solutions
             </p>
           </div>
@@ -35,44 +46,62 @@ export default function BlogPage() {
             {posts.map((p) => (
               <article
                 key={p.slug}
-                className="group flex flex-col overflow-hidden rounded-3xl bg-white/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
+                className="group flex flex-col overflow-hidden rounded-3xl text-grey font-medium font-primary shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60 dark:ring-white/10 transition hover:shadow-2xl"
               >
-                {/* media */}
-                <Link href={`/blog/${p.slug}`} className="relative block h-56 md:h-60 lg:h-64 overflow-hidden">
+                <Link
+                  href={`/blog/${p.slug}`}
+                  className="relative block aspect-[16/9] overflow-hidden touch-manipulation select-none"
+                >
                   <Image
                     src={p.image}
                     alt={p.title}
                     fill
-                    className="object-cover transition duration-500 ease-out group-hover:scale-105 group-hover:grayscale"
+                    className="
+                      object-cover object-center w-full h-full
+                      [transform:translateZ(0)]
+                      md:transition md:duration-500 md:ease-out
+                      md:group-hover:scale-105 md:group-hover:grayscale
+                    "
+                    // Match your grid: ~33% at lg, 50% at md, full width below
+                    sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
                     priority
+                    draggable={false}
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent" />
                 </Link>
 
                 {/* content */}
-                <div className="flex flex-col flex-1 p-5 md:p-6">
+                <div
+                  className="flex flex-col flex-1 p-5 md:p-6"
+                  style={{
+                    fontFamily:
+                      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter", "Helvetica Neue", sans-serif',
+                  }}
+                >
                   <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
                     {p.category}
                   </div>
 
                   <Link href={`/blog/${p.slug}`} className="block">
-                    <h3 className="text-lg md:text-xl font-semibold leading-snug text-slate-900 dark:text-white transition group-hover:underline">
+                    <h3 className="text-ml md:text-ml font-bold font-primary leading-snug text-slate-900 dark:text-white transition md:group-hover:underline">
                       {p.title}
                     </h3>
                   </Link>
 
-                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 line-clamp-3">
+                  <p className="mt-2 text-base text-slate-600 dark:text-slate-300 line-clamp-3">
                     {p.excerpt}
                   </p>
 
-                  <div className="mt-auto pt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                  <div className="mt-auto pt-4 flex items-center justify-between text-base text-grey dark:text-slate-400">
                     <span>{p.date}</span>
-
-                    {/* Arrow button (linked) */}
                     <Link
                       href={`/blog/${p.slug}`}
                       aria-label={`Open post: ${p.title}`}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-indigo-500 to-blue-600 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-md"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-white transition-transform duration-300 md:group-hover:translate-x-0.5 md:group-hover:scale-105 shadow-md"
+                      style={{
+                        background:
+                          "linear-gradient(97.94deg, #4461B1 -2.89%, #4FABFF 91.06%)",
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +111,11 @@ export default function BlogPage() {
                         strokeWidth={2.2}
                         className="h-4 w-4"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 12h14m-7-7l7 7-7 7"
+                        />
                       </svg>
                     </Link>
                   </div>

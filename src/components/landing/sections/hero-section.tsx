@@ -300,75 +300,129 @@ return () => observer.disconnect();
         <MountainBackground />
       </div>
 
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10" style={{ zIndex: 1 }}>
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 1280 622"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Grid lines */}
-          {Array.from({ length: 6 }, (_, i) => (
-            <g key={i}>
-              <line
-                x1="0"
-                y1={100 * (i + 1)}
-                x2="1280"
-                y2={100 * (i + 1)}
-                stroke="white"
-                strokeWidth="0.5"
-                opacity="0.3"
-              />
-              <line
-                x1={100 * (i + 1)}
-                y1="0"
-                x2={100 * (i + 1)}
-                y2="622"
-                stroke="white"
-                strokeWidth="0.5"
-                opacity="0.3"
-              />
-            </g>
-          ))}
-          {/* Diagonal lines */}
-          <line
-            x1="0"
-            y1="0"
-            x2="1280"
-            y2="622"
-            stroke="white"
-            strokeWidth="0.5"
-            opacity="0.1"
-          />
-          <line
-            x1="1280"
-            y1="0"
-            x2="0"
-            y2="622"
-            stroke="white"
-            strokeWidth="0.5"
-            opacity="0.1"
-          />
-          {/* Dots */}
-          {Array.from({ length: 6 }, (_, i) => (
-            <circle
-              key={i}
-              cx={100 * (i + 1)}
-              cy={100 * (i + 1)}
-              r="5"
-              fill="white"
-              opacity="0.2"
-            />
-          ))}
-        </svg>
+
+
+  {/* Content Container */}
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10">
+        <div className="flex flex-col items-center justify-center min-h-[calc(120vh-120px)] ">
+          {/* Text Content */}
+          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-12 mt-20 lg:mt-48">
+             <h1
+               className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-[50px] lg:mb-[60px]"
+              style={{
+                fontFamily: "Space Grotesk, sans-serif",
+                background:
+                  "linear-gradient(97.94deg, #0B1E54 -2.89%, #4FABFF 91.06%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              From Idea to Launch<br />We Build Apps Others Can't.
+            </h1>
+
+
+             <p
+               className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] text-gray-800 leading-relaxed mb-[50px] lg:mb-[60px]"
+               style={{ fontFamily: "Manrope, sans-serif" }}
+             >
+               Junzi is your tech Co-Founder.
+             </p>
+            {/* form started */}
+            <div style={{ zIndex: 12 }}>
+               <form
+                 onSubmit={handleSubmit(onSubmit)}
+                 className="max-w-sm sm:max-w-xl mx-auto p-3 space-y-3"
+               >
+                <div className="flex flex-col md:flex-row gap-3">
+                  <div className="flex-1">
+                    <input
+                      type="text"
+                      style={{ fontFamily: "Space Grotesk, sans-serif" }}
+                      placeholder="Your name"
+                      {...register("name")}
+                       className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus-visible:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-sm text-left ml-[8px]">
+                        {errors.name.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex-1">
+                    <input
+                      type="email"
+                      style={{ fontFamily: "Space Grotesk, sans-serif" }}
+                      placeholder="Email address"
+                      {...register("email")}
+                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm text-left ml-[8px]">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <PhoneInput
+                    value={phoneValue}
+                    onChange={handlePhoneChange}
+                    onBlur={handlePhoneBlur}
+                    error={errors.phone?.message}
+                  />
+                </div>
+
+                <div>
+                  <textarea
+                    placeholder="How can we help?"
+                    rows={4}
+                    style={{ fontFamily: "Space Grotesk, sans-serif" }}
+                    {...register("message")}
+                     className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                  />
+                  {errors.message && (
+                    <p className="text-red-500 text-sm text-left ml-[8px]">
+                      {errors.message.message}
+                    </p>
+                  )}
+                </div>
+                <div className="mb-[20px]">
+                   <Button
+                     type="submit"
+                     size="sm"
+                     disabled={isSubmittingForm}
+                     className="px-10 py-5 sm:px-6 sm:py-1.5 text-base sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
+                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
+                   >
+                    {isSubmittingForm
+                      ? "Submitting..."
+                      : "Schedule Introduction"}
+                  </Button>
+                </div>
+              </form>
+            </div>
+            {/* form ended */}
+            {/* <div className="mb-[30px] lg:mb-[40px] xl:mb-[56px]">
+              <Link href="/form ">
+              <Button
+                size="lg"
+                className="w-[216px] h-[55px] px-[22.26px] py-[12.98px] sm:w-auto sm:px-7 sm:py-3 lg:px-9 lg:py-4 text-base lg:text-lg font-bold bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-lg"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                Schedule Introduction
+              </Button>
+              </Link>
+            </div> */}
+          </div>
+
+  
+
+          
+        </div>
       </div>
-
-      {/* Background Video */}
-      {/* <BackgroundVideo src="/videos/animation1.mp4" opacity={0.3} /> */}
-
-
-      {/* Content Container */}
 
     </section>
   );

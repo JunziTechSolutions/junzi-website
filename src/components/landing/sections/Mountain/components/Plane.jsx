@@ -128,7 +128,7 @@ const fragmentShader = `
     float normalizedHeight = vElevation / uMountainHeight;
     
     // Calculate opacity: 0 at bottom, 1 at 0.4 (middle), and stays 1 above
-    float opacity = smoothstep(0.0, 0.1, normalizedHeight);
+    float opacity = smoothstep(0.00, 0.01, normalizedHeight);
     
     gl_FragColor = vec4(color, opacity);
   }
@@ -138,6 +138,7 @@ const fragmentShader = `
 
 export default function Plane() {
   const meshRef = useRef();
+  const lineSegmentsRef = useRef();
 
   // Static values instead of Leva controls
   const color = '#2e8fff';
@@ -156,18 +157,72 @@ export default function Plane() {
     uCraterAngle: { value: craterAngle }
   });
 
+  useEffect(() => {
+    if (!meshRef.current) return;
+
+    // Create custom grid lines (only horizontal and vertical, no diagonals)
+    const geometry = meshRef.current.geometry;
+    const positions = geometry.attributes.position.array;
+    const linePositions = [];
+
+    const widthSegments = gridWidth;
+    const heightSegments = gridHeight;
+
+    // Horizontal lines
+    for (let i = 0; i <= heightSegments; i++) {
+      for (let j = 0; j < widthSegments; j++) {
+        const idx1 = (i * (widthSegments + 1) + j) * 3;
+        const idx2 = (i * (widthSegments + 1) + (j + 1)) * 3;
+
+        linePositions.push(
+          positions[idx1], positions[idx1 + 1], positions[idx1 + 2],
+          positions[idx2], positions[idx2 + 1], positions[idx2 + 2]
+        );
+      }
+    }
+
+    // Vertical lines
+    for (let i = 0; i < heightSegments; i++) {
+      for (let j = 0; j <= widthSegments; j++) {
+        const idx1 = (i * (widthSegments + 1) + j) * 3;
+        const idx2 = ((i + 1) * (widthSegments + 1) + j) * 3;
+
+        linePositions.push(
+          positions[idx1], positions[idx1 + 1], positions[idx1 + 2],
+          positions[idx2], positions[idx2 + 1], positions[idx2 + 2]
+        );
+      }
+    }
+
+    const lineGeometry = new THREE.BufferGeometry();
+    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+
+    if (lineSegmentsRef.current) {
+      lineSegmentsRef.current.geometry.dispose();
+      lineSegmentsRef.current.geometry = lineGeometry;
+    }
+  }, [gridWidth, gridHeight]);
+
   return (
     <>
-      <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, -7]}>
+      <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, -7]} visible={false}>
         <planeGeometry args={[20, 10, gridWidth, gridHeight]} />
         <shaderMaterial
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
           uniforms={uniforms.current}
-          wireframe
           transparent
         />
       </mesh>
+      <lineSegments ref={lineSegmentsRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, -7]}>
+        <bufferGeometry />
+        <shaderMaterial
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          uniforms={uniforms.current}
+          transparent
+        />
+      </lineSegments>
     </>
   );
 }

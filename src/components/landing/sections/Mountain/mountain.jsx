@@ -24,7 +24,7 @@ function MountainBackground() {
   const cloudOpacity = 0.9;
   const cloudSpeed = 0.2;
   const cloudColor = '#232474';
-  const bloom = 2;
+  const bloom = .5;
   const fogColor = '#000';
   const fogNear = 2;
   const fogFar = 3;
@@ -40,25 +40,6 @@ function MountainBackground() {
         <ambientLight intensity={Math.PI / 2} />
         <Grid />
         <Plane />
-
-        <Clouds material={CloudMaterial}>
-            <Cloud
-              position={[-cloudRadius, cloudHeight, 0]}
-              speed={cloudSpeed}
-              opacity={cloudOpacity}
-              scale={[cloudScale, cloudScale, cloudScale]}
-              color={cloudColor}
-              seed={1}
-            />
-            <Cloud
-              position={[cloudRadius, cloudHeight, 0]}
-              speed={cloudSpeed}
-              opacity={cloudOpacity}
-              scale={[cloudScale, cloudScale, cloudScale]}
-              color={cloudColor}
-              seed={1}
-            />
-          </Clouds>
 
         <EffectComposer>
           <Bloom

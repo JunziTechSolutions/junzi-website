@@ -56,7 +56,7 @@ export default function Grid({ color = '#2e8fff', size = 10, divisions = 20, spe
     const uniforms = useMemo(() => ({
         uColor: { value: new THREE.Color(color) },
         uNearFade: { value: 0 },
-        uFarFade: { value: 9 }
+        uFarFade: { value:11 }
     }), [color]);
 
     useFrame((_state, delta) => {

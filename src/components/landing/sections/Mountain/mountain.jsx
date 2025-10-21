@@ -1,31 +1,31 @@
 'use client';
 
-import { Canvas, extend } from '@react-three/fiber';
-import { Cloud, Clouds } from '@react-three/drei';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { Bloom, EffectComposer, ToneMapping } from '@react-three/postprocessing';
 import * as THREE from 'three';
 
 import Plane from './components/Plane';
 import Grid from './components/Grid';
+import Cloud from './components/Cloud';
 
-class CloudMaterial extends THREE.MeshBasicMaterial {
-  constructor() {
-    super();
-    this.fog = false;
-  }
+function Clouds() {
+  const cloudTexture1 = useLoader(THREE.TextureLoader, '/images/cloud.png');
+
+  return (
+    <group>
+      {/* Clouds rotating in circles at different heights and speeds */}
+      <Cloud position={[-0.3, -.6, 1]} scale={0.4} speed={0.004} texture={cloudTexture1} angleOffset={0} />
+      <Cloud position={[.2, -.7, 1.3]} scale={.4} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 2 / 3} />
+      <Cloud position={[0.7, -.7, 1.2]} scale={.4} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 4 / 3} />
+        <Cloud position={[.4, -.7, 1.3]} scale={.35} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 2 / 3} />
+
+    </group>
+  );
 }
 
-extend({ CloudMaterial });
 function MountainBackground() {
-  // Static values instead of Leva controls
-  const cloudRadius = 2;
-  const cloudHeight = -0.7;
-  const cloudScale = 0.13;
-  const cloudOpacity = 0.9;
-  const cloudSpeed = 0.2;
-  const cloudColor = '#232474';
   const bloom = .5;
-  const fogColor = '#000';
+  const fogColor = '#352f2fff';
   const fogNear = 2;
   const fogFar = 3;
 
@@ -36,19 +36,21 @@ function MountainBackground() {
         shadows
         camera={{ position: [0, -0.5, 6], fov: 50, far: 13 }}
       >
-        <fog attach="fog" args={[fogColor, fogNear, fogFar]} />
+         <fog attach="fog" args={[fogColor, fogNear, fogFar]} />
+       
         <ambientLight intensity={Math.PI / 2} />
         <Grid />
         <Plane />
+        <Clouds />
 
         <EffectComposer>
-          <Bloom
+          {/* <Bloom
             mipmapBlur
             intensity={bloom}
             luminanceThreshold={0.1}
             luminanceSmoothing={0.01}
             opacity={0.7}
-          />
+          /> */}
           <ToneMapping adaptive={true} />
         </EffectComposer>
       </Canvas>

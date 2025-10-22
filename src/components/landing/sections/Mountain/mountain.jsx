@@ -14,10 +14,10 @@ function Clouds() {
   return (
     <group>
       {/* Clouds rotating in circles at different heights and speeds */}
-      <Cloud position={[-0.3, -.6, 1]} scale={0.4} speed={0.004} texture={cloudTexture1} angleOffset={0} />
-      <Cloud position={[.2, -.7, 1.3]} scale={.4} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 2 / 3} />
-      <Cloud position={[0.7, -.7, 1.2]} scale={.4} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 4 / 3} />
-        <Cloud position={[.4, -.7, 1.3]} scale={.35} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 2 / 3} />
+      <Cloud position={[1., -.8, 1]} scale={0.4} speed={0.004} texture={cloudTexture1} angleOffset={0} />
+      <Cloud position={[.2, -.8, 1.1]} scale={.4} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 2 / 3} />
+      <Cloud position={[1.7, -.8, .9]} scale={.4} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 4 / 3} />
+        <Cloud position={[-.7, -.8, 0.8]} scale={.35} speed={0.004} texture={cloudTexture1} angleOffset={Math.PI * 2 / 3} />
 
     </group>
   );

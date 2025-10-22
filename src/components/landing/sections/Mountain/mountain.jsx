@@ -24,8 +24,15 @@ function Clouds() {
 }
 
 function MountainBackground() {
-  const bloom = .5;
-  const fogColor = '#352f2fff';
+  // Static values instead of Leva controls
+  const cloudRadius = 3;
+  const cloudHeight = -1.4;
+  const cloudScale = 0.33;
+  const cloudOpacity = 1.0;
+  const cloudSpeed = 0.30;
+  const cloudColor = '#4d4d6f';
+  const bloom = 5;
+  const fogColor = '#000';
   const fogNear = 2;
   const fogFar = 3;
 

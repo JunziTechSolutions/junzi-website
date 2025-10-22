@@ -85,8 +85,7 @@ export default function LandingPage() {
   return (
     <>
       <Header />
-      <div
-      >
+      <div>
         <main className="flex-1 relative">
           <SafeSection sectionName="Hero">
             <HeroSection />

@@ -128,7 +128,7 @@ const fragmentShader = `
     float normalizedHeight = vElevation / uMountainHeight;
     
     // Calculate opacity: 0 at bottom, 1 at 0.4 (middle), and stays 1 above
-    float opacity = smoothstep(0.00, 0.01, normalizedHeight);
+    float opacity = smoothstep(0.0, 0.06, normalizedHeight);
     
     gl_FragColor = vec4(color, opacity);
   }
@@ -142,12 +142,12 @@ export default function Plane() {
 
   // Static values instead of Leva controls
   const color = '#2e8fff';
-  const gridWidth = 70;
-  const gridHeight = 70;
-  const noiseIntensity = 0.7;
-  const mountainHeight = 5.0;
-  const craterHeight = 3.4;
-  const craterAngle = 10;
+  const gridWidth = 100;
+  const gridHeight = 100;
+  const noiseIntensity = 0.8;
+  const mountainHeight = 4.0;
+  const craterHeight = 8.4;
+  const craterAngle = -3;
 
   const uniforms = useRef({
     uColor: { value: new THREE.Color(color) },

@@ -146,7 +146,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 
   return (
     <>
-      <TopPromoBar />
+      {/* <TopPromoBar /> */}
 
       <header
         className={cn(

@@ -85,15 +85,7 @@ export default function LandingPage() {
   return (
     <>
       <Header />
-      <div
-        className="flex flex-col min-h-screen backdrop-blur-[100px] bg-gray-50 overflow-x-hidden pt-16 md:pt-20"
-        style={{
-          backgroundImage: `
-             radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)
-           `,
-          backgroundSize: "3px 3px",
-        }}
-      >
+      <div>
         <main className="flex-1 relative">
           <SafeSection sectionName="Hero">
             <HeroSection />

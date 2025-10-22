@@ -18,13 +18,13 @@ class CloudMaterial extends THREE.MeshBasicMaterial {
 extend({ CloudMaterial });
 function MountainBackground() {
   // Static values instead of Leva controls
-  const cloudRadius = 2;
-  const cloudHeight = -0.7;
-  const cloudScale = 0.13;
-  const cloudOpacity = 0.9;
-  const cloudSpeed = 0.2;
-  const cloudColor = '#232474';
-  const bloom = 2;
+  const cloudRadius = 3;
+  const cloudHeight = -1.4;
+  const cloudScale = 0.33;
+  const cloudOpacity = 1.0;
+  const cloudSpeed = 0.30;
+  const cloudColor = '#4d4d6f';
+  const bloom = 5;
   const fogColor = '#000';
   const fogNear = 2;
   const fogFar = 3;

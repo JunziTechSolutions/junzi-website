@@ -24,14 +24,11 @@ const fragmentShader = `
     // Closer to camera = 1, farther = 0
     float opacity = smoothstep(uFarFade, uNearFade, vDepth);
     
-    // Apply subtle opacity multiplier
-    opacity *= 0.7;
-    
     gl_FragColor = vec4(uColor, opacity);
   }
 `;
 
-export default function Grid({ color = '#2e8fff', size = 10, divisions = 20, speed = .3 }) {
+export default function Grid({ color = '#2e8fff', size = 10, divisions = 50, speed = .3 }) {
     const gridRef = useRef();
 
     const gridGeometry = useMemo(() => {
@@ -56,7 +53,7 @@ export default function Grid({ color = '#2e8fff', size = 10, divisions = 20, spe
     const uniforms = useMemo(() => ({
         uColor: { value: new THREE.Color(color) },
         uNearFade: { value: 0 },
-        uFarFade: { value:11 }
+        uFarFade: { value: 6 }
     }), [color]);
 
     useFrame((_state, delta) => {
@@ -65,7 +62,7 @@ export default function Grid({ color = '#2e8fff', size = 10, divisions = 20, spe
             gridRef.current.position.z += speed * delta;
 
             // Reset position before reaching the end
-            if (gridRef.current.position.z >= size * 0.4) {
+            if (gridRef.current.position.z >= size * 0.6) {
                 gridRef.current.position.z = -size * 0.1;
             }
         }
@@ -78,7 +75,6 @@ export default function Grid({ color = '#2e8fff', size = 10, divisions = 20, spe
                 vertexShader={vertexShader}
                 fragmentShader={fragmentShader}
                 uniforms={uniforms}
-                opacity={.5}
                 transparent
             />
         </lineSegments>

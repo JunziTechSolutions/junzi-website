@@ -32,7 +32,7 @@ function MountainBackground() {
   return (
     <div className="absolute inset-0 w-full h-full">
       <Canvas
-        style={{ backgroundColor: '#232454' }}
+        style={{ backgroundColor: '#0a0f2c' }}
         shadows
         camera={{ position: [0, -0.5, 6], fov: 50, far: 13 }}
       >

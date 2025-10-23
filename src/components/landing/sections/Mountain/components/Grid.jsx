@@ -53,7 +53,7 @@ export default function Grid({ color = '#2e8fff', size = 10, divisions = 50, spe
     const uniforms = useMemo(() => ({
         uColor: { value: new THREE.Color(color) },
         uNearFade: { value: 0 },
-        uFarFade: { value: 6 }
+        uFarFade: { value: 7 }
     }), [color]);
 
     useFrame((_state, delta) => {
@@ -62,8 +62,8 @@ export default function Grid({ color = '#2e8fff', size = 10, divisions = 50, spe
             gridRef.current.position.z += speed * delta;
 
             // Reset position before reaching the end
-            if (gridRef.current.position.z >= size * 0.6) {
-                gridRef.current.position.z = -size * 0.1;
+            if (gridRef.current.position.z >= size * 0.3) {
+                gridRef.current.position.z = -size * 0.0;
             }
         }
     });

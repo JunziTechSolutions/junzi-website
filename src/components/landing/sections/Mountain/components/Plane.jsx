@@ -128,7 +128,7 @@ const fragmentShader = `
     float normalizedHeight = vElevation / uMountainHeight;
     
     // Calculate opacity: 0 at bottom, 1 at 0.4 (middle), and stays 1 above
-    float opacity = smoothstep(0.0, 0.06, normalizedHeight);
+    float opacity = smoothstep(0.0, 0.5, normalizedHeight);
     
     gl_FragColor = vec4(color, opacity);
   }

@@ -18,7 +18,7 @@ interface HubSpotFormData {
 
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://pback3-167211385132.us-central1.run.app";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://formhero-339761699392.us-south1.run.app";
 
 export function useHubSpot() {
   const submitForm = useMutation({

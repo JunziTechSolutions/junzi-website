@@ -13,55 +13,55 @@ import { useMediaQuery } from "../hooks/use-media-query"
 const testimonials = [
   {
     id: "t1",
-    name: "Alex Johnson",
-    title: "Head of Innovation, CorpSolutions Inc.",
+    name: "Alex Kan",
+    title: "Founder, AstroAI.",
     quote:
-      "This app has been a life-changing guide for me. The daily horoscopes resonate deeply and help me approach each day with clarity. The personality breakdown was incredibly accurate—it's like the stars finally helped me understand myself.",
+      "“This app has been a life-changing guide for me. The daily horoscopes resonate deeply and help me approach each day with clarity. The personality breakdown was incredibly accurate—it's like the stars finally helped me understand myself.”",
     image: "/slider/cross.svg",
     mobileImage: "/slider/case/mobile/case1-mobile.svg",
   },
   {
     id: "t2",
-    name: "Maria Rodriguez",
-    title: "CMO, GlobalRetail Co.",
+    name: "Anastasia Shmidt",
+    title: "Co-Founder, Worthefy LLC.",
     quote:
-      "As a marketing team constantly needing new video content, Frameworks has been a lifesaver. We used to spend hours coordinating with voiceover artists and video editors just to create a single video. Now, we can generate high-quality videos with realistic AI avatars and multilingual voiceovers.",
+      "“I used to jump between bank apps, crypto wallets, and spreadsheets just to figure out my net worth. Now I open Worthefy and see everything in one place — cash, crypto, real estate, even social income. It’s clean, instant, and honestly part of my daily routine now.”",
     image: "/slider/test2.svg",
     mobileImage: "/slider/case/mobile/case2-mobile.svg",
   },
   {
     id: "t3",
     name: "David Lee",
-    title: "Director of Engineering, TechForward Ltd.",
+    title: "Founder, OBS SYSTEMS LLC.",
     quote:
-      "Worthefy completely transformed the way I manage my finances. As a digital entrepreneur juggling crypto assets, social media revenue, and real estate investments, I was constantly switching between spreadsheets and apps. But with Worthefy, everything is in one place — beautifully visualized, synced in real-time, and easy to understand at a glance.",
+      "“OPS changed how I keep track of everything that matters — from my devices to my team’s security status. Before, I had to jump between maps, trackers, and manual logs. Now it’s all live, synced, and visualized in one place. I always know what’s happening in real time.”",
     image: "/slider/test3.svg",
     mobileImage: "/slider/case/mobile/case3-mobile.svg",
   },
   {
     id: "t4",
-    name: "Sarah Chen",
-    title: "Product Manager, TechFlow Solutions",
+    name: "Xavier Kessler",
+    title: "Founder, Overwatch LLC",
     quote:
-      "ENGIE has completely redefined how we manage our buildings. From real-time issue tracking and repair estimates to smart room controls — everything is in one place. We've reduced response time by 40% and gained full visibility over urgent vs. planned maintenance. It's like having a digital twin for our entire portfolio.",
+      "“Working with JunziTech on Overwatch was a game-changer. We came in with a rough idea for a live event-streaming app, and they turned it into a sleek, fully functional platform that exceeded expectations. The team moved fast, nailed the UI, and understood our vision better than we did. It felt like having an in-house tech team that just gets it.”",
     image: "/slider/test4.svg",
     mobileImage: "/slider/case/mobile/case4-mobile.svg",
   },
   {
     id: "t5",
-    name: "Michael Brown",
-    title: "CTO, SecureHome Systems",
+    name: "Yurii Shymanskyi",
+    title: "Founder/President, Framework AI LLC",
     quote:
-      "I use OPS daily to track my kids' safety and manage our home devices. The interface is clean, the map is responsive, and adding new devices takes seconds. It truly feels like having a personal security team in my pocket.",
+      "“JunziTech helped us bring our multilingual video vision to life. We wanted a platform that could instantly translate and dub videos using AI — and they delivered exactly that. The ElevenLabs voice cloning and syncing made everything sound natural and professional. What used to take a full editing team now happens in minutes.”",
     image: "/slider/test5.svg",
     mobileImage: "/slider/case/mobile/case5-mobile.svg",
   },
   {
     id: "t6",
-    name: "Emily Davis",
-    title: "VP of Digital Experience, TravelTech Inc.",
+    name: "William Payne",
+    title: "Founder, Payne LLC",
     quote:
-      "This app changed how I see the world. I've used countless travel and streaming platforms, but nothing comes close to this. The ability to jump into a live tour—whether it's street art in Miami or a yacht cruise in Biscayne Bay—is incredible. The interactive map lets me explore anywhere in real time, and the wallet system makes supporting creators effortless.",
+      "“Partnering with JunziTech to build ENGIE completely redefined how we manage our properties. They transformed our scattered data and manual reports into a real-time, intelligent dashboard that tracks every building, component, and expense. Now we can forecast budgets, monitor issues, and make decisions instantly — it feels like having a digital twin for our entire portfolio.”",
     image: "/slider/test6.svg",
     mobileImage: "/slider/case/mobile/case6-mobile.svg",
   },

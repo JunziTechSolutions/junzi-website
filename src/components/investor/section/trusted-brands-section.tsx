@@ -63,8 +63,7 @@ export default function TrustedBrandsSection() {
             {infiniteBrandsData.map((brand, index) => (
               <div
                 key={`${brand.name}-${index}`}
-                className="flex items-center justify-center transition-all duration-300 ease-in-out
-                           filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100 flex-shrink-0"
+                className="flex items-center justify-center transition-all duration-300 ease-in-out filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100 flex-shrink-0"
                 style={{
                   height: '32px',
                   minWidth: '80px'

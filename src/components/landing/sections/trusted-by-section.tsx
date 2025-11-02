@@ -71,8 +71,7 @@ export default function TrustedBySection({ hideTitle = false }: TrustedBySection
             {infiniteBrandsData.map((brand, index) => (
               <div
                 key={`${brand.id}-${index}`}
-                className="flex items-center justify-center transition-all duration-300 ease-in-out
-                           filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100 flex-shrink-0"
+                className="flex items-center justify-center transition-all duration-300 ease-in-out filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100 flex-shrink-0"
                 style={{
                   width: '106px',
                   height: '24px'
@@ -114,8 +113,7 @@ export default function TrustedBySection({ hideTitle = false }: TrustedBySection
           {brandsData.map((brand, index) => (
             <div
               key={brand.id}
-              className="flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer
-                         filter grayscale hover:grayscale-0 hover:scale-110 opacity-60 hover:opacity-100"
+              className="flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer filter grayscale hover:grayscale-0 hover:scale-110 opacity-60 hover:opacity-100"
               style={{
                 width: '106px',
                 height: '24px'

@@ -4,9 +4,23 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
+    // Enable Turbopack for faster dev builds
+    turbo: {
+      resolveAlias: {
+        // Optimize imports
+      },
+    },
   },
   images: {
     domains: ['github.com'],
+  },
+  // Optimize webpack config for development
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
+      // Disable source maps in dev for faster builds
+      config.devtool = false;
+    }
+    return config;
   },
 };
 

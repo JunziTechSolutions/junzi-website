@@ -233,6 +233,7 @@ export default function Form() {
                 )}
               </div>
 
+
               {/* Contact Information */}
               <div className="space-y-6">
                 <div className="text-base font-semibold text-gray-900 flex items-center gap-2 mb-4">

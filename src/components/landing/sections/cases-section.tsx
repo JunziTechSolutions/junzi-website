@@ -29,8 +29,8 @@ const smallCardsData = [
     id: "engie",
     slug: "eingie-energy",
     category: "IoT/Industrial Analytics",
-    title: "Engie Energy Monitoring",
-    result: "Engery cost reduction: 25%",
+    title: "Eingie Building Intelligence",
+    result: "Inspection time reduction: 40%",
     tags: ["AI", "Content Automation", "UX/UI Design"],
     image: "/cases/plus/engie.svg"
   },

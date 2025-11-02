@@ -207,60 +207,61 @@ export const casesData: CaseStudy[] = [
   {
     id: "eingie-energy",
     slug: "eingie-energy",
-    title: "Eingie Energy Monitoring",
-    description: "Built a 360° dashboard for real-time energy usage and predictive maintenance insights.",
-    category: "IoT / Industrial Analytics",
-    tags: ["IoT", "Analytics", "Dashboard Design"],
+    title: "Eingie Building Intelligence",
+    description: "Developed a unified platform for real-time building monitoring, asset tracking, and predictive maintenance.",
+    category: "PropTech / Facility Management",
+    tags: ["Digital Twin", "IoT", "Analytics", "Dashboard Design"],
     heroImage: "/cases/eingie/EiengieBan.svg",
     heroImageWidth: 1200,
     heroImageHeight: 900,
     client: "Eingie",
     timeline: "12 Weeks",
-    industry: "IoT / Industrial Analytics",
+    industry: "Property & Facilities",
     role: "UX/UI Design, Data Visualization, Dashboard Architecture",
-    challenge: "Industrial energy monitoring systems typically provide raw data without actionable insights. The challenge was to design an intuitive dashboard that transforms complex IoT sensor data into clear, actionable insights for facility managers, enabling predictive maintenance and energy optimization.",
-    solution: "We developed a comprehensive 360° dashboard with real-time energy consumption visualization, predictive maintenance alerts, historical trend analysis, and mobile-responsive design for on-the-go monitoring.",
+    challenge: "Property managers were juggling multiple disconnected tools for inspections, maintenance, and financial planning. The goal was to create one centralized dashboard that connects all building data, turning complex reports into actionable insights for decision-making.",
+    solution: "We built a 360° platform that combines real-time building health monitoring, asset management, predictive maintenance alerts, and lifecycle tracking—all displayed in an intuitive, mobile-ready dashboard for on-site and remote teams.",
     results: [
       {
-        title: "Energy Cost Reduction",
-        value: "25%"
+        title: "Operational Efficiency",
+        value: "45%"
       },
       {
-        title: "Maintenance Efficiency",
-        value: "60%"
+        title: "Maintenance Cost Reduction",
+        value: "30%"
       },
       {
-        title: "System Uptime Improvement",
-        value: "35%"
+        title: "Portfolio Visibility Improvement",
+        value: "70%"
       }
     ],
     testimonial: {
-      quote: "The Eingie dashboard transformed how we monitor our facilities—we can now predict issues before they become problems!",
-      author: "Michael Rodriguez",
-      position: "Operations Director, Eingie",
+      quote: "JunziTech transformed how we manage our buildings—everything from assets to maintenance is live, connected, and easy to control from one dashboard.",
+      author: "Emily Davis",
+      position: "VP of Operations, Eingie",
       avatar: "https://github.com/shadcn.png"
     },
     images: [
       {
         src: "/cases/eingie/eingieBackground.png",
-        alt: "Eingie Energy Dashboard",
+        alt: "Eingie Building Intelligence Dashboard",
         width: 1200,
         height: 600
       },
       {
         src: "/cases/eingie/eingie1.png",
-        alt: "Real-time Energy Monitoring",
+        alt: "Building Asset Overview",
         width: 600,
         height: 450
       },
       {
         src: "/cases/eingie/eingie2.png",
-        alt: "Predictive Maintenance Alerts",
+        alt: "Predictive Maintenance Insights",
         width: 600,
         height: 450
       }
     ]
   },
+  
   {
     id: "wizze-ai",
     slug: "wizze-ai",

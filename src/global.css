@@ -8,6 +8,9 @@
 /* Импорт стилей для карточек кейсов */
 @import './styles/case-cards.css';
 
+/* Import phone input styles */
+@import './styles/phone-input.css';
+
 /* Импорт шрифтов */
 /* @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap");
@@ -154,6 +157,37 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Бесконечный слайдер стили */
+@keyframes slideToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-to-left {
+  animation: slideToLeft 100s linear infinite;
+}
+
+.hover\:pause:hover {
+  animation-play-state: paused;
+}
+
+/* Адаптивные стили */
+.mobile-card {
+  height: 18rem;
+  width: 16rem;
+}
+
+.mobile-text {
+  font-size: 0.75rem;
+  color: black;
+  font-weight: normal;
+  text-transform: none;
 }
 
 /* View Transition API стили */

@@ -2,7 +2,6 @@
 import { ClarityTracker } from "@/components/analytics/ClarityTracker";
 import LandingPage from "@/components/landing/sections/home";
 import "@/global.css";
-import "@/styles/globals.css";
 
 
 

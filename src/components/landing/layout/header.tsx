@@ -12,7 +12,7 @@ import TopPromoBar from "@/components/landing/top-promo-bar";
 import { motion, AnimatePresence } from "framer-motion";
 
 // 🔡 Characters for effect
-const allowedCharacters = ["ア", "イ", "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス", "セ", "ソ"];
+const allowedCharacters = ["ア","イ","ウ","エ","オ","カ","キ","ク","ケ","コ","サ","シ","ス","セ","ソ"];
 const getRandomCharacter = () => allowedCharacters[Math.floor(Math.random() * allowedCharacters.length)];
 
 // Hover scramble utilities
@@ -71,13 +71,11 @@ const navLinks: NavLink[] = [
   // 3) Services -> link to homepage services section
   { type: "external", href: "/#services", label: "Services" },
   // 4) Company dropdown -> About Us, Careers, Blog
-  {
-    type: "dropdown", label: "Company", items: [
-      { label: "About Us", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Blog", href: "/blog" },
-    ]
-  },
+  { type: "dropdown", label: "Company", items: [
+    { label: "About Us", href: "/about" },
+    { label: "Careers", href: "/careers" },
+    { label: "Blog", href: "/blog" },
+  ]},
 ];
 
 type HeaderProps = {
@@ -86,13 +84,24 @@ type HeaderProps = {
 
 export default function Header({ ctaHrefOverride }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const { isOpen, isClosing, closeModal } = useModal();
   const [isCompanyOpen, setIsCompanyOpen] = useState(false);
 
-  // Set mounted state
+  // Detect scroll
   useEffect(() => {
     setIsMounted(true);
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        const scrolled = window.scrollY > 50;
+        setIsScrolled(scrolled);
+        // Add class to body for CSS targeting
+        document.body.classList.toggle('header-scrolled', scrolled);
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   // Handle resize
@@ -137,9 +146,14 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 
   return (
     <>
-      {/* <TopPromoBar /> */}
+      <TopPromoBar />
 
-      <header className="fixed top-0 left-0 right-0 z-50">
+      <header
+        className={cn(
+          "fixed left-0 right-0 z-50 transition-all duration-300",
+          isScrolled ? "top-0" : "top-16 md:top-10"
+        )}
+      >
         {/* 🌀 Curved / Liquid Animation Behind */}
         <AnimatePresence>
           {isMobileMenuOpen && (
@@ -163,11 +177,24 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
 
         {/* Header Content */}
         <div
-          className="relative z-50 flex items-center justify-between max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-full mt-2 py-1.5 md:py-2.5 px-4 sm:px-6"
+          className={cn(
+            "relative z-50 flex items-center justify-between transition-all duration-1000 ease-in-out",
+            isScrolled
+              ? "max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-full mt-2 py-1.5 md:py-2.5 px-4 sm:px-6"
+              : "container mx-auto rounded-none py-1 md:py-2 px-4 sm:px-6 lg:px-8",
+            !isScrolled && "pt-16"
+          )}
         >
           {isMounted && (
             <div
-              className="absolute inset-0 -z-10 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-xl rounded-full md:bg-slate-100/80 md:dark:bg-slate-900/80 bg-slate-100/40 dark:bg-slate-900/40"
+              className={cn(
+                "absolute inset-0 -z-10 transform-gpu transition-all duration-1000 ease-in-out",
+                "bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-xl rounded-full",
+                "md:bg-slate-100/80 md:dark:bg-slate-900/80",
+                "bg-slate-100/40 dark:bg-slate-900/40",
+                isScrolled ? "opacity-70 scale-100" : "opacity-0 scale-0"
+              )}
+              style={{ transformOrigin: "top center" }}
             />
           )}
 
@@ -331,115 +358,115 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div
-            id="mobile-menu-animated-smooth"
-            className="md:hidden fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex flex-col"
-            style={{ touchAction: 'none' }}
-          >
-            {/* Header Section */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200/20">
-              {/* Logo */}
-              <Link href="/" className="flex items-center space-x-2 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
-                <img
-                  src="/Artifex_ME_1v_Favicon.png"
-                  className="w-[32px] h-[32px]"
-                  alt="Logo"
-                  width={32}
-                  height={32}
-                />
-              </Link>
+{/* Mobile Menu */}
+{isMobileMenuOpen && (
+  <div
+    id="mobile-menu-animated-smooth"
+    className="md:hidden fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex flex-col"
+    style={{ touchAction: 'none' }}
+  >
+    {/* Header Section */}
+    <div className="flex items-center justify-between p-6 border-b border-gray-200/20">
+      {/* Logo */}
+      <Link href="/" className="flex items-center space-x-2 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+        <img
+          src="/Artifex_ME_1v_Favicon.png"
+          className="w-[32px] h-[32px]"
+          alt="Logo"
+          width={32}
+          height={32}
+        />
+      </Link>
+      
+      {/* Close Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(false)}
+        className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-colors"
+        aria-label="Close menu"
+      >
+        <svg
+          className="w-5 h-5 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
 
-              {/* Close Button */}
-              <button
+    {/* Menu Links */}
+    <nav className="flex flex-col px-6 py-8 space-y-4 flex-1 overflow-y-auto font-primary text-lg">
+      {navLinks.map((link) => {
+        const eventHandler = createEventHandler();
+        if (link.type === "scroll") {
+          return (
+            <a
+              key={link.label}
+              href={`#${link.href}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                scrollToId(link.href);
+              }}
+              onMouseOver={eventHandler}
+              onMouseLeave={resetHoverText}
+              className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100 cursor-pointer whitespace-nowrap"
+            >
+              {link.label}
+            </a>
+          );
+        }
+        if (link.type === "external") {
+          return (
+            <Link
+              key={link.label}
+              href={link.href}
+              prefetch={false}
+              onClick={() => setIsMobileMenuOpen(false)}
+              onMouseOver={eventHandler as any}
+              onMouseLeave={resetHoverText}
+              className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100 whitespace-nowrap"
+            >
+              {link.label}
+            </Link>
+          );
+        }
+        // dropdown
+        return (
+          <div key={link.label} className="space-y-1">
+            {link.items.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Close menu"
+                onMouseOver={createEventHandler() as any}
+                onMouseLeave={resetHoverText}
+                className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100"
               >
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            {/* Menu Links */}
-            <nav className="flex flex-col px-6 py-8 space-y-4 flex-1 overflow-y-auto font-primary text-lg">
-              {navLinks.map((link) => {
-                const eventHandler = createEventHandler();
-                if (link.type === "scroll") {
-                  return (
-                    <a
-                      key={link.label}
-                      href={`#${link.href}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsMobileMenuOpen(false);
-                        scrollToId(link.href);
-                      }}
-                      onMouseOver={eventHandler}
-                      onMouseLeave={resetHoverText}
-                      className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100 cursor-pointer whitespace-nowrap"
-                    >
-                      {link.label}
-                    </a>
-                  );
-                }
-                if (link.type === "external") {
-                  return (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      prefetch={false}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      onMouseOver={eventHandler as any}
-                      onMouseLeave={resetHoverText}
-                      className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100 whitespace-nowrap"
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                }
-                // dropdown
-                return (
-                  <div key={link.label} className="space-y-1">
-                    {link.items.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        onMouseOver={createEventHandler() as any}
-                        onMouseLeave={resetHoverText}
-                        className="block rounded-md px-3 py-3 font-primary text-lg font-bold text-slate-800 dark:text-slate-100"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                );
-              })}
-            </nav>
-
-            {/* Get Started Button at Bottom */}
-            <div className="p-6 border-t border-gray-200/20 bg-white/95 dark:bg-slate-900/95">
-              <a href="/form" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-primary font-semibold rounded-xl py-3 transition-all shadow-lg">
-                  Get Started
-                </Button>
-              </a>
-            </div>
+                {item.label}
+              </Link>
+            ))}
           </div>
-        )}
+        );
+      })}
+    </nav>
+
+    {/* Get Started Button at Bottom */}
+    <div className="p-6 border-t border-gray-200/20 bg-white/95 dark:bg-slate-900/95">
+      <a href="/form" onClick={() => setIsMobileMenuOpen(false)}>
+        <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-primary font-semibold rounded-xl py-3 transition-all shadow-lg">
+          Get Started
+        </Button>
+      </a>
+    </div>
+  </div>
+)}
 
 
       </header>

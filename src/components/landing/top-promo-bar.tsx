@@ -68,10 +68,10 @@ export default function TopPromoBar() {
 
   return (
     <div
-      className="w-screen text-white h-16 sm:h-10 flex items-center fixed top-0 left-0 z-40"
+      className="w-screen text-white h-16 sm:h-10 flex items-center absolute top-0 left-0 z-40"
       style={{
-        background:
-          "radial-gradient(60.58% 725.59% at 43.14% 120.14%, #3652A3 0%, #4FABFF 100%)",
+        backgroundColor: '#0a0f2c',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
         width: "100vw",
         marginLeft: "calc(-50vw + 50%)",
         marginRight: "calc(-50vw + 50%)",

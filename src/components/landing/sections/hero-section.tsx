@@ -67,7 +67,7 @@ export default function HeroSection() {
   const { toast } = useToast();
   const { submitForm } = useHubSpot();
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
-  const [mountainOpacity, setMountainOpacity] = useState(1);
+  const mountainOpacity = 1; // Always fully visible, no fading
   const sectionRef = useRef<HTMLElement>(null);
 
   const {
@@ -81,21 +81,7 @@ export default function HeroSection() {
     defaultValues: { name: "", email: "", phone: "", message: "", company: "" },
   });
 
-  // Smooth fade for mountain on viewport presence (not tied to grid transition)
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const r = entries[0]?.intersectionRatio ?? 0;
-        const clamped = Math.max(0, Math.min(1, (r - 0.3) / 0.4)); // 0 at 0.3, 1 at 0.7
-        setMountainOpacity(r >= 0.7 ? 1 : r <= 0.3 ? 0 : clamped);
-      },
-      { threshold: [0, 0.3, 0.7, 1] }
-    );
-    obs.observe(section);
-    return () => obs.disconnect();
-  }, []);
+  // Mountain opacity is always 1 - no scroll-based fading
 
   const onSubmit = async (data: any) => {
     if (data.company && data.company.trim().length > 0) return; // honeypot
@@ -140,7 +126,7 @@ export default function HeroSection() {
       {/* Mountain layer (fades by intersection ratio) */}
       <div
         className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 8, opacity: mountainOpacity, transition: "opacity 120ms ease-out" }}
+        style={{ zIndex: 8, opacity: mountainOpacity }}
       >
         <MountainBackground />
       </div>

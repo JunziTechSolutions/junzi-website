@@ -172,7 +172,7 @@ function PhoneInput({ value, onChange, onBlur, error, className = "" }: PhoneInp
         onFocus={handleFocus}
         onBlur={onBlur}
         placeholder="(617) 407-6181"
-        className={`w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none ${className}`}
+        className={`w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none ${className}`}
         style={{ fontFamily: "Space Grotesk, sans-serif" }}
       />
       {error && (
@@ -286,13 +286,14 @@ return () => observer.disconnect();
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
+      className="relative flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
+      style={{ minHeight: '10vh' }}
     >
       {/* Mountain Background */}
       <div
         className="absolute inset-0 w-full h-full bg-"
         style={{
-          zIndex: 5,
+          zIndex: 8,
           opacity: mountainOpacity,
           transition: 'opacity 0.1s ease-out'
         }}
@@ -372,9 +373,9 @@ return () => observer.disconnect();
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10">
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)]">
           {/* Text Content */}
-          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-12 mt-20 lg:mt-48">
+          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-8 -mt-40 lg:-mt-64">
              <h1
-               className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-[50px] lg:mb-[60px]"
+               className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-0"
               style={{
                 fontFamily: "Space Grotesk, sans-serif",
                 background:
@@ -389,13 +390,19 @@ return () => observer.disconnect();
 
 
              <p
-               className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] text-gray-800 leading-relaxed mb-[50px] lg:mb-[60px]"
-               style={{ fontFamily: "Manrope, sans-serif" }}
+               className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] leading-relaxed mb-[50px] lg:mb-[60px]"
+               style={{
+                 fontFamily: "Manrope, sans-serif",
+                 background: "linear-gradient(97.94deg, #0B1E54 -2.89%, #4FABFF 91.06%)",
+                 WebkitBackgroundClip: "text",
+                 WebkitTextFillColor: "transparent",
+                 backgroundClip: "text",
+               }}
              >
                Junzi is your tech Co-Founder.
              </p>
             {/* form started */}
-            <div style={{ zIndex: 12 }}>
+            <div style={{ zIndex: 12, transform: 'translateY(280px)' }} className="lg:translate-y-[170px]">
                <form
                  onSubmit={handleSubmit(onSubmit)}
                  className="max-w-sm sm:max-w-xl mx-auto p-3 space-y-3"
@@ -407,7 +414,7 @@ return () => observer.disconnect();
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                       placeholder="Your name"
                       {...register("name")}
-                       className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus-visible:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                       className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white focus:outline-none focus-visible:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                     />
                     {errors.name && (
                       <p className="text-red-500 text-sm text-left ml-[8px]">
@@ -422,7 +429,7 @@ return () => observer.disconnect();
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                       placeholder="Email address"
                       {...register("email")}
-                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                     />
                     {errors.email && (
                       <p className="text-red-500 text-sm text-left ml-[8px]">
@@ -447,7 +454,7 @@ return () => observer.disconnect();
                     rows={4}
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     {...register("message")}
-                     className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.3)] placeholder-[rgba(70,84,120,1)] resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                     className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm text-left ml-[8px]">

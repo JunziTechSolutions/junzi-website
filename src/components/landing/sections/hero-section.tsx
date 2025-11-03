@@ -113,7 +113,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
+      className="relative flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50 w-full"
       style={{ minHeight: "10vh" }}
     >
       {/* Mountain layer (static) */}
@@ -157,11 +157,11 @@ export default function HeroSection() {
       />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10 w-full overflow-x-hidden">
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)]">
-          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-8 -mt-40 lg:-mt-64">
+          <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-8 -mt-44 sm:-mt-40 lg:-mt-64 w-full">
             <h1
-              className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-0"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-0 break-words"
               style={{
                 fontFamily: "Space Grotesk, sans-serif",
                 background: "linear-gradient(97.94deg, #0B1E54 -2.89%, #4FABFF 91.06%)",
@@ -174,7 +174,7 @@ export default function HeroSection() {
             </h1>
 
             <p
-              className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] leading-relaxed mb-[50px] lg:mb-[60px]"
+              className="text-base sm:text-lg md:text-xl lg:text-[22px] leading-relaxed mb-[50px] lg:mb-[60px] break-words"
               style={{
                 fontFamily: "Manrope, sans-serif",
                 background: "linear-gradient(97.94deg, #0B1E54 -2.89%, #4FABFF 91.06%)",

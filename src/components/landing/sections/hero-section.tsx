@@ -161,7 +161,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)]">
           <div className="text-center max-w-3xl mx-auto flex flex-col mb-8 lg:mb-8 -mt-38 sm:-mt-40 lg:-mt-64">
             <h1
-              className="text-[48px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-0"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-medium leading-tight tracking-tight mb-0"
               style={{
                 fontFamily: "Space Grotesk, sans-serif",
                 background: "linear-gradient(97.94deg, #0B1E54 -2.89%, #4FABFF 91.06%)",
@@ -174,7 +174,7 @@ export default function HeroSection() {
             </h1>
 
             <p
-              className="text-[20px] sm:text-lg md:text-xl lg:text-[22px] leading-relaxed mb-[50px] lg:mb-[60px]"
+              className="text-sm sm:text-lg md:text-xl lg:text-[22px] leading-relaxed mb-[50px] lg:mb-[60px]"
               style={{
                 fontFamily: "Manrope, sans-serif",
                 background: "linear-gradient(97.94deg, #0B1E54 -2.89%, #4FABFF 91.06%)",

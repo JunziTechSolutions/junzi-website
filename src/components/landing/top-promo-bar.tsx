@@ -68,13 +68,10 @@ export default function TopPromoBar() {
 
   return (
     <div
-      className="w-screen text-white h-16 sm:h-10 flex items-center absolute top-0 left-0 z-40"
+      className="w-full text-white h-16 sm:h-10 flex items-center absolute top-0 left-0 right-0 z-40"
       style={{
         backgroundColor: '#0a0f2c',
         borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
-        width: "100vw",
-        marginLeft: "calc(-50vw + 50%)",
-        marginRight: "calc(-50vw + 50%)",
       }}
     >
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-4 lg:px-6 h-full">

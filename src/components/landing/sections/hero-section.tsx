@@ -170,7 +170,7 @@ export default function HeroSection() {
                 backgroundClip: "text",
               }}
             >
-              From Idea to Launch<br />We Build Apps Others Can't.
+              <span className="hidden sm:inline">From Idea to Launch<br /></span>We Build Apps Others Can't.
             </h1>
 
             <p

@@ -33,7 +33,7 @@ function PhoneInput({ value, onChange, onBlur, error }: any) {
         value={display}
         onChange={(e) => onChange(onlyDigits(e.target.value).slice(0, 10))}
         onBlur={onBlur}
-        className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+        className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
         style={{ fontFamily: "Space Grotesk, sans-serif" }}
       />
       {error && <p className="text-red-500 text-sm text-left ml-[8px] mt-1">{error}</p>}
@@ -225,7 +225,7 @@ export default function HeroSection() {
                       autoComplete="name"
                       placeholder="Your name"
                       {...register("name")}
-                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     />
                     {errors.name && <p className="text-red-500 text-sm text-left ml-[8px]">{errors.name.message}</p>}
@@ -238,7 +238,7 @@ export default function HeroSection() {
                       autoComplete="email"
                       placeholder="Email address"
                       {...register("email")}
-                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     />
                     {errors.email && <p className="text-red-500 text-sm text-left ml-[8px]">{errors.email.message}</p>}
@@ -264,7 +264,7 @@ export default function HeroSection() {
                     rows={4}
                     placeholder="How can we help?"
                     {...register("message")}
-                    className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                    className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   />
                 </div>

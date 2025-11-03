@@ -151,7 +151,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
       <header
         className={cn(
           "fixed left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "top-0" : "top-16 md:top-10"
+          isScrolled ? "top-0" : "top-0 md:top-10"
         )}
       >
         {/* 🌀 Curved / Liquid Animation Behind */}

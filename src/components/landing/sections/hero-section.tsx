@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -17,8 +17,7 @@ const formatUS = (raw: string) => {
   if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
   return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
 };
-const toE164US = (rawDigits: string) =>
-  rawDigits.length === 10 ? `+1${rawDigits}` : null;
+const toE164US = (rawDigits: string) => (rawDigits.length === 10 ? `+1${rawDigits}` : null);
 
 /* ------------ phone input ------------ */
 function PhoneInput({ value, onChange, onBlur, error }: any) {
@@ -33,10 +32,10 @@ function PhoneInput({ value, onChange, onBlur, error }: any) {
         value={display}
         onChange={(e) => onChange(onlyDigits(e.target.value).slice(0, 10))}
         onBlur={onBlur}
-        className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+        className="w-full p-2 sm:p-2 text-sm sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
         style={{ fontFamily: "Space Grotesk, sans-serif" }}
       />
-      {error && <p className="text-red-500 text-sm text-left ml-[8px] mt-1">{error}</p>}
+      {error && <p className="text-red-500 text-xs sm:text-sm text-left ml-[8px] mt-1">{error}</p>}
     </div>
   );
 }
@@ -47,10 +46,7 @@ const schema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
   phone: yup
     .string()
-    .test("ten-digits", "Enter a valid 10-digit phone", (v) => {
-      const d = (v ?? "").replace(/\D/g, "");
-      return d.length === 10;
-    })
+    .test("ten-digits", "Enter a valid 10-digit phone", (v) => (v ?? "").replace(/\D/g, "").length === 10)
     .required("Phone number is required"),
   message: yup.string().max(2000, "Keep it under 2,000 chars"),
   company: yup.string().max(0), // honeypot
@@ -67,7 +63,6 @@ export default function HeroSection() {
   const { toast } = useToast();
   const { submitForm } = useHubSpot();
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
-  const mountainOpacity = 1; // Always fully visible, no fading
   const sectionRef = useRef<HTMLElement>(null);
 
   const {
@@ -81,8 +76,6 @@ export default function HeroSection() {
     defaultValues: { name: "", email: "", phone: "", message: "", company: "" },
   });
 
-  // Mountain opacity is always 1 - no scroll-based fading
-
   const onSubmit = async (data: any) => {
     if (data.company && data.company.trim().length > 0) return; // honeypot
     setIsSubmittingForm(true);
@@ -94,7 +87,7 @@ export default function HeroSection() {
           { name: "firstname", value: data.name.split(" ")[0] || data.name },
           { name: "lastname", value: data.name.split(" ").slice(1).join(" ") || "" },
           { name: "email", value: data.email },
-          { name: "phone", value: rawDigits ? `(${rawDigits.slice(0,3)}) ${rawDigits.slice(3,6)}-${rawDigits.slice(6)}` : "" },
+          { name: "phone", value: rawDigits ? `(${rawDigits.slice(0, 3)}) ${rawDigits.slice(3, 6)}-${rawDigits.slice(6)}` : "" },
           ...(e164 ? [{ name: "phone_e164", value: e164 }] : []),
           { name: "message", value: data.message || "" },
         ],
@@ -123,15 +116,12 @@ export default function HeroSection() {
       className="relative flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
       style={{ minHeight: "10vh" }}
     >
-      {/* Mountain layer (fades by intersection ratio) */}
-      <div
-        className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 8, opacity: mountainOpacity }}
-      >
+      {/* Mountain layer (static) */}
+      <div className="absolute inset-0 w-full h-full" style={{ zIndex: 8, opacity: 1 }}>
         <MountainBackground />
       </div>
 
-      {/* Grid background with mask so it softly vanishes near the bottom */}
+      {/* Grid background with mask */}
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -155,25 +145,16 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      {/* **STATIC, art-directed transition**: bottom gradient ramp to the next section color (white here) */}
+      {/* Static fade to next section */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0"
         style={{
-          zIndex: 9,                 // above grid (1) and mountain (8), below content (10)
-          height: "22vh",            // adjust fade length
-          background:
-            "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.88) 35%, rgba(255,255,255,0.0) 100%)",
+          zIndex: 9,
+          height: "22vh",
+          background: "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.88) 35%, rgba(255,255,255,0.0) 100%)",
         }}
       />
-
-      {/* OPTIONAL: curved wave seam — if you want a stronger handoff
-      <div aria-hidden className="absolute inset-x-0 bottom-0" style={{ zIndex: 9, height: 120 }}>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-full block">
-          <path d="M0,64 C240,96 480,0 720,32 C960,64 1200,128 1440,96 L1440,120 L0,120 Z" fill="#FFFFFF" />
-        </svg>
-      </div>
-      */}
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-14 lg:pt-14 xl:pt-20 pb-5 lg:pb-7 xl:pb-10">
@@ -205,8 +186,17 @@ export default function HeroSection() {
               Junzi is your tech Co-Founder.
             </p>
 
-            <div style={{ zIndex: 12, transform: "translateY(280px)" }} className="lg:translate-y-[170px]">
-              <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm sm:max-w-xl mx-auto p-3 space-y-3">
+            {/* FORM: mobile higher; desktop original via responsive classes (NO inline style) */}
+            <div
+              className="
+                relative z-[12]
+                translate-y-[80px]       /* mobile: higher */
+                sm:translate-y-[120px]    /* small screens */
+                md:translate-y-[170px]    /* tablets */
+                lg:translate-y-[280px]    /* desktop: original spacing */
+              "
+            >
+                <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm sm:max-w-xl mx-auto p-2 sm:p-3 space-y-2 sm:space-y-3">
                 {/* Honeypot */}
                 <input
                   type="text"
@@ -217,7 +207,7 @@ export default function HeroSection() {
                   {...register("company")}
                 />
 
-                <div className="flex flex-col md:flex-row gap-3">
+                <div className="flex flex-col md:flex-row gap-2 sm:gap-3">
                   <div className="flex-1">
                     <input
                       id="name"
@@ -225,10 +215,10 @@ export default function HeroSection() {
                       autoComplete="name"
                       placeholder="Your name"
                       {...register("name")}
-                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                      className="w-full p-2 sm:p-2 text-sm sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     />
-                    {errors.name && <p className="text-red-500 text-sm text-left ml-[8px]">{errors.name.message}</p>}
+                    {errors.name && <p className="text-red-500 text-xs sm:text-sm text-left ml-[8px]">{errors.name.message}</p>}
                   </div>
 
                   <div className="flex-1">
@@ -238,10 +228,10 @@ export default function HeroSection() {
                       autoComplete="email"
                       placeholder="Email address"
                       {...register("email")}
-                      className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                      className="w-full p-2 sm:p-2 text-sm sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                       style={{ fontFamily: "Space Grotesk, sans-serif" }}
                     />
-                    {errors.email && <p className="text-red-500 text-sm text-left ml-[8px]">{errors.email.message}</p>}
+                    {errors.email && <p className="text-red-500 text-xs sm:text-sm text-left ml-[8px]">{errors.email.message}</p>}
                   </div>
                 </div>
 
@@ -261,20 +251,20 @@ export default function HeroSection() {
                 <div>
                   <textarea
                     id="message"
-                    rows={4}
+                    rows={3}
                     placeholder="How can we help?"
                     {...register("message")}
-                    className="w-full p-3 sm:p-2 text-base sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
+                    className="w-full p-2 sm:p-2 text-sm sm:text-sm border border-gray-400 rounded-md bg-[rgba(255,255,255,0.1)] placeholder-white text-white resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-none"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   />
                 </div>
 
-                <div className="mb-[20px]">
+                <div className="mb-3 sm:mb-[20px]">
                   <Button
                     type="submit"
                     size="sm"
                     disabled={isSubmittingForm}
-                    className="px-10 py-5 sm:px-6 sm:py-1.5 text-base sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
+                    className="px-6 py-3 sm:px-6 sm:py-1.5 text-xs sm:text-xs font-medium bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] hover:opacity-90 transition-all duration-300 rounded-full shadow-sm"
                     style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   >
                     {isSubmittingForm ? "Submitting..." : "Schedule Introduction"}

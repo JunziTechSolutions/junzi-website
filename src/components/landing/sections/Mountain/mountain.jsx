@@ -61,6 +61,7 @@ function MountainBackground() {
             />
           </Clouds>
 
+
         <EffectComposer>
           <Bloom
             mipmapBlur

@@ -224,7 +224,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                     }}
                     onMouseOver={eventHandler}
                     onMouseLeave={resetHoverText}
-                    className="px-2 text-xs font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap inline-block"
+                    className="px-2 text-xs font-medium text-white/80 hover:text-white dark:hover:text-white transition-colors cursor-pointer whitespace-nowrap inline-block"
                     style={{
                       width: `${(link.label.length + 3) * 8}px`,
                       textAlign: "center",
@@ -244,7 +244,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                     key={link.label}
                     href={link.href}
                     prefetch={false}
-                    className="px-2 text-xs font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors whitespace-nowrap inline-block"
+                    className="px-2 text-xs font-medium text-white/80 hover:text-white dark:hover:text-white transition-colors whitespace-nowrap inline-block"
                     onMouseOver={eventHandler as any}
                     onMouseLeave={resetHoverText}
                     style={{
@@ -270,7 +270,7 @@ export default function Header({ ctaHrefOverride }: HeaderProps) {
                 >
                   <button
                     type="button"
-                    className="px-2 text-xs font-medium text-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer whitespace-nowrap"
+                    className="px-2 text-xs font-medium text-white/80 hover:text-white dark:hover:text-white transition-colors cursor-pointer whitespace-nowrap"
                     onMouseOver={eventHandler as any}
                     onMouseLeave={resetHoverText}
                     style={{

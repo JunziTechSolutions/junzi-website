@@ -45,6 +45,7 @@ function MountainBackground({ onReady }: MountainBackgroundProps) {
       <Canvas
         style={{ backgroundColor: '#0a0f2c' }}
         shadows
+        dpr={[1, 1.5]}
         camera={{ position: [0, -0.5, 6], fov: 50, far: 13 }}
       >
         <fog attach="fog" args={[fogColor, fogNear, fogFar]} />

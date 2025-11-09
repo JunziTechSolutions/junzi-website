@@ -77,14 +77,14 @@ export default function TopPromoBar() {
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-4 lg:px-6 h-full">
         <div className="h-full flex flex-col md:flex-row items-center justify-center gap-1.5 md:gap-4 text-center">
           <span
-            className="text-xs font-medium text-white flex items-center gap-1"
+            className="text-xs font-medium text-white/80 flex items-center gap-1"
             style={{ fontFamily: "Space Grotesk, sans-serif" }}
           >
             🚀
             Free Prototype — This Week Only!
           </span>
           <span
-            className="hidden sm:inline text-white text-xs"
+            className="hidden sm:inline text-white/80 text-xs"
             style={{ fontFamily: "Space Grotesk, sans-serif" }}
           >
             Offer ends in:

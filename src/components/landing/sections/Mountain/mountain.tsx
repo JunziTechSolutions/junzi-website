@@ -1,6 +1,6 @@
-
 'use client';
 
+import { useEffect } from 'react';
 import { Canvas, extend } from '@react-three/fiber';
 import { Cloud, Clouds } from '@react-three/drei';
 import { Bloom, EffectComposer, ToneMapping } from '@react-three/postprocessing';
@@ -17,18 +17,28 @@ class CloudMaterial extends THREE.MeshBasicMaterial {
 }
 
 extend({ CloudMaterial });
-function MountainBackground() {
-  // Static values instead of Leva controls
+
+type MountainBackgroundProps = {
+  onReady?: () => void;
+};
+
+function MountainBackground({ onReady }: MountainBackgroundProps) {
+  useEffect(() => {
+    if (typeof onReady === 'function') {
+      onReady();
+    }
+  }, [onReady]);
+
   const cloudRadius = 3;
   const cloudHeight = -1.4;
-  const cloudScale = 0.3;
-  const cloudOpacity = 1.5;
-  const cloudSpeed = 0.30;
+  const cloudScale = 0.33;
+  const cloudOpacity = 1.0;
+  const cloudSpeed = 0.3;
   const cloudColor = '#4d4d6f';
   const bloom = 5;
   const fogColor = '#000';
-  const fogNear = 5;
-  const fogFar = 6;
+  const fogNear = 2;
+  const fogFar = 3;
 
   return (
     <div className="absolute inset-0 w-full h-full">
@@ -43,24 +53,23 @@ function MountainBackground() {
         <Plane />
 
         <Clouds material={CloudMaterial}>
-            <Cloud
-              position={[-cloudRadius, cloudHeight, 0]}
-              speed={cloudSpeed}
-              opacity={cloudOpacity}
-              scale={[cloudScale, cloudScale, cloudScale]}
-              color={cloudColor}
-              seed={1}
-            />
-            <Cloud
-              position={[cloudRadius, cloudHeight, 0]}
-              speed={cloudSpeed}
-              opacity={cloudOpacity}
-              scale={[cloudScale, cloudScale, cloudScale]}
-              color={cloudColor}
-              seed={1}
-            />
-          </Clouds>
-
+          <Cloud
+            position={[-cloudRadius, cloudHeight, 0]}
+            speed={cloudSpeed}
+            opacity={cloudOpacity}
+            scale={[cloudScale, cloudScale, cloudScale]}
+            color={cloudColor}
+            seed={1}
+          />
+          <Cloud
+            position={[cloudRadius, cloudHeight, 0]}
+            speed={cloudSpeed}
+            opacity={cloudOpacity}
+            scale={[cloudScale, cloudScale, cloudScale]}
+            color={cloudColor}
+            seed={1}
+          />
+        </Clouds>
 
         <EffectComposer>
           <Bloom
@@ -70,7 +79,7 @@ function MountainBackground() {
             luminanceSmoothing={0.01}
             opacity={0.7}
           />
-          <ToneMapping adaptive={true} />
+          <ToneMapping adaptive />
         </EffectComposer>
       </Canvas>
     </div>
@@ -78,3 +87,4 @@ function MountainBackground() {
 }
 
 export default MountainBackground;
+

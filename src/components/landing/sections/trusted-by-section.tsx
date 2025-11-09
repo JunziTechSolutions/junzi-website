@@ -7,13 +7,19 @@ const brandsData = [
   { src: "/company/AstroAI.png", name: "AstroAI", id: "astro_ai" },
   { src: "/life time natty.png", name: "LifetimeNatty", id: "lifetimenatty" },
   { src: "/company/boston e bikes.svg", name: "Boston E Bikes", id: "boston_e_bikes" },
-  { src: "/PhoniAI.png", name: "PhoniAI", id: "phoni_ai" },
-  { src: "/PTB.jpg", name: "PTB", id: "ptb" },
+  { src: "/vetnationlogo.svg", name: "VetNation", id: "vetnation", width: 110, height: 32 },
+  { src: "/crewChief logo.svg", name: "CrewChief", id: "crew_chief" },
   { src: "/company/gymHydra.png", name: "Gym Hydra", id: "gym_hydra" },
 ]
 
 // Create duplicated array for infinite scroll effect
+const DEFAULT_WIDTH = 106
+const DEFAULT_HEIGHT = 24
 const infiniteBrandsData = [...brandsData, ...brandsData, ...brandsData]
+const totalScrollWidth = brandsData.reduce(
+  (acc, brand) => acc + (brand.width ?? DEFAULT_WIDTH) + 32,
+  0
+)
 
 interface TrustedBySectionProps {
   hideTitle?: boolean;
@@ -68,13 +74,16 @@ export default function TrustedBySection({ hideTitle = false }: TrustedBySection
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            {infiniteBrandsData.map((brand, index) => (
+            {infiniteBrandsData.map((brand, index) => {
+              const width = brand.width ?? DEFAULT_WIDTH
+              const height = brand.height ?? DEFAULT_HEIGHT
+              return (
               <div
                 key={`${brand.id}-${index}`}
-                className="flex items-center justify-center transition-all duration-300 ease-in-out filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100 flex-shrink-0"
+                className="flex items-center justify-center transition-all duration-300 ease-in-out opacity-80 hover:opacity-100 flex-shrink-0"
                 style={{
-                  width: '106px',
-                  height: '24px'
+                  width: `${width}px`,
+                  height: `${height}px`
                 }}
                 title={brand.name}
               >
@@ -104,19 +113,22 @@ export default function TrustedBySection({ hideTitle = false }: TrustedBySection
                   </div>
                 )}
               </div>
-            ))}
+            )})}
           </div>
         </div>
 
         {/* Desktop: Grid Layout */}
         <div className="hidden sm:flex items-center justify-center gap-8 sm:gap-12 lg:gap-16 flex-wrap">
-          {brandsData.map((brand, index) => (
+          {brandsData.map((brand, index) => {
+            const width = brand.width ?? DEFAULT_WIDTH
+            const height = brand.height ?? DEFAULT_HEIGHT
+            return (
             <div
               key={brand.id}
-              className="flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer filter grayscale hover:grayscale-0 hover:scale-110 opacity-60 hover:opacity-100"
+              className="flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer hover:scale-110 opacity-80 hover:opacity-100"
               style={{
-                width: '106px',
-                height: '24px'
+                width: `${width}px`,
+                height: `${height}px`
               }}
               title={brand.name}
             >
@@ -146,7 +158,7 @@ export default function TrustedBySection({ hideTitle = false }: TrustedBySection
                 </div>
               )}
             </div>
-          ))}
+          )})}
         </div>
       </div>
 
@@ -157,7 +169,7 @@ export default function TrustedBySection({ hideTitle = false }: TrustedBySection
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-${(brandsData.length * (106 + 32))}px);
+            transform: translateX(-${totalScrollWidth}px);
           }
         }
       `}</style>

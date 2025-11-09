@@ -39,14 +39,4 @@ export const teamMembers = [
     linkedin: "https://www.linkedin.com/in/vinogradovanton/",
     bio: "Experienced technologist and software architect with a strong background in large-scale systems and AI-driven solutions. At Junzi, Anton leads engineering strategy and architecture, ensuring every product is built with precision, performance, and long-term scalability in mind.",
   },
-  {
-    name: "Muhammad Haris",
-    title: "Head Of Design",
-    photo: "/team/haris_main.webp",
-    legend: "/team/haris-legend.webp",
-    photoBg: "#1E2F5E",
-    legendBg: "#E8E4DA",
-    linkedin: "https://www.linkedin.com/in/muhammadharys/",
-    bio: "UI/UX and product designer with over six years specializing in web and mobile design. Expert in turning complex ideas into intuitive, conversion-focused interfaces. At Junzi, Muhammad leads product design and user experience with a focus on performance.",
-  },
 ] as const;

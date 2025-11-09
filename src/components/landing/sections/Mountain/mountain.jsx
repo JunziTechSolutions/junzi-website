@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { Canvas, extend } from '@react-three/fiber';
 import { Cloud, Clouds } from '@react-three/drei';
 import { Bloom, EffectComposer, ToneMapping } from '@react-three/postprocessing';
@@ -16,7 +17,13 @@ class CloudMaterial extends THREE.MeshBasicMaterial {
 }
 
 extend({ CloudMaterial });
-function MountainBackground() {
+function MountainBackground({ onReady }) {
+  useEffect(() => {
+    if (typeof onReady === 'function') {
+      onReady();
+    }
+  }, [onReady]);
+
   // Static values instead of Leva controls
   const bloom = 5;
   const fogColor = '#000';

@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef } from "react";
+import Image from "next/image";
+import { Suspense, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -55,8 +56,53 @@ const schema = yup.object({
 /* ------------ mountain bg ------------ */
 const MountainBackground = dynamic(() => import("./Mountain/mountain"), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 bg-gray-50" />,
+  suspense: true,
 });
+
+const MIN_LOADER_DURATION = 500;
+
+interface EntryLoaderProps {
+  active: boolean;
+  progress: number;
+}
+
+function EntryLoader({ active, progress }: EntryLoaderProps) {
+  return (
+    <div
+      aria-hidden={!active}
+      className={`fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-white transition-opacity duration-500 ${
+        active ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <div className="flex flex-col items-center gap-6">
+        <Image
+          src="/assets/icons/Artifex_ME_1v_cv.png"
+          alt="Junzi logo"
+          width={180}
+          height={180}
+          priority
+          className="w-[160px] md:w-[180px] h-auto"
+        />
+        <div className="w-[200px] md:w-[220px] space-y-3">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-[#0B1E54]/10">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[#0B1E54] to-[#4FABFF] transition-[width]"
+              style={{ width: `${progress}%`, transitionDuration: "120ms" }}
+            />
+          </div>
+          <div
+            className="text-center text-sm font-medium text-[#0B1E54]"
+            aria-live="polite"
+            aria-atomic="true"
+            style={{ fontFamily: "Space Grotesk, sans-serif" }}
+          >
+            {progress}%
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ------------ main component ------------ */
 export default function HeroSection() {
@@ -64,6 +110,11 @@ export default function HeroSection() {
   const { submitForm } = useHubSpot();
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const [isMountainReady, setIsMountainReady] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [hasMinDelayElapsed, setHasMinDelayElapsed] = useState(false);
+  const [isLoaderActive, setIsLoaderActive] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   const {
     register,
@@ -75,6 +126,55 @@ export default function HeroSection() {
     resolver: yupResolver(schema),
     defaultValues: { name: "", email: "", phone: "", message: "", company: "" },
   });
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHasMinDelayElapsed(true), MIN_LOADER_DURATION);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const markPageLoaded = () => setIsPageLoaded(true);
+
+    if (document.readyState === "complete") {
+      markPageLoaded();
+      return;
+    }
+
+    window.addEventListener("load", markPageLoaded, { once: true });
+    return () => window.removeEventListener("load", markPageLoaded);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaderActive) return;
+
+    const target = hasMinDelayElapsed && (isMountainReady || isPageLoaded) ? 100 : 90;
+    const id = window.setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= target) {
+          return prev;
+        }
+        const increment = target === 100 ? 3 : 1;
+        return Math.min(prev + increment, target);
+      });
+    }, 40);
+
+    return () => window.clearInterval(id);
+  }, [isLoaderActive, hasMinDelayElapsed, isMountainReady, isPageLoaded]);
+
+  useEffect(() => {
+    if (!isLoaderActive) return;
+    if (progress < 100) return;
+
+    const timeout = window.setTimeout(() => setIsLoaderActive(false), 200);
+    return () => window.clearTimeout(timeout);
+  }, [progress, isLoaderActive]);
+
+  useEffect(() => {
+    if (!isLoaderActive) {
+      setProgress(100);
+    }
+  }, [isLoaderActive]);
 
   const onSubmit = async (data: any) => {
     if (data.company && data.company.trim().length > 0) return; // honeypot
@@ -111,14 +211,18 @@ export default function HeroSection() {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
-      style={{ minHeight: "10vh" }}
-    >
+    <>
+      <EntryLoader active={isLoaderActive} progress={progress} />
+      <section
+        ref={sectionRef}
+        className="relative flex items-center justify-center overflow-hidden backdrop-blur-[100px] bg-gray-50"
+        style={{ minHeight: "10vh" }}
+      >
       {/* Mountain layer (static) */}
       <div className="absolute inset-0 w-full h-full" style={{ zIndex: 8, opacity: 1 }}>
-        <MountainBackground />
+        <Suspense fallback={null}>
+          <MountainBackground onReady={() => setIsMountainReady(true)} />
+        </Suspense>
       </div>
 
       {/* Grid background with mask */}
@@ -276,6 +380,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

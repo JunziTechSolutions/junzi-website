@@ -1,6 +1,6 @@
+
 'use client';
 
-import { useEffect } from 'react';
 import { Canvas, extend } from '@react-three/fiber';
 import { Cloud, Clouds } from '@react-three/drei';
 import { Bloom, EffectComposer, ToneMapping } from '@react-three/postprocessing';
@@ -17,18 +17,18 @@ class CloudMaterial extends THREE.MeshBasicMaterial {
 }
 
 extend({ CloudMaterial });
-function MountainBackground({ onReady }) {
-  useEffect(() => {
-    if (typeof onReady === 'function') {
-      onReady();
-    }
-  }, [onReady]);
-
+function MountainBackground() {
   // Static values instead of Leva controls
+  const cloudRadius = 3;
+  const cloudHeight = -1.4;
+  const cloudScale = 0.3;
+  const cloudOpacity = 1.5;
+  const cloudSpeed = 0.30;
+  const cloudColor = '#4d4d6f';
   const bloom = 5;
   const fogColor = '#000';
-  const fogNear = 2;
-  const fogFar = 3;
+  const fogNear = 5;
+  const fogFar = 6;
 
   return (
     <div className="absolute inset-0 w-full h-full">
@@ -43,36 +43,21 @@ function MountainBackground({ onReady }) {
         <Plane />
 
         <Clouds material={CloudMaterial}>
-            {/* Cloud 1 */}
             <Cloud
-              position={[-3.1, -1.0, -1.6]}
-              speed={0.45}
-              opacity={0.20}
-              scale={[0.13, 0.13, 0.13]}
-              color="#58586c"
-              seed={60}
+              position={[-cloudRadius, cloudHeight, 0]}
+              speed={cloudSpeed}
+              opacity={cloudOpacity}
+              scale={[cloudScale, cloudScale, cloudScale]}
+              color={cloudColor}
+              seed={1}
             />
-            {/* Cloud 2 */}
             <Cloud
-              position={[-1.4, -1.0, -0.9]}
-              speed={0.30}
-              opacity={0.17}
-              scale={[0.13, 0.13, 0.13]}
-              color="#4d4d6f"
-              seed={11}
-            />
-            {/* Cloud 3 */}
-            
-            {/* Cloud 4 */}
-            
-            {/* Cloud 5 */}
-            <Cloud
-              position={[2.4, -1.0, -1.8]}
-              speed={0.20}
-              opacity={0.20}
-              scale={[0.18, 0.18, 0.18]}
-              color="#4d4d6f"
-              seed={60}
+              position={[cloudRadius, cloudHeight, 0]}
+              speed={cloudSpeed}
+              opacity={cloudOpacity}
+              scale={[cloudScale, cloudScale, cloudScale]}
+              color={cloudColor}
+              seed={1}
             />
           </Clouds>
 

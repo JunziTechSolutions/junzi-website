@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+
 import { Suspense } from "react";
 import { Providers } from './providers';
 import ExternalScripts from '@/components/analytics/ExternalScripts';
@@ -9,9 +9,11 @@ import Navigation from '@/components/Navigation';
 import '@/global.css';
 import '@/styles/mobile-fixes.css';
 
+import type { Metadata } from "next";
+
 export const metadata: Metadata = {
-  title: "Junzi Tech Solutions",
-  description: "Take Control of Your Software Journey Plan, Build, and Launch with Confidence",
+  title: "JunziDev – Creative Web & Mobile Development Studio",
+  description: "Best software development company in USA offering modern, reliable, and custom software development services to help your business grow.",
   icons: {
     icon: "/Artifex_ME_1v_Favicon.png",
   },

@@ -12,11 +12,35 @@ import CaseCTA from "@/components/shared/case-cta"
 import Breadcrumbs from "@/components/shared/breadcrumbs"
 import { PageTransitionContainer } from "@/components/shared/PageTransitionContainer"
 
+import type { Metadata } from "next";
 
 interface CaseStudyPageProps {
   params: {
     slug: string
   }
+}
+
+/* --------------------------------------------------
+   ✅  DYNAMIC META TAGS FOR EACH CASE
+-------------------------------------------------- */
+export function generateMetadata({ params }: CaseStudyPageProps): Metadata {
+  const caseStudy = casesData.find((c) => c.slug === params.slug);
+
+  if (!caseStudy) {
+    return {
+      title: "Case Study Not Found | JunziDev",
+      description: "Requested case study could not be found.",
+    };
+  }
+
+  return {
+    title: caseStudy.title,
+    description: caseStudy.description,
+    openGraph: {
+      title: caseStudy.title,
+      description: caseStudy.description,
+    },
+  };
 }
 
 export default function CaseStudyPage({ params }: CaseStudyPageProps) {

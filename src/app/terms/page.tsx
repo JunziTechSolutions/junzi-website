@@ -2,6 +2,13 @@ import React from 'react';
 import Header from "@/components/landing/layout/header";
 import Footer from "@/components/landing/layout/footer";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "JunziDev – Terms & Conditions | Web Development Studio",
+  description: "Junzi Tech Solutions is a software development company in USA. Read our Terms & Conditions to understand service use, responsibilities, and rights.",
+};
+
 export default function TermsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f6fa]">

@@ -2,6 +2,14 @@ import React from 'react';
 import Header from "@/components/landing/layout/header";
 import Footer from "@/components/landing/layout/footer";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy – JunziDev Data & User Privacy Practices",
+  description: "Junzi Tech Solutions privacy policy — how our software development company in USA handles data for mobile app development and custom app services.",
+};
+
+
 export default function PrivacyPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f6fa]">

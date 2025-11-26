@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Header from "@/components/landing/layout/header"
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Case Studies – JunziDev Portfolio of Web & Mobile Work",
+  description: "Explore the case studies of Junzi Tech Solutions to see all the projects we’ve worked on and how we’ve helped clients achieve their goals.",
+};
+
 export default function CasesPage() {
   const allCases = casesData
 
